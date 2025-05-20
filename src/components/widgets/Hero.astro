@@ -7,27 +7,28 @@ import type { Hero as Props } from '~/types';
 const {
   title = await Astro.slots.render('title'),
   subtitle = await Astro.slots.render('subtitle'),
-  tagline,
+  tagline = await Astro.slots.render('tagline'),
 
   content = await Astro.slots.render('content'),
   actions = await Astro.slots.render('actions'),
   image = await Astro.slots.render('image'),
 
+  class: extraClass,
   id,
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 ---
 
-<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+<section class:list={['relative md:-mt-[96px] not-prose', extraClass]} {...id ? { id } : {}}>
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
     </slot>
   </div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
-    <div class="py-12 md:py-20">
-      <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
+  <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="pt-0 md:pt-[95px] pointer-events-none"></div>
+    <div class="w-full flex flex-col justify-center py-12 md:py-20">
+      <div class="pb-10 md:pb-16 text-white">
         {
           tagline && (
             <p
@@ -44,18 +45,18 @@ const {
             />
           )
         }
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-3xl">
           {
             subtitle && (
               <p
-                class="text-xl text-muted mb-6 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                class="text-xl mb-6 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
                 set:html={subtitle}
               />
             )
           }
           {
             actions && (
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+              <div class="max-w-xs sm:max-w-md flex flex-nowrap flex-col justify-center sm:flex-row sm:justify-start gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
                 {Array.isArray(actions) ? (
                   actions.map((action) => (
                     <div class="flex w-full sm:w-auto">

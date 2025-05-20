@@ -102,6 +102,7 @@ export interface Widget {
   id?: string;
   isDark?: boolean;
   bg?: string;
+  class?: string;
   classes?: Record<string, string | Record<string, string>>;
 }
 
