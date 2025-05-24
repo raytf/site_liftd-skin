@@ -93,12 +93,12 @@ const testimonialSlides = [
         </p>
       </div>
 
-      <!-- Basic Centered Carousel -->
+      <!-- Basic Centered Carousel with Background Images -->
       <section class="mb-20">
-        <h2 class="text-3xl font-bold text-center mb-8">Basic Centered Carousel</h2>
+        <h2 class="text-3xl font-bold text-center mb-8">Carousel with Background Images</h2>
         <p class="text-center text-muted mb-8 max-w-2xl mx-auto">
-          A simple centered carousel with pagination dots. <strong>Test the loop:</strong> Click through all pagination dots
-          to verify looping works correctly.
+          A beautiful centered carousel featuring background images with overlay text. <strong>Notice:</strong> The center
+          slide is highlighted with enhanced styling, scaling, and visual effects.
         </p>
         <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl">
           <Carousel
@@ -115,7 +115,8 @@ const testimonialSlides = [
         </div>
         <div class="text-center mt-4">
           <p class="text-sm text-muted">
-            ✅ Loop should work when: dragging slides, clicking pagination dots, and using navigation arrows
+            ✅ Features: Background images, center slide highlighting, text overlay, loop functionality, and responsive
+            design
           </p>
         </div>
       </section>
@@ -158,6 +159,44 @@ const testimonialSlides = [
           slidesPerView={1}
           class="max-w-4xl mx-auto"
         />
+      </section>
+
+      <!-- Features & Usage -->
+      <section class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
+        <h2 class="text-2xl font-bold mb-6">Background Image Features</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Key Features</h3>
+            <ul class="space-y-2 text-muted">
+              <li>✅ Background images with automatic overlay</li>
+              <li>✅ Center slide highlighting with enhanced styling</li>
+              <li>✅ Smart text color adaptation (white on backgrounds)</li>
+              <li>✅ Scale and opacity transitions for visual hierarchy</li>
+              <li>✅ Gradient border effects on active slides</li>
+              <li>✅ Subtle blur effects for non-active slides</li>
+              <li>✅ Smooth cubic-bezier transitions</li>
+              <li>✅ Responsive image loading and positioning</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Background Image Usage</h3>
+            <pre
+              class="bg-gray-100 dark:bg-gray-900 p-4 rounded-lg text-sm overflow-x-auto"><code>{`const slides = [
+  {
+    title: 'HIFU Treatment',
+    subtitle: 'Non-invasive',
+    content: 'Advanced technology...',
+    backgroundImage: {
+      src: 'image-url.jpg',
+      alt: 'Background description'
+    }
+  }
+];`}</code></pre>
+            <p class="text-xs text-muted mt-2">
+              Background images automatically get a dark overlay (bg-black/40) for better text readability.
+            </p>
+          </div>
+        </div>
       </section>
     </div>
   </main>
