@@ -21,32 +21,30 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <Hero
-    class="h-screen"
+    class=""
     actions={[
       {
         text: 'Book Your Free Consultation',
         href: 'https://github.com/onwidget/astrowind',
-        icon: 'mingcute:calendar-fill',
       },
-      { text: 'Learn more', href: '#features' },
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 size-full bg-black opacity-40"></div>
+      <div class="absolute inset-0 size-full bg-black opacity-50"></div>
       <Image
         class="size-full z-[-1]"
         objectPosition="center 10%"
         aspectRatio="auto"
         loading="eager"
         src={'~/assets/images/looking_at_ocean.jpg'}
-        alt="AstroWind Hero Image"
+        alt="Hero Image"
       />
     </Fragment>
     <Fragment slot="title">
-      <span class="text-accent dark:text-white">Beauty</span> shouldn't be painful
+      Reclaim Your <span class="text-accent font-bold dark:text-white">Confident</span> Glow
     </Fragment>
 
-    <Fragment slot="subtitle"> Tailored Skin Treatment Plan Just For You. No Surgery. No Downtime. </Fragment>
+    <Fragment slot="subtitle"> Personalised skin treatments for proven, pain-free results. </Fragment>
   </Hero>
 
   <!-- Note Widget ******************* -->
