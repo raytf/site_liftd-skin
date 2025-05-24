@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        accent: 'var(--color-accent)',
-        default: 'var(--color-dark)',
-        muted: 'var(--color-muted)',
-        dark: 'var(--color-dark)',
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        default: 'rgb(var(--color-dark) / <alpha-value>)',
+        muted: 'rgb(var(--color-muted) / <alpha-value>)',
+        dark: 'rgb(var(--color-dark) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],

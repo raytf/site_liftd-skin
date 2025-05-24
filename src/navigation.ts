@@ -1,6 +1,18 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getAsset } from './utils/permalinks';
+import type { CallToAction } from './types';
 
-export const headerData = {
+interface MenuLink {
+  text?: string;
+  href?: string;
+  links?: Array<MenuLink>;
+}
+
+interface HeaderData {
+  links: Array<MenuLink>;
+  actions: Array<CallToAction>;
+}
+
+export const headerData: HeaderData = {
   links: [
     {
       text: 'Homes',
@@ -115,7 +127,7 @@ export const headerData = {
       href: '#',
     },
   ],
-  actions: [{ text: 'Book Now', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [{ text: 'Book Now', href: 'https://github.com/onwidget/astrowind', target: '_blank', variant: 'outline' }],
 };
 
 export const footerData = {
