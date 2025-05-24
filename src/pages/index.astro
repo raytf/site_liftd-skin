@@ -3,12 +3,9 @@ import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Carousel from '~/components/widgets/Carousel.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -54,7 +51,7 @@ const metadata = {
     isReversed
     image={{
       src: '~/assets/images/girl_at_resort.jpg',
-      alt: 'Colorful Image',
+      alt: 'Girl at Resort',
     }}
   >
     <Fragment slot="content">
@@ -78,7 +75,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-primary dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -122,7 +119,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-secondary/20 dark:bg-transparent"></div>
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
@@ -133,111 +130,36 @@ const metadata = {
     title="Our Process"
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Free Initial Consultation</span>',
+        title: 'Step 1: <span class="font-medium">Initial Consultation</span>',
         description:
           'We listen to your skin concerns, aesthetic goals, and lifestyle needs while reviewing your medical history to ensure the safest, most effective approach.',
-        icon: 'tabler:user-heart',
+        icon: 'tabler:package',
       },
       {
         title: 'Step 2: <span class="font-medium">Advanced Skin Analysis</span>',
         description:
           'Our Observ 520X technology reveals hidden skin concerns invisible to the naked eye through advanced multi-spectrum imaging.',
-        icon: 'tabler:scan',
+        icon: 'tabler:letter-case',
       },
       {
         title: 'Step 3: <span class="font-medium">Personalized Treatment Plan</span>',
         description:
           'We create your customized HIFU treatment plan with clear pricing, flexible payment options, and recommendations designed to fit your lifestyle and budget.',
-        icon: 'tabler:clipboard-list',
+        icon: 'tabler:paint',
       },
       {
         title: 'Begin Your Transformation!',
-        icon: 'tabler:sparkles',
+        icon: 'tabler:check',
       },
     ]}
     image={{
       src: '~/assets/images/consultation_smiling.jpeg',
       alt: 'Consultation',
     }}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-primary dark:bg-transparent"></div>
-    </Fragment>
-  </Steps>
-
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
-    items={[
-      {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
-      },
-      {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
-      },
-      {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
-      },
-      {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
-      },
-      {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
-      },
-      {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
-
-  <!-- HighlightedPosts Widget ******* -->
-
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
   />
+
+  <!-- Treatments Widget ************** -->
+  <Carousel id="treatments-carousel" showPagination={true} centeredSlides={true} spaceBetween={30} slidesPerView={3} />
 
   <!-- FAQs Widget ******************* -->
 

@@ -1,0 +1,164 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Carousel from '~/components/widgets/Carousel.astro';
+
+const metadata = {
+  title: 'Astro Carousel Demo',
+  description: 'Demonstration of the updated Astro Carousel component with Swiper.js',
+};
+
+// Sample slides data for treatments
+const treatmentSlides = [
+  {
+    title: 'HIFU Face Lifting',
+    subtitle: 'Non-invasive skin tightening',
+    content: 'Advanced ultrasound technology for natural face lifting and skin rejuvenation.',
+    image: {
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'HIFU Treatment',
+    },
+  },
+  {
+    title: 'Skin Analysis',
+    subtitle: 'Advanced diagnostic imaging',
+    content: 'Comprehensive skin analysis using Observ 520X technology to reveal hidden concerns.',
+    image: {
+      src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'Skin Analysis',
+    },
+  },
+  {
+    title: 'Personalized Care',
+    subtitle: 'Tailored treatment plans',
+    content: 'Custom treatment plans designed specifically for your skin type and concerns.',
+    image: {
+      src: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'Personalized Care',
+    },
+  },
+  {
+    title: 'Professional Results',
+    subtitle: 'Visible improvements',
+    content: 'See noticeable improvements in skin texture, firmness, and overall appearance.',
+    image: {
+      src: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'Professional Results',
+    },
+  },
+  {
+    title: 'Aftercare Support',
+    subtitle: 'Ongoing guidance',
+    content: 'Comprehensive aftercare support to maintain and enhance your treatment results.',
+    image: {
+      src: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      alt: 'Aftercare Support',
+    },
+  },
+];
+
+// Sample testimonials
+const testimonialSlides = [
+  {
+    title: 'Amazing Results!',
+    subtitle: '⭐⭐⭐⭐⭐',
+    content: '"The HIFU treatment exceeded my expectations. My skin feels tighter and looks more youthful!" - Sarah M.',
+  },
+  {
+    title: 'Professional Service',
+    subtitle: '⭐⭐⭐⭐⭐',
+    content:
+      '"The team was incredibly professional and made me feel comfortable throughout the entire process." - James L.',
+  },
+  {
+    title: 'Visible Improvement',
+    subtitle: '⭐⭐⭐⭐⭐',
+    content: '"I noticed improvements after just one session. Highly recommend LIFTDSkin!" - Maria K.',
+  },
+  {
+    title: 'Great Experience',
+    subtitle: '⭐⭐⭐⭐⭐',
+    content: '"From consultation to aftercare, everything was perfect. Will definitely return!" - David R.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <main class="py-12 md:py-20">
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <!-- Page Header -->
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-6xl font-bold text-primary mb-4">Astro Carousel Demo</h1>
+        <p class="text-xl text-muted max-w-3xl mx-auto">
+          Experience our updated Astro Carousel component with proper Swiper.js integration
+        </p>
+      </div>
+
+      <!-- Basic Centered Carousel -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-8">Basic Centered Carousel</h2>
+        <p class="text-center text-muted mb-8 max-w-2xl mx-auto">
+          A simple centered carousel with pagination dots. <strong>Test the loop:</strong> Click through all pagination dots
+          to verify looping works correctly.
+        </p>
+        <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-xl">
+          <Carousel
+            id="basic-carousel"
+            showPagination={true}
+            showNavigation={true}
+            autoplay={false}
+            loop={true}
+            centeredSlides={true}
+            spaceBetween={30}
+            slidesPerView="auto"
+            class="mb-8"
+          />
+        </div>
+        <div class="text-center mt-4">
+          <p class="text-sm text-muted">
+            ✅ Loop should work when: dragging slides, clicking pagination dots, and using navigation arrows
+          </p>
+        </div>
+      </section>
+
+      <!-- Treatment Carousel with Images -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-8">Our Treatments</h2>
+        <p class="text-center text-muted mb-8 max-w-2xl mx-auto">
+          Explore our comprehensive range of skincare treatments with navigation controls.
+        </p>
+        <Carousel
+          id="treatments"
+          slides={treatmentSlides}
+          showPagination={true}
+          showNavigation={true}
+          autoplay={false}
+          loop={true}
+          centeredSlides={true}
+          spaceBetween={30}
+          slidesPerView="auto"
+          class="mb-8"
+        />
+      </section>
+
+      <!-- Testimonials with Autoplay -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-8">Client Testimonials</h2>
+        <p class="text-center text-muted mb-8 max-w-2xl mx-auto">
+          Hear what our satisfied clients have to say about their experience.
+        </p>
+        <Carousel
+          id="testimonials"
+          slides={testimonialSlides}
+          showPagination={true}
+          showNavigation={false}
+          autoplay={true}
+          loop={true}
+          centeredSlides={true}
+          spaceBetween={20}
+          slidesPerView={1}
+          class="max-w-4xl mx-auto"
+        />
+      </section>
+    </div>
+  </main>
+</Layout>

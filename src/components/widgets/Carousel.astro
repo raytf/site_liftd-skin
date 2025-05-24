@@ -1,0 +1,286 @@
+---
+import type { Image } from '~/types';
+
+export interface Props {
+  id?: string;
+  slides?: Array<{
+    title?: string;
+    subtitle?: string;
+    image?: Image;
+    content?: string;
+  }>;
+  showPagination?: boolean;
+  showNavigation?: boolean;
+  autoplay?: boolean;
+  loop?: boolean;
+  centeredSlides?: boolean;
+  spaceBetween?: number;
+  slidesPerView?: number | 'auto';
+  class?: string;
+}
+
+const {
+  id = 'carousel',
+  slides = [
+    {
+      title: 'HIFU Face Lifting',
+      subtitle: 'Non-invasive skin tightening',
+      content: 'Advanced ultrasound technology for natural face lifting and skin rejuvenation.',
+    },
+    {
+      title: 'Skin Analysis',
+      subtitle: 'Advanced diagnostic imaging',
+      content: 'Comprehensive skin analysis using Observ 520X technology to reveal hidden concerns.',
+    },
+    {
+      title: 'Personalized Care',
+      subtitle: 'Tailored treatment plans',
+      content: 'Custom treatment plans designed specifically for your skin type and concerns.',
+    },
+    {
+      title: 'Professional Results',
+      subtitle: 'Visible improvements',
+      content: 'See noticeable improvements in skin texture, firmness, and overall appearance.',
+    },
+    {
+      title: 'Aftercare Support',
+      subtitle: 'Ongoing guidance',
+      content: 'Comprehensive aftercare support to maintain and enhance your treatment results.',
+    },
+    {
+      title: 'Expert Team',
+      subtitle: 'Certified professionals',
+      content: 'Our certified aestheticians provide expert care with years of experience.',
+    },
+  ],
+  showPagination = true,
+  showNavigation = false,
+  autoplay = false,
+  loop = true,
+  centeredSlides = true,
+  spaceBetween = 30,
+  slidesPerView = 'auto',
+  class: className = '',
+} = Astro.props;
+
+const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class:list={['w-full relative', className]}>
+  <div
+    class={`swiper ${uniqueId} swiper-container relative`}
+    data-autoplay={autoplay}
+    data-loop={loop}
+    data-centered-slides={centeredSlides}
+    data-space-between={spaceBetween}
+    data-slides-per-view={slidesPerView}
+  >
+    <div class="swiper-wrapper">
+      {
+        slides.map((slide, index) => (
+          <div class="swiper-slide">
+            <div class="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl h-96 flex flex-col justify-center items-center p-6 text-center transition-all duration-300 hover:shadow-lg hover:scale-105">
+              {slide.image && (
+                <div class="w-full h-48 mb-4 overflow-hidden rounded-lg">
+                  <img
+                    src={slide.image.src}
+                    alt={slide.image.alt || slide.title || `Slide ${index + 1}`}
+                    class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+              )}
+              {slide.title && (
+                <h3 class="text-2xl font-semibold text-dark mb-2 overflow-hidden">
+                  <span class="block truncate">{slide.title}</span>
+                </h3>
+              )}
+              {slide.subtitle && <p class="text-lg text-secondary mb-3 truncate">{slide.subtitle}</p>}
+              {slide.content && <p class="text-muted text-sm overflow-hidden line-clamp-3">{slide.content}</p>}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {showPagination && <div class="swiper-pagination !relative !bottom-0 !mt-8 !text-center" />}
+
+    {
+      showNavigation && (
+        <>
+          <button
+            class={`${uniqueId}-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50`}
+            aria-label="Previous slide"
+          >
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            class={`${uniqueId}-next absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50`}
+            aria-label="Next slide"
+          >
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .swiper-wrapper {
+    width: 100%;
+    height: max-content !important;
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+    position: relative;
+  }
+
+  .swiper-pagination {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 2rem !important;
+    text-align: center !important;
+  }
+
+  .swiper-pagination-bullet {
+    background: rgb(var(--color-primary, 79 70 229)) !important;
+    opacity: 0.5 !important;
+    width: 12px !important;
+    height: 12px !important;
+    margin: 0 6px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: rgb(var(--color-primary, 79 70 229)) !important;
+    opacity: 1 !important;
+    transform: scale(1.2) !important;
+  }
+
+  .swiper-slide {
+    transition: transform 0.3s ease;
+  }
+
+  .swiper-slide-active {
+    transform: scale(1.02);
+  }
+</style>
+
+<script>
+  import { Swiper } from 'swiper';
+  import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+  import 'swiper/css/navigation';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get all carousel elements
+    const carousels = document.querySelectorAll('.swiper');
+
+    carousels.forEach((carousel) => {
+      const carouselEl = carousel as HTMLElement;
+
+      // Get the carousel's data attributes or use defaults
+      const autoplay = carouselEl.dataset.autoplay === 'true';
+      const loop = carouselEl.dataset.loop !== 'false';
+      const centeredSlides = carouselEl.dataset.centeredSlides !== 'false';
+      const spaceBetween = parseInt(carouselEl.dataset.spaceBetween || '30') || 30;
+      const slidesPerView = carouselEl.dataset.slidesPerView || 'auto';
+      const showPagination = carouselEl.querySelector('.swiper-pagination') !== null;
+      const showNavigation = carouselEl.querySelector('[class*="-prev"]') !== null;
+
+      // Check if we have enough slides for loop to work properly
+      const slideCount = carouselEl.querySelectorAll('.swiper-slide').length;
+      const effectiveLoop = loop && slideCount > 1;
+
+      // Determine which modules to use
+      const modules: unknown[] = [];
+      if (showPagination) modules.push(Pagination);
+      if (showNavigation) modules.push(Navigation);
+      if (autoplay) modules.push(Autoplay);
+
+      const swiperConfig: Record<string, unknown> = {
+        modules,
+        centeredSlides,
+        loop: effectiveLoop,
+        spaceBetween,
+        slidesPerView: slidesPerView === 'auto' ? 'auto' : parseInt(slidesPerView),
+        slideToClickedSlide: true,
+        grabCursor: true,
+        loopAdditionalSlides: effectiveLoop ? 2 : 0,
+        loopFillGroupWithBlank: false,
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: slidesPerView === 'auto' ? 'auto' : Math.min(2, parseInt(slidesPerView)),
+            spaceBetween: Math.max(15, spaceBetween / 2),
+          },
+          1024: {
+            slidesPerView: slidesPerView === 'auto' ? 'auto' : Math.min(3, parseInt(slidesPerView)),
+            spaceBetween: spaceBetween,
+          },
+          1280: {
+            slidesPerView: slidesPerView === 'auto' ? 'auto' : Math.min(4, parseInt(slidesPerView)),
+            spaceBetween: spaceBetween,
+          },
+        },
+      };
+
+      // Add pagination if element exists
+      if (showPagination) {
+        swiperConfig.pagination = {
+          el: carouselEl.querySelector('.swiper-pagination'),
+          clickable: true,
+          dynamicBullets: true,
+          type: 'bullets',
+        };
+      }
+
+      // Add navigation if elements exist
+      if (showNavigation) {
+        const prevButton = carouselEl.querySelector('[class*="-prev"]');
+        const nextButton = carouselEl.querySelector('[class*="-next"]');
+        if (prevButton && nextButton) {
+          swiperConfig.navigation = {
+            nextEl: nextButton,
+            prevEl: prevButton,
+          };
+        }
+      }
+
+      // Add autoplay if enabled
+      if (autoplay) {
+        swiperConfig.autoplay = {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        };
+      }
+
+      // Initialize Swiper
+      const swiper = new Swiper(carouselEl, swiperConfig);
+
+      // Fix for loop behavior with pagination clicks
+      if (showPagination && effectiveLoop) {
+        const paginationEl = carouselEl.querySelector('.swiper-pagination');
+        if (paginationEl) {
+          paginationEl.addEventListener('click', (e) => {
+            const target = e.target as HTMLElement;
+            if (target.classList.contains('swiper-pagination-bullet')) {
+              // Small delay to ensure the slide transition completes
+              setTimeout(() => {
+                swiper.update();
+              }, 100);
+            }
+          });
+        }
+      }
+    });
+  });
+</script>
