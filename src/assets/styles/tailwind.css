@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
@@ -51,7 +54,7 @@
 }
 
 #header.scroll > .header_content {
-  @apply text-black;
+  @apply text-dark;
 }
 
 #header.scroll > div:first-child {
