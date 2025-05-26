@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Image from '~/components/common/Image.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Carousel from '~/components/widgets/Carousel.astro';
+import Treatments from '~/components/widgets/Treatments.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
@@ -159,7 +159,12 @@ const metadata = {
   />
 
   <!-- Treatments Widget ************** -->
-  <Carousel id="treatments-carousel" showPagination={true} centeredSlides={true} spaceBetween={30} slidesPerView={3} />
+  <Treatments
+    id="treatments"
+    title="Our Treatments"
+    subtitle="Experience our range of advanced aesthetic treatments designed to enhance your natural beauty"
+    tagline="Featured Treatments"
+  />
 
   <!-- FAQs Widget ******************* -->
 

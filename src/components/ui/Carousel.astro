@@ -103,9 +103,9 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
     <div class="swiper-wrapper">
       {
         slides.map((slide, index) => (
-          <div class="swiper-slide">
+          <div class="swiper-slide !flex justify-center items-center">
             <div
-              class="slide-content relative rounded-2xl h-96 flex flex-col justify-center items-center p-6 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 overflow-hidden"
+              class="slide-content relative rounded-2xl flex flex-col justify-center items-center p-6 text-center transition-all duration-300 hover:shadow-lg overflow-hidden"
               style={
                 slide.backgroundImage
                   ? `background-image: url('${slide.backgroundImage.src}'); background-size: cover; background-position: center; background-repeat: no-repeat;`
@@ -114,7 +114,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
             >
               {/* Background overlay for better text readability */}
               <div
-                class={`absolute inset-0 ${slide.backgroundImage ? 'bg-black/40' : 'bg-gradient-to-br from-primary/10 to-secondary/10'} rounded-2xl`}
+                class={`slide-overlay absolute inset-0 ${slide.backgroundImage ? 'bg-black/40' : 'bg-gradient-to-br from-primary/10 to-secondary/10'} rounded-2xl`}
               />
 
               {/* Content */}
@@ -132,7 +132,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
                   <h3
                     class={`text-2xl font-semibold mb-2 overflow-hidden ${slide.backgroundImage ? 'text-white' : 'text-dark'}`}
                   >
-                    <span class="block truncate">{slide.title}</span>
+                    <span class="block">{slide.title}</span>
                   </h3>
                 )}
                 {slide.subtitle && (
@@ -193,7 +193,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
   .swiper-pagination {
     position: relative !important;
     bottom: auto !important;
-    margin-top: 4rem !important;
+    margin-top: 2rem !important;
     text-align: center !important;
   }
 
@@ -214,54 +214,37 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
 
   .swiper-slide {
     transition: all 0.3s ease;
-    padding-top: 4rem;
+    /* padding-top: 4rem; */
+    height: 28rem;
   }
 
   .swiper-slide-active {
-    opacity: 1;
-    transform: scale(1.1);
+    /* opacity: 1; */
+    /* transform: scale(1.5); */
     z-index: 10;
   }
 
   .swiper-slide-active .slide-content {
     /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     border: 2px solid rgb(var(--color-primary, 79 70 229)); */
-    transform: scale(1.2);
+    height: 28rem;
   }
 
   .swiper-slide-next,
   .swiper-slide-prev {
-    opacity: 0.5;
-    transform: scale(0.8);
+    opacity: 0.7;
+    /* filter: blur(2px); */
   }
 
-  /* Enhanced center slide styling */
-  .swiper-slide-active .slide-content::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, rgb(var(--color-primary)), rgb(var(--color-secondary)));
-    border-radius: inherit;
-    z-index: -1;
-    opacity: 0.1;
+  .swiper-slide-next:hover,
+  .swiper-slide-prev:hover {
+    opacity: 0.8;
   }
 
   /* Smooth transitions for all slide elements */
   .slide-content {
+    height: 24rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Additional glow effect for center slide */
-  .swiper-slide-active .slide-content {
-    filter: brightness(1.1);
-  }
-
-  /* Subtle blur for non-active slides */
-  .swiper-slide:not(.swiper-slide-active) .slide-content {
-    filter: blur(0.5px);
   }
 </style>
 
