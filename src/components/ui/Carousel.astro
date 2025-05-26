@@ -1,5 +1,6 @@
 ---
 import type { Image } from '~/types';
+import ImageComponent from '~/components/common/Image.astro';
 
 export interface Props {
   id?: string;
@@ -22,62 +23,7 @@ export interface Props {
 
 const {
   id = 'carousel',
-  slides = [
-    {
-      title: 'HIFU Face Lifting',
-      subtitle: 'Non-invasive skin tightening',
-      content: 'Advanced ultrasound technology for natural face lifting and skin rejuvenation.',
-      backgroundImage: {
-        src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        alt: 'HIFU Treatment Background',
-      },
-    },
-    {
-      title: 'Skin Analysis',
-      subtitle: 'Advanced diagnostic imaging',
-      content: 'Comprehensive skin analysis using Observ 520X technology to reveal hidden concerns.',
-      backgroundImage: {
-        src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        alt: 'Skin Analysis Background',
-      },
-    },
-    {
-      title: 'Personalized Care',
-      subtitle: 'Tailored treatment plans',
-      content: 'Custom treatment plans designed specifically for your skin type and concerns.',
-      backgroundImage: {
-        src: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        alt: 'Personalized Care Background',
-      },
-    },
-    {
-      title: 'Professional Results',
-      subtitle: 'Visible improvements',
-      content: 'See noticeable improvements in skin texture, firmness, and overall appearance.',
-      backgroundImage: {
-        src: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        alt: 'Professional Results Background',
-      },
-    },
-    {
-      title: 'Aftercare Support',
-      subtitle: 'Ongoing guidance',
-      content: 'Comprehensive aftercare support to maintain and enhance your treatment results.',
-      backgroundImage: {
-        src: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        alt: 'Aftercare Support Background',
-      },
-    },
-    {
-      title: 'Expert Team',
-      subtitle: 'Certified professionals',
-      content: 'Our certified aestheticians provide expert care with years of experience.',
-      backgroundImage: {
-        src: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        alt: 'Expert Team Background',
-      },
-    },
-  ],
+  slides = [],
   showPagination = true,
   showNavigation = false,
   autoplay = false,
@@ -104,14 +50,20 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
       {
         slides.map((slide, index) => (
           <div class="swiper-slide !flex justify-center items-center">
-            <div
-              class="slide-content relative rounded-2xl flex flex-col justify-center items-center p-6 text-center transition-all duration-300 hover:shadow-lg overflow-hidden"
-              style={
-                slide.backgroundImage
-                  ? `background-image: url('${slide.backgroundImage.src}'); background-size: cover; background-position: center; background-repeat: no-repeat;`
-                  : ''
-              }
-            >
+            <div class="slide-content relative rounded-2xl flex flex-col justify-center items-center p-6 text-center transition-all duration-300 hover:shadow-lg overflow-hidden">
+              {/* Background image using Image component */}
+              {slide.backgroundImage && (
+                <div class="absolute inset-0 w-full h-full">
+                  <ImageComponent
+                    src={slide.backgroundImage.src}
+                    alt={slide.backgroundImage.alt || slide.title || `Slide ${index + 1} background`}
+                    class="w-full h-full object-cover"
+                    width={1920}
+                    height={1080}
+                  />
+                </div>
+              )}
+
               {/* Background overlay for better text readability */}
               <div
                 class={`slide-overlay absolute inset-0 ${slide.backgroundImage ? 'bg-black/40' : 'bg-gradient-to-br from-primary/10 to-secondary/10'} rounded-2xl`}
@@ -121,10 +73,12 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
               <div class="relative z-10">
                 {slide.image && (
                   <div class="w-full h-48 mb-4 overflow-hidden rounded-lg">
-                    <img
+                    <ImageComponent
                       src={slide.image.src}
                       alt={slide.image.alt || slide.title || `Slide ${index + 1}`}
                       class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      width={800}
+                      height={400}
                     />
                   </div>
                 )}
@@ -136,14 +90,12 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
                   </h3>
                 )}
                 {slide.subtitle && (
-                  <p class={`text-lg mb-3 truncate ${slide.backgroundImage ? 'text-white/90' : 'text-secondary'}`}>
+                  <p class={`text-lg mb-3 ${slide.backgroundImage ? 'text-white/90' : 'text-secondary'}`}>
                     {slide.subtitle}
                   </p>
                 )}
                 {slide.content && (
-                  <p
-                    class={`text-sm overflow-hidden line-clamp-3 ${slide.backgroundImage ? 'text-white/80' : 'text-muted'}`}
-                  >
+                  <p class={`text-sm line-clamp-3 ${slide.backgroundImage ? 'text-white/80' : 'text-muted'}`}>
                     {slide.content}
                   </p>
                 )}
@@ -232,13 +184,13 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
 
   .swiper-slide-next,
   .swiper-slide-prev {
-    opacity: 0.7;
+    opacity: 0.5;
     /* filter: blur(2px); */
   }
 
   .swiper-slide-next:hover,
   .swiper-slide-prev:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   /* Smooth transitions for all slide elements */

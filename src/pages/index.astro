@@ -9,6 +9,7 @@ import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import Concerns from '~/components/widgets/Concerns.astro';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -121,11 +122,12 @@ const wordDuration = totalDuration / animatedWords.length;
   <!-- Content Widget **************** -->
   <div class="relative">
     <Image
-      class="absolute inset-0 size-full opacity-20"
+      class="absolute inset-0 size-full opacity-50"
       src={'~/assets/images/wavy.jpg'}
       objectPosition="center"
       alt="Wavy Background"
     />
+    <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
     <Content
       isReversed
       image={{
@@ -147,63 +149,19 @@ const wordDuration = totalDuration / animatedWords.length;
         <p class="mt-1">
           We know skin isn't one-size-fits-all — everyone has unique concerns, goals, and circumstances. Which is why we
           create customized skin treatment plans based on your specific concerns, goals, and budget — giving you exactly
-          what you need with minimal side effects, pain-free procedures, and naturally beautiful results.
+          what you need with <span class="font-bold"
+            >minimal side effects, pain-free procedures, and naturally beautiful results.</span
+          >
         </p>
       </Fragment>
-
-      <Fragment slot="bg">
-        <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
-      </Fragment>
     </Content>
 
-    <!-- Content Widget **************** -->
-
-    <Content
-      isAfterContent
-      items={[
-        {
-          title: 'Fine Lines and Wrinkles',
-          description: 'Look refreshed and natural while maintaining your facial expressions and movement.',
-        },
-        {
-          title: 'Acne Scarring and Skin Texture',
-          description: 'Improve skin texture and reduce scarring through comfortable, proven technology.',
-        },
-        {
-          title: 'Natural Alternatives to Injectables',
-          description:
-            "Stimulate your body's natural collagen production for gradual, long-lasting improvements without needles.",
-        },
-
-        {
-          title: 'Skin Laxity After Weight Loss',
-          description: `Address facial and body skin sagging that often follows significant weight loss or procedures like Ozempic.`,
-        },
-        {
-          title: 'Post-Pregnancy Skin Changes',
-          description: `Restore your skin's natural elasticity and firmness after childbirth with our gentle, non-invasive treatments.`,
-        },
-      ]}
-      image={{
-        src: '~/assets/images/woman_magnifying_glasses.jpg',
-        alt: 'Woman Magnifying Glasses',
-        height: 500,
-        objectPosition: '55% 50%',
-      }}
-    >
-      <Fragment slot="content">
-        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight dark:text-white">We Address All Your Skin Concerns</h3>
-      </Fragment>
-
-      <Fragment slot="bg">
-        <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
-      </Fragment>
-    </Content>
+    <Concerns tagline="We Address All" title="Your Skin Concerns" />
   </div>
+
   <!-- Steps Widget ****************** -->
 
   <Steps
-    isReversed
     title="Our Process"
     items={[
       {
@@ -233,7 +191,11 @@ const wordDuration = totalDuration / animatedWords.length;
       src: '~/assets/images/consultation_smiling.jpeg',
       alt: 'Consultation',
     }}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-primary opacity-50"></div>
+    </Fragment>
+  </Steps>
 
   <!-- Treatments Widget ************** -->
   <Treatments
