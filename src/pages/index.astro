@@ -16,7 +16,7 @@ const metadata = {
 };
 
 const animatedWords = ['Beauty', 'Smoothness', 'Tightness', 'Vitality', 'Glow'];
-const totalDuration = 12; // Total animation duration in seconds
+const totalDuration = 15; // Total animation duration in seconds
 const wordDuration = totalDuration / animatedWords.length;
 ---
 
@@ -24,7 +24,7 @@ const wordDuration = totalDuration / animatedWords.length;
   .animated-word {
     display: inline-block;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(55px);
     animation: fadeInUp2 var(--total-duration) infinite;
   }
 
@@ -32,7 +32,7 @@ const wordDuration = totalDuration / animatedWords.length;
     0%,
     25% {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(80px);
     }
     5%,
     20% {
@@ -42,7 +42,7 @@ const wordDuration = totalDuration / animatedWords.length;
     25%,
     100% {
       opacity: 0;
-      transform: translateY(-20px);
+      transform: translateY(-80px);
     }
   }
 
@@ -119,83 +119,91 @@ const wordDuration = totalDuration / animatedWords.length;
   </Hero>
 
   <!-- Content Widget **************** -->
+  <div class="relative">
+    <Image
+      class="absolute inset-0 size-full opacity-20"
+      src={'~/assets/images/wavy.jpg'}
+      objectPosition="center"
+      alt="Wavy Background"
+    />
+    <Content
+      isReversed
+      image={{
+        src: '~/assets/images/girl_at_resort.jpg',
+        alt: 'Girl at Resort',
+        height: 200,
+        objectPosition: '50% 0%',
+      }}
+    >
+      <Fragment slot="content">
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight dark:text-white mb-4">
+          Welcome to <span class="text-secondary">LIFTD </span>
+          <span class="text-accent">Skin</span>
+        </h3>
+        <p>
+          Located on the Gold Coast, our clinic offers advanced non-invasive skin treatments that honor your natural
+          beauty while delivering the radiant results you deserve.
+        </p>
+        <h4 class="text-lg sm:text-xl font-bold tracking-tight dark:text-white my-4">Our Approach:</h4>
+        <p>
+          We know skin isn't one-size-fits-all — everyone has unique concerns, goals, and circumstances, which is why we
+          begin with a comprehensive consultation.
+        </p>
+        <p class="mt-1">
+          We then recommend a customized treatment plan based on your specific needs and budget — giving you exactly
+          what you need, nothing more, nothing less.
+        </p>
+      </Fragment>
 
-  <Content
-    isReversed
-    image={{
-      src: '~/assets/images/girl_at_resort.jpg',
-      alt: 'Girl at Resort',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl sm:text-3xl font-bold tracking-tight dark:text-white mb-4">
-        Welcome to <span class="text-secondary">LIFTD </span>
-        <span class="text-accent">Skin</span>
-      </h3>
-      <p>
-        Located on the Gold Coast, our clinic offers advanced non-invasive skin treatments that honor your natural
-        beauty while delivering the radiant results you deserve.
-      </p>
-      <h4 class="text-lg sm:text-xl font-bold tracking-tight dark:text-white my-4">Our Approach:</h4>
-      <p>
-        We know skin isn't one-size-fits-all — everyone has unique concerns, goals, and circumstances, which is why we
-        begin with a comprehensive consultation.
-      </p>
-      <p class="mt-1">
-        We then recommend a customized treatment plan based on your specific needs and budget — giving you exactly what
-        you need, nothing more, nothing less.
-      </p>
-    </Fragment>
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+      </Fragment>
+    </Content>
 
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+    <!-- Content Widget **************** -->
 
-  <!-- Content Widget **************** -->
+    <Content
+      isAfterContent
+      items={[
+        {
+          title: 'Fine Lines and Wrinkles',
+          description: 'Look refreshed and natural while maintaining your facial expressions and movement.',
+        },
+        {
+          title: 'Acne Scarring and Skin Texture',
+          description: 'Improve skin texture and reduce scarring through comfortable, proven technology.',
+        },
+        {
+          title: 'Natural Alternatives to Injectables',
+          description:
+            "Stimulate your body's natural collagen production for gradual, long-lasting improvements without needles.",
+        },
 
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'Fine Lines and Wrinkles',
-        description: 'Look refreshed and natural while maintaining your facial expressions and movement.',
-      },
-      {
-        title: 'Acne Scarring and Skin Texture',
-        description: 'Improve skin texture and reduce scarring through comfortable, proven technology.',
-      },
-      {
-        title: 'Natural Alternatives to Injectables',
-        description:
-          "Stimulate your body's natural collagen production for gradual, long-lasting improvements without needles.",
-      },
+        {
+          title: 'Skin Laxity After Weight Loss',
+          description: `Address facial and body skin sagging that often follows significant weight loss or procedures like Ozempic.`,
+        },
+        {
+          title: 'Post-Pregnancy Skin Changes',
+          description: `Restore your skin's natural elasticity and firmness after childbirth with our gentle, non-invasive treatments.`,
+        },
+      ]}
+      image={{
+        src: '~/assets/images/woman_magnifying_glasses.jpg',
+        alt: 'Woman Magnifying Glasses',
+        height: 500,
+        objectPosition: '55% 50%',
+      }}
+    >
+      <Fragment slot="content">
+        <h3 class="text-2xl sm:text-3xl font-bold tracking-tight dark:text-white">We Address All Your Skin Concerns</h3>
+      </Fragment>
 
-      {
-        title: 'Skin Laxity After Weight Loss',
-        description: `Address facial and body skin sagging that often follows significant weight loss or procedures like Ozempic.`,
-      },
-      {
-        title: 'Post-Pregnancy Skin Changes',
-        description: `Restore your skin's natural elasticity and firmness after childbirth with our gentle, non-invasive treatments.`,
-      },
-    ]}
-    image={{
-      src: '~/assets/images/woman_magnifying_glasses.jpg',
-      alt: 'Woman Magnifying Glasses',
-      height: 500,
-      objectPosition: '55% 50%',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl sm:text-3xl font-bold tracking-tight dark:text-white">We Address All Your Skin Concerns</h3>
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-white dark:bg-transparent"></div>
+      </Fragment>
+    </Content>
+  </div>
   <!-- Steps Widget ****************** -->
 
   <Steps
