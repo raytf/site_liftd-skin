@@ -14,7 +14,38 @@ const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true,
 };
+
+const animatedWords = ['Beauty', 'Smoothness', 'Tightness', 'Vitality', 'Glow'];
+const totalDuration = 12; // Total animation duration in seconds
+const wordDuration = totalDuration / animatedWords.length;
 ---
+
+<style>
+  .animated-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp2 var(--total-duration) infinite;
+  }
+
+  @keyframes fadeInUp2 {
+    0%,
+    25% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    5%,
+    20% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    25%,
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+</style>
 
 <Layout metadata={metadata}>
   <Hero
@@ -39,7 +70,21 @@ const metadata = {
       />
     </Fragment>
     <Fragment slot="title">
-      Reclaim Your <span class="text-accent font-bold dark:text-white">Youthful</span> Glow
+      Restore Your Skin's
+      <span class="relative inline-block text-accent brightness-110" style={`--total-duration: ${totalDuration}s`}>
+        &#160;<span class="sr-only">{animatedWords.join('/')}</span>
+        {
+          animatedWords.map((word, index) => (
+            <span
+              class="animated-word absolute left-0"
+              aria-hidden="true"
+              style={`animation-delay: ${index * wordDuration}s`}
+            >
+              {word}
+            </span>
+          ))
+        }
+      </span>
     </Fragment>
 
     <Fragment slot="subtitle"> Personalised skin treatments for proven, pain-free results. </Fragment>
@@ -56,7 +101,7 @@ const metadata = {
   >
     <Fragment slot="content">
       <h3 class="text-2xl sm:text-3xl font-bold tracking-tight dark:text-white mb-4">
-        Welcome to <span class="text-secondary">LIFTD</span>
+        Welcome to <span class="text-secondary">LIFTD </span>
         <span class="text-accent">Skin</span>
       </h3>
       <p>
@@ -182,7 +227,7 @@ const metadata = {
       {
         title: 'What do I need to start?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it's actually our duty to future generations.",
       },
       {
         title: 'How to install the Astro + Tailwind CSS template?',
