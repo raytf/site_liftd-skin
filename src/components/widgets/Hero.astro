@@ -19,7 +19,7 @@ const {
 } = Astro.props;
 ---
 
-<section class:list={['relative h-screen md:-mt-[80px] not-prose', extraClass]} {...id ? { id } : {}}>
+<section class:list={['relative md:-mt-[80px] not-prose', extraClass]} {...id ? { id } : {}}>
   <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
