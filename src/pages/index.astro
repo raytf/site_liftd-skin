@@ -46,34 +46,43 @@ const wordDuration = totalDuration / animatedWords.length;
       transform: translateY(-80px);
     }
   }
-
-  .parallax-bg {
-    transform: translateY(calc(var(--scroll-offset) * 0.5));
-    will-change: transform;
-  }
 </style>
 
 <script>
   import Lenis from 'lenis';
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  const lenis = new Lenis({ autoRaf: true });
+  gsap.registerPlugin(ScrollTrigger);
 
-  function handleParallax(scrollY: number) {
-    const hero = document.querySelector('.hero-section') as HTMLElement;
-    const bg = document.querySelector('.parallax-bg') as HTMLElement;
-    if (!hero || !bg) return;
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  });
 
-    const heroHeight = hero.offsetHeight;
-    const maxScroll = heroHeight;
-    const scrollOffset = Math.min(scrollY, maxScroll);
-
-    bg.style.setProperty('--scroll-offset', `${scrollOffset}px`);
+  function raf(time) {
+    lenis.raf(time);
+    ScrollTrigger.update();
+    requestAnimationFrame(raf);
   }
 
   //get scroll value
   lenis.on('scroll', ({ scroll }) => {
-    handleParallax(scroll);
+    //console.log(scroll);
   });
+
+  requestAnimationFrame(raf);
+
+  const tl_hero = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.hero-section',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 0,
+      markers: true,
+    },
+  });
+  tl_hero.to('.hero-image', { y: 333, ease: 'none' }, 0);
 </script>
 
 <Layout metadata={metadata}>
@@ -90,7 +99,7 @@ const wordDuration = totalDuration / animatedWords.length;
     <Fragment slot="bg">
       <div class="absolute inset-0 size-full bg-black opacity-50"></div>
       <Image
-        class="relative size-full z-[-1] parallax-bg"
+        class="relative size-full z-[-1] hero-image"
         objectPosition="80% 10%"
         aspectRatio="auto"
         loading="eager"
