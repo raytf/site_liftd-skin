@@ -8,11 +8,13 @@ interface MenuLink {
 }
 
 interface HeaderData {
+  position: 'left' | 'right';
   links: Array<MenuLink>;
   actions: Array<CallToAction>;
 }
 
 export const headerData: HeaderData = {
+  position: 'left',
   links: [
     {
       text: 'Homes',
