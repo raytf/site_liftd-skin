@@ -94,6 +94,20 @@ const wordDuration = totalDuration / animatedWords.length;
     },
   });
   tl_about.to('.about-image', { y: 0, ease: 'none' }, 0);
+
+  const tl_process = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.process-section',
+      start: 'top center',
+      end: 'bottom bottom',
+      scrub: 0,
+      markers: true,
+      onEnter: () => {
+        console.log('eneter');
+      },
+    },
+  });
+  tl_process.to('.process-item', { backgroundColor: 'red', ease: 'none' });
 </script>
 
 <Layout metadata={metadata}>
@@ -234,50 +248,74 @@ const wordDuration = totalDuration / animatedWords.length;
 
   <!-- Steps Widget ****************** -->
 
-  <Steps
-    classes={{ items: { panel: 'bg-blue-200' } }}
-    title="Our Process"
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Initial Consultation</span>',
-        description:
-          'We listen to your skin concerns, aesthetic goals, and lifestyle needs while reviewing your medical history to ensure the safest, most effective approach.',
-        icon: 'tabler:user-check',
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Advanced Skin Analysis</span>',
-        description:
-          'Our Observ 520X technology reveals hidden skin concerns invisible to the naked eye through advanced multi-spectrum imaging.',
-        icon: 'tabler:scan',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Personalized Treatment Plan</span>',
-        description:
-          'We create your customized HIFU treatment plan with clear pricing, flexible payment options, and recommendations designed to fit your lifestyle and budget.',
-        icon: 'tabler:clipboard-list',
-      },
-      {
-        title: 'Begin Your Transformation!',
-        icon: 'tabler:check',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/consultation_smiling.jpeg',
-      alt: 'Consultation',
-    }}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 size-full bg-primary"></div>
-    </Fragment>
-  </Steps>
+  <div class="relative">
+    <Image
+      class="absolute inset-0 size-full opacity-50 object-cover scale-y-[-1]"
+      src={'~/assets/images/wavy.jpg'}
+      objectPosition="center"
+      alt="Wavy Background"
+    />
+    <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
+    <Steps
+      classes={{ container: 'process-section', items: { panel: 'bg-blue-200 process-item' } }}
+      title="Our Process"
+      items={[
+        {
+          title: 'Step 1: <span class="font-medium">Initial Consultation</span>',
+          description:
+            'We listen to your skin concerns, aesthetic goals, and lifestyle needs while reviewing your medical history to ensure the safest, most effective approach.',
+          icon: 'tabler:user-check',
+        },
+        {
+          title: 'Step 2: <span class="font-medium">Advanced Skin Analysis</span>',
+          description:
+            'Our Observ 520X technology reveals hidden skin concerns invisible to the naked eye through advanced multi-spectrum imaging.',
+          icon: 'tabler:scan',
+        },
+        {
+          title: 'Step 3: <span class="font-medium">Personalized Treatment Plan</span>',
+          description:
+            'We create your customized HIFU treatment plan with clear pricing, flexible payment options, and recommendations designed to fit your lifestyle and budget.',
+          icon: 'tabler:clipboard-list',
+        },
+        {
+          title: 'Begin Your Transformation!',
+          icon: 'tabler:check',
+        },
+      ]}
+    >
+      <Fragment slot="image">
+        <Image
+          src="~/assets/images/consultation_smiling.jpeg"
+          alt="Consultation"
+          class="absolute inset-0 object-cover object-top w-full rounded-2xl shadow-lg md:absolute md:h-full"
+          widths={[400, 768]}
+          sizes="(max-width: 768px) 100vw, 432px"
+          width={432}
+          height={768}
+          layout="cover"
+        />
+        <Image
+          src="~/assets/images/observ-520x.jpg"
+          alt="Consultation"
+          class="absolute inset-0 object-cover object-top w-full rounded-2xl shadow-lg md:absolute md:h-full"
+          widths={[400, 768]}
+          sizes="(max-width: 768px) 100vw, 432px"
+          width={432}
+          height={768}
+          layout="cover"
+        />
+      </Fragment>
+    </Steps>
 
-  <!-- Treatments Widget ************** -->
-  <Treatments
-    id="treatments"
-    title="Our Treatments"
-    subtitle="Experience our range of advanced aesthetic treatments designed to enhance your natural beauty"
-    tagline="Featured Treatments"
-  />
+    <!-- Treatments Widget ************** -->
+    <Treatments
+      id="treatments"
+      title="Our Treatments"
+      subtitle="Experience our range of advanced aesthetic treatments designed to enhance your natural beauty"
+      tagline="Featured Treatments"
+    />
+  </div>
 
   <!-- FAQs Widget ******************* -->
 
