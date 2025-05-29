@@ -235,6 +235,7 @@ const wordDuration = totalDuration / animatedWords.length;
   <!-- Steps Widget ****************** -->
 
   <Steps
+    classes={{ items: { panel: 'bg-blue-200' } }}
     title="Our Process"
     items={[
       {
@@ -266,7 +267,7 @@ const wordDuration = totalDuration / animatedWords.length;
     }}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 size-full bg-primary opacity-50"></div>
+      <div class="absolute inset-0 size-full bg-primary"></div>
     </Fragment>
   </Steps>
 
