@@ -136,13 +136,15 @@ const wordDuration = totalDuration / animatedWords.length;
       </span>
     </Fragment>
 
-    <Fragment slot="subtitle"> Personalised skin treatments for proven, pain-free results. </Fragment>
+    <Fragment slot="subtitle">
+      Personalised skin treatments for <span class="underline">proven</span>, <span class="underline">pain-free</span> results.
+    </Fragment>
   </Hero>
 
   <!-- Content Widget **************** -->
   <div class="relative">
     <Image
-      class="absolute inset-0 size-full opacity-50"
+      class="absolute inset-0 size-full opacity-50 object-cover"
       src={'~/assets/images/wavy.jpg'}
       objectPosition="center"
       alt="Wavy Background"
@@ -153,10 +155,10 @@ const wordDuration = totalDuration / animatedWords.length;
       isReversed
       items={[
         {
-          title: 'Minimal Side Effects',
+          title: 'Pain-free Procedures',
         },
         {
-          title: 'Pain-free Procedures',
+          title: 'Minimal Side Effects',
         },
         {
           title: 'Naturally Beautiful Results',
@@ -179,12 +181,12 @@ const wordDuration = totalDuration / animatedWords.length;
           <span class="text-accent">Skin</span>
         </h3>
         <p>
-          Located on the Gold Coast, our clinic combines personalized care with <span class="font-bold"
-            >advanced HIFU</span
-          > and <span class="font-bold">Radio Frequency</span> technology.
+          Located on the <span class="font-bold">Gold Coast</span>, our clinic combines personalized care with <span
+            class="underline">advanced HIFU</span
+          > and <span class="underline">Radio Frequency</span> technology.
         </p>
         <p class="mt-1">
-          We know skin isn't one-size-fits-all — which is why we create <span class="font-bold"
+          We know skin isn't one-size-fits-all — which is why we create <span class="underline"
             >customized skin treatment plans</span
           > based on your specific concerns, goals, and budget — giving you exactly what you need with:
         </p>
@@ -194,26 +196,37 @@ const wordDuration = totalDuration / animatedWords.length;
     <!-- <Concerns tagline="We Address All" title="Your Skin Concerns" /> -->
 
     <Features
-      title="We Address <span class='text-secondary'>All</span> Your Skin Concerns"
-      subtitle="Each of the following features enhances AstroWind's value proposition."
+      title="We Address <span class='underline'>All</span> Your Skin Concerns"
       items={[
         {
           title: 'Fine Lines and Wrinkles',
+          description: 'Reduce aging signs while maintaining your natural expressions and facial movement.',
+          icon: 'tabler:face-id',
         },
         {
           title: 'Acne Scarring and Texture',
-        },
-        {
-          title: 'Natural Alternatives',
+          description: 'Make your complexion visibly smoother and more even.',
+          icon: 'tabler:microscope',
         },
         {
           title: 'Skin Laxity After Weight Loss',
-        },
-        {
-          title: 'Busy Professional Lifestyle',
+          description: 'Restore firmness and definition to your skin after weight loss.',
+          icon: 'tabler:scale',
         },
         {
           title: 'Post-Pregnancy Changes',
+          description: "Restore your skin's natural elasticity and firmness without surgery.",
+          icon: 'tabler:heart-handshake',
+        },
+        {
+          title: 'Natural Alternatives',
+          description: "Experience natural, needle-free treatments that harness your body's own healing power.",
+          icon: 'tabler:leaf',
+        },
+        {
+          title: 'Busy Professional Lifestyle',
+          description: 'Get effective results without long recovery times.',
+          icon: 'tabler:clock',
         },
       ]}
     />
