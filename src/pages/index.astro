@@ -4,12 +4,12 @@ import Image from '~/components/common/Image.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Treatments from '~/components/widgets/Treatments.astro';
+import Features from '~/components/widgets/Features.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import Concerns from '~/components/widgets/Concerns.astro';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -164,7 +164,7 @@ const wordDuration = totalDuration / animatedWords.length;
       ]}
     >
       <Fragment slot="image">
-        <div class="mt-4 relative h-[300px] rounded-2xl overflow-hidden bg-blue-200">
+        <div class="mt-4 relative h-[400px] rounded-2xl overflow-hidden bg-blue-200">
           <Image
             class="about-image h-[150%] rounded-2xl translate-y-[-111px]"
             src="~/assets/images/girl_at_resort.jpg"
@@ -179,17 +179,44 @@ const wordDuration = totalDuration / animatedWords.length;
           <span class="text-accent">Skin</span>
         </h3>
         <p>
-          Located on the Gold Coast, our clinic combines personalized care with advanced HIFU and Radio Frequency
-          technology.
+          Located on the Gold Coast, our clinic combines personalized care with <span class="font-bold"
+            >advanced HIFU</span
+          > and <span class="font-bold">Radio Frequency</span> technology.
         </p>
         <p class="mt-1">
-          We know skin isn't one-size-fits-all — which is why we create customized skin treatment plans based on your
-          specific concerns, goals, and budget — giving you exactly what you need with:
+          We know skin isn't one-size-fits-all — which is why we create <span class="font-bold"
+            >customized skin treatment plans</span
+          > based on your specific concerns, goals, and budget — giving you exactly what you need with:
         </p>
       </Fragment>
     </Content>
 
-    <Concerns tagline="We Address All" title="Your Skin Concerns" />
+    <!-- <Concerns tagline="We Address All" title="Your Skin Concerns" /> -->
+
+    <Features
+      title="We Address <span class='text-secondary'>All</span> Your Skin Concerns"
+      subtitle="Each of the following features enhances AstroWind's value proposition."
+      items={[
+        {
+          title: 'Fine Lines and Wrinkles',
+        },
+        {
+          title: 'Acne Scarring and Texture',
+        },
+        {
+          title: 'Natural Alternatives',
+        },
+        {
+          title: 'Skin Laxity After Weight Loss',
+        },
+        {
+          title: 'Busy Professional Lifestyle',
+        },
+        {
+          title: 'Post-Pregnancy Changes',
+        },
+      ]}
+    />
   </div>
 
   <!-- Steps Widget ****************** -->
