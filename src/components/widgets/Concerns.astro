@@ -1,7 +1,13 @@
 ---
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Carousel from '~/components/ui/Carousel.astro';
+import { Icon } from 'astro-icon/components';
+
+export interface ConcernItem {
+  title: string;
+  quote: string;
+  solution: string;
+}
 
 export interface Props {
   title?: string;
@@ -9,77 +15,102 @@ export interface Props {
   tagline?: string;
   id?: string;
   isDark?: boolean;
-  classes?: Record<string, string>;
+  classes?: {
+    container?: string;
+    item?: string;
+    title?: string;
+    quote?: string;
+    solution?: string;
+  };
   bg?: string;
+  items?: ConcernItem[];
+  defaultExpanded?: number;
+  containerHeight?: string;
 }
 
 const {
-  title = await Astro.slots.render('title'),
-  subtitle = await Astro.slots.render('subtitle'),
+  title = "You're Not Alone in These Struggles",
+  subtitle = "Our clients come to us with common concerns. Here's how we help them reclaim their confidence.",
   tagline = await Astro.slots.render('tagline'),
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
+  items = [
+    {
+      title: 'Post-Pregnancy Skin Changes',
+      quote: '"I don\'t recognize the loose, stretched skin where my firm body used to be."',
+      solution: 'Restore natural elasticity exactly where you need it most—no surgery required.',
+    },
+    {
+      title: 'Weight Loss Skin Laxity',
+      quote: '"I lost the weight, but now I have sagging skin that makes me want to hide."',
+      solution:
+        "Target areas where skin hasn't bounced back, restoring the tight appearance your transformation deserves.",
+    },
+    {
+      title: 'Injectable Fatigue',
+      quote: '"I\'m tired of needles and never knowing if I\'ll look natural or frozen."',
+      solution: 'Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.',
+    },
+    {
+      title: 'Fine Lines and Wrinkles',
+      quote: '"I want to look refreshed but terrified of looking \'done\' or unnatural."',
+      solution: 'Erase years while preserving everything that makes you uniquely beautiful.',
+    },
+    {
+      title: 'Acne Scarring and Texture Issues',
+      quote: '"I\'ve tried everything for my scars—nothing makes a real difference."',
+      solution: "Smooth skin texture from the inside out for the clear, even complexion you've been seeking.",
+    },
+    {
+      title: 'Professional Time Constraints',
+      quote: '"I need to look polished but can\'t afford weeks of recovery."',
+      solution: 'Walk in during lunch, return to work immediately—your skin improves over the coming weeks.',
+    },
+  ],
+  defaultExpanded = 0,
+  containerHeight = '800px',
 } = Astro.props;
-
-const slides = [
-  {
-    title: 'Fine Lines and Wrinkles',
-    subtitle: 'I want to look refreshed but still like myself',
-    content: 'Reduce aging signs while maintaining your natural expressions and facial movement.',
-    backgroundImage: {
-      src: '~/assets/images/face_lift_graphic.jpg',
-      alt: 'Face lift treatment illustration',
-    },
-  },
-  {
-    title: 'Acne Scarring and Texture',
-    subtitle: 'Can anything really help with my acne scars and uneven skin texture?',
-    content: 'Make your complexion visibly smoother and more even.',
-    backgroundImage: {
-      src: '~/assets/images/face_lift_graphic.jpg',
-      alt: 'Face lift treatment illustration',
-    },
-  },
-  {
-    title: 'Natural Alternatives',
-    subtitle: 'I want results without needles or constant touch-ups',
-    content: "Experience natural, needle-free treatments that harness your body's own healing power.",
-    backgroundImage: {
-      src: '~/assets/images/face_lift_graphic.jpg',
-      alt: 'Face lift treatment illustration',
-    },
-  },
-  {
-    title: 'Skin Laxity After Weight Loss',
-    subtitle: "I've lost the weight, but my skin hasn't bounced back",
-    content: 'Restore firmness and definition to your skin after weight loss.',
-    backgroundImage: {
-      src: '~/assets/images/face_lift_graphic.jpg',
-      alt: 'Face lift treatment illustration',
-    },
-  },
-  {
-    title: 'Busy Professional Lifestyle',
-    subtitle: 'I need effective treatments that fit my hectic schedule',
-    content: 'Get effective results without long recovery times.',
-    backgroundImage: {
-      src: '~/assets/images/face_lift_graphic.jpg',
-      alt: 'Face lift treatment illustration',
-    },
-  },
-  {
-    title: 'Post-Pregnancy Changes',
-    subtitle: 'Will my skin ever feel like mine again after having children?',
-    content: "Restore your skin's natural elasticity and firmness without surgery.",
-    backgroundImage: {
-      src: '~/assets/images/face_lift_graphic.jpg',
-      alt: 'Face lift treatment illustration',
-    },
-  },
-];
 ---
+
+<style>
+  .concerns-container {
+    min-height: var(--container-height);
+  }
+
+  .concern-item {
+    transition: all 0.3s ease;
+  }
+
+  .concern-item:hover {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .concern-item.expanded {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .concern-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s none;
+  }
+
+  .concern-item.expanded .concern-content {
+    max-height: 200px;
+  }
+
+  .chevron {
+    transition: transform 0.3s ease;
+  }
+
+  .concern-item.expanded .chevron {
+    transform: rotate(180deg);
+  }
+</style>
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline
@@ -92,16 +123,51 @@ const slides = [
       subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400',
     }}
   />
-  <div class="mx-auto max-w-7xl p-4 md:px-8">
-    <Carousel
-      slides={[...slides, ...slides]}
-      showPagination={true}
-      showNavigation={false}
-      autoplay={false}
-      loop={true}
-      centeredSlides={true}
-      spaceBetween={30}
-      slidesPerView={3}
-    />
+
+  <div class="max-w-3xl mx-auto px-4 md:px-6 concerns-container" style={`--container-height: ${containerHeight}`}>
+    {
+      items.map((item, index) => (
+        <div class="mb-4">
+          <button
+            class={`concern-item w-full text-left p-4 rounded-lg bg-neutral-100 ${classes?.item ?? ''}`}
+            data-index={index}
+            data-expanded={index === defaultExpanded}
+          >
+            <div class="flex justify-between items-center">
+              <h3 class={`text-xl font-medium ${classes?.title ?? ''}`}>{item.title}</h3>
+              <Icon name="tabler:chevron-down" class="chevron text-neutral-400" />
+            </div>
+
+            <div class="concern-content pt-4 border-t border-neutral-100">
+              <p class={`text-neutral-600 italic mb-3 ${classes?.quote ?? ''}`}>{item.quote}</p>
+              <p class={`text-teal-700 ${classes?.solution ?? ''}`}>{item.solution}</p>
+            </div>
+          </button>
+        </div>
+      ))
+    }
   </div>
 </WidgetWrapper>
+
+<script>
+  document.querySelectorAll('.concern-item').forEach((item) => {
+    // Set initial expanded state
+    if ((item as HTMLElement).dataset.expanded === 'true') {
+      item.classList.add('expanded');
+    }
+
+    item.addEventListener('click', () => {
+      const isExpanded = item.classList.contains('expanded');
+
+      // Close all other items
+      document.querySelectorAll('.concern-item').forEach((otherItem) => {
+        otherItem.classList.remove('expanded');
+      });
+
+      // Toggle current item
+      if (!isExpanded) {
+        item.classList.add('expanded');
+      }
+    });
+  });
+</script>
