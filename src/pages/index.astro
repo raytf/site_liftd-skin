@@ -5,8 +5,7 @@ import Image from '~/components/common/Image.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Treatments from '~/components/widgets/Treatments.astro';
 import Concerns from '~/components/widgets/Concerns.astro';
-//import Features from '~/components/widgets/Features.astro';
-import Steps from '~/components/widgets/Steps.astro';
+import Process from '~/components/widgets/Process.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
@@ -213,6 +212,7 @@ const wordDuration = totalDuration / animatedWords.length;
     <Concerns
       title="We Address <span class='underline'>All</span> Your Skin Concerns"
       subtitle="Every skin concern deserves a solution that actually works."
+      classes={{ container: '!pb-0' }}
       items={[
         {
           title: 'Fine Lines and Wrinkles',
@@ -249,44 +249,7 @@ const wordDuration = totalDuration / animatedWords.length;
         },
       ]}
     />
-    <!-- <Features
-      title="We Address <span class='underline'>All</span> Your Skin Concerns"
-      items={[
-        {
-          title: 'Fine Lines and Wrinkles',
-          description: 'Reduce aging signs while maintaining your natural expressions and facial movement.',
-          icon: 'tabler:face-id',
-        },
-        {
-          title: 'Acne Scarring and Texture',
-          description: 'Make your complexion visibly smoother and more even.',
-          icon: 'tabler:microscope',
-        },
-        {
-          title: 'Skin Laxity After Weight Loss',
-          description: 'Restore firmness and definition to your skin after weight loss.',
-          icon: 'tabler:scale',
-        },
-        {
-          title: 'Post-Pregnancy Changes',
-          description: "Restore your skin's natural elasticity and firmness without surgery.",
-          icon: 'tabler:heart-handshake',
-        },
-        {
-          title: 'Natural Alternatives',
-          description: "Experience natural, needle-free treatments that harness your body's own healing power.",
-          icon: 'tabler:leaf',
-        },
-        {
-          title: 'Busy Professional Lifestyle',
-          description: 'Get effective results without long recovery times.',
-          icon: 'tabler:clock',
-        },
-      ]}
-    /> -->
   </div>
-
-  <!-- Steps Widget ****************** -->
 
   <div class="relative">
     <Image
@@ -296,9 +259,11 @@ const wordDuration = totalDuration / animatedWords.length;
       alt="Wavy Background"
     />
     <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
-    <Steps
-      classes={{ container: 'process-section', items: { container: 'bg-blue-200 process-item' } }}
+
+    <Process
+      client:load
       title="Our Process"
+      classes={{ container: '!pt-0' }}
       items={[
         {
           title: 'Step 1: <span class="font-medium">Initial Consultation</span>',
@@ -323,30 +288,25 @@ const wordDuration = totalDuration / animatedWords.length;
           icon: 'tabler:check',
         },
       ]}
-    >
-      <Fragment slot="image">
-        <Image
-          src="~/assets/images/consultation_smiling.jpeg"
-          alt="Consultation"
-          class="inset-0 object-cover object-top w-full rounded-2xl shadow-lg h-full"
-          widths={[400, 768]}
-          sizes="(max-width: 768px) 100vw, 432px"
-          width={432}
-          height={768}
-          layout="cover"
-        />
-        <Image
-          src="~/assets/images/observ-520x.jpg"
-          alt="Consultation"
-          class="absolute inset-0 object-cover object-top w-full rounded-2xl shadow-lg md:absolute md:h-full opacity-0"
-          widths={[400, 768]}
-          sizes="(max-width: 768px) 100vw, 432px"
-          width={432}
-          height={768}
-          layout="cover"
-        />
-      </Fragment>
-    </Steps>
+      images={[
+        {
+          src: '~/assets/images/consultation_smiling.jpeg',
+          alt: 'Consultation',
+        },
+        {
+          src: '~/assets/images/observ-520x.jpg',
+          alt: 'Observ 520X',
+        },
+        {
+          src: '~/assets/images/consultation_form.jpg',
+          alt: 'Consultation Form',
+        },
+        {
+          src: '~/assets/images/happy_woman_beach.jpg',
+          alt: 'Happy Woman at Beach',
+        },
+      ]}
+    />
 
     <ImageHotspot
       imageUrl="~/assets/images/woman_magnifying_glasses.jpg"

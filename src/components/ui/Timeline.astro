@@ -25,8 +25,9 @@ const {
     <div class={containerClass}>
       {items.map(({ title, description, icon, classes: itemClasses = {} }, index = 0) => (
         <div
+          data-step={index}
           class={twMerge(
-            'flex intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
+            'flex intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade cursor-pointer',
             panelClass,
             itemClasses?.panel
           )}
@@ -36,6 +37,7 @@ const {
               <div class="flex items-center justify-center">
                 {(icon || defaultIcon) && (
                   <Icon
+                    data-icon
                     name={icon || defaultIcon}
                     class={twMerge('w-10 h-10 p-2 rounded-full border-2', defaultIconClass, itemClasses?.icon)}
                   />
@@ -45,9 +47,12 @@ const {
             {index !== items.length - 1 && <div class="w-px h-full bg-black/10 dark:bg-slate-400/50" />}
           </div>
           <div class={`pt-1 ${index !== items.length - 1 ? 'pb-8' : ''}`}>
-            {title && <p class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)} set:html={title} />}
+            {title && (
+              <p data-title class={twMerge('text-xl font-bold', titleClass, itemClasses?.title)} set:html={title} />
+            )}
             {description && (
               <p
+                data-description
                 class={twMerge('text-muted mt-2', descriptionClass, itemClasses?.description)}
                 set:html={description}
               />
@@ -58,3 +63,12 @@ const {
     </div>
   )
 }
+
+<style>
+  [data-step].is-active [data-icon] {
+    @apply bg-secondary text-white;
+  }
+  [data-step].is-active [data-title] {
+    @apply font-bold;
+  }
+</style>

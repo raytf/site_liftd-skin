@@ -1,0 +1,209 @@
+---
+import { Icon } from 'astro-icon/components';
+import Timeline from '~/components/ui/Timeline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+import type { Process as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  items = [],
+  images = [],
+  isReversed = false,
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props as Props;
+
+// Default steps if none provided
+const defaultSteps = [
+  {
+    title: 'We Listen First',
+    description:
+      'Your consultation focuses on understanding exactly what bothers you most and what you hope to achieve.',
+    icon: 'tabler:ear',
+    classes: {
+      panel: '',
+      title: 'text-xl font-medium mb-2',
+      description: 'text-neutral-600',
+      icon: '',
+    },
+  },
+  {
+    title: 'We Reveal Hidden Issues',
+    description: 'Our Observ 520X imaging shows you exactly why your skin looks and feels the way it does.',
+    icon: 'tabler:microscope',
+    classes: {
+      panel: '',
+      title: 'text-xl font-medium mb-2',
+      description: 'text-neutral-600',
+      icon: '',
+    },
+  },
+  {
+    title: 'Your Personal Plan',
+    description:
+      'We design a treatment protocol that fits your lifestyle, timeline, and budget—no pressure, just solutions.',
+    icon: 'tabler:clipboard-check',
+    classes: {
+      panel: '',
+      title: 'text-xl font-medium mb-2',
+      description: 'text-neutral-600',
+      icon: '',
+    },
+  },
+];
+
+// Single default image
+const defaultImage = {
+  src: 'https://images.pexels.com/photos/7479722/pexels-photo-7479722.jpeg',
+  alt: 'Default consultation image',
+};
+
+// Use provided items or defaults
+const steps = items.length > 0 ? items : defaultSteps;
+
+// Handle images with fallbacks
+let processedImages = images;
+if (images.length === 0) {
+  // If no images provided, use default image for each step
+  processedImages = Array(steps.length).fill(defaultImage);
+} else if (images.length !== steps.length) {
+  // If images length doesn't match steps, pad with default image or truncate
+  if (images.length < steps.length) {
+    processedImages = [...images, ...Array(steps.length - images.length).fill(defaultImage)];
+  } else {
+    processedImages = images.slice(0, steps.length);
+  }
+}
+
+// Ensure all images have required properties
+processedImages = processedImages.map((img) => ({
+  src: img.src || defaultImage.src,
+  alt: img.alt || defaultImage.alt,
+}));
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+  <div
+    class:list={[
+      'flex flex-col gap-8 md:gap-12',
+      { 'md:flex-row-reverse': isReversed },
+      { 'md:flex-row': processedImages.length > 0 },
+    ]}
+  >
+    <div
+      class:list={[
+        'md:py-4 md:self-center',
+        { 'md:basis-1/2': processedImages.length > 0 },
+        { 'w-full': processedImages.length === 0 },
+      ]}
+    >
+      <Headline
+        title={title}
+        subtitle={subtitle}
+        tagline={tagline}
+        classes={{
+          container: 'text-left rtl:text-right',
+          title: 'text-3xl lg:text-4xl',
+          ...((classes?.headline as object) ?? {}),
+        }}
+      />
+      <Timeline
+        items={steps}
+        classes={{
+          container: '',
+          panel: 'rounded-2xl group',
+          title: 'group-hover:underline',
+          ...((classes?.items as object) ?? {}),
+        }}
+      />
+    </div>
+
+    {
+      processedImages.length > 0 && (
+        <div class="relative rounded-2xl shadow-2xl overflow-hidden md:basis-1/2">
+          {processedImages.map((image, index) => (
+            <Image
+              data-step-image={index}
+              src={image.src}
+              alt={image.alt}
+              class:list={[
+                'absolute inset-0 size-full object-cover transition-opacity duration-500',
+                { 'opacity-0': index !== 0 },
+              ]}
+              widths={[400, 768]}
+              sizes="(max-width: 768px) 100vw, 432px"
+              layout="cover"
+            />
+          ))}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+            <div class="p-8 text-white">
+              <h4 class="text-2xl font-serif mb-2" id="step-title">
+                {steps[0].title}
+              </h4>
+              <div class="flex items-center mt-4">
+                <span class="text-sm mr-2">Next Step</span>
+                <button class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors" id="next-step">
+                  <Icon name="tabler:arrow-right" size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</WidgetWrapper>
+
+<style>
+  [data-step-image].is-active {
+    @apply opacity-100;
+  }
+</style>
+
+<script>
+  let currentStep = 0;
+  const steps = document.querySelectorAll('[data-step]');
+  const stepImages = document.querySelectorAll('[data-step-image]');
+  const stepTitle = document.getElementById('step-title');
+  const nextButton = document.getElementById('next-step');
+
+  function updateStep(index: number) {
+    // Update active step
+    steps.forEach((step, i) => {
+      step.setAttribute('data-active', i === index ? 'true' : 'false');
+      step.classList.toggle('is-active', i === index);
+    });
+
+    // Update images
+    stepImages.forEach((img, i) => {
+      img.classList.toggle('is-active', i === index);
+    });
+
+    // Update text
+    if (stepTitle) {
+      const titleElement = steps[index].querySelector('[data-title]');
+      if (titleElement) stepTitle.textContent = titleElement.textContent;
+    }
+    currentStep = index;
+  }
+
+  // Add click handlers to steps
+  steps.forEach((step, index) => {
+    step.addEventListener('click', () => updateStep(index));
+  });
+
+  // Add click handler to next button
+  nextButton?.addEventListener('click', () => {
+    const nextIndex = (currentStep + 1) % steps.length;
+    updateStep(nextIndex);
+  });
+
+  // Initialize first step
+  updateStep(0);
+</script>

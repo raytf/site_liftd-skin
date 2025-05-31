@@ -5,7 +5,7 @@ export interface Post {
   /** A unique ID number that identifies a post. */
   id: string;
 
-  /** A post’s unique slug – part of the post’s URL based on its name, i.e. a post called “My Sample Page” has a slug “my-sample-page”. */
+  /** A post's unique slug – part of the post's URL based on its name, i.e. a post called "My Sample Page" has a slug "my-sample-page". */
   slug: string;
 
   /**  */
@@ -280,3 +280,23 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+
+export interface Process {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  items?: TimelineItem[];
+  images?: Array<{
+    src: string;
+    alt: string;
+  }>;
+  isReversed?: boolean;
+  id?: string;
+  isDark?: boolean;
+  classes?: {
+    container?: string;
+    headline?: Record<string, unknown>;
+    items?: Record<string, unknown>;
+  };
+  bg?: string;
+}
