@@ -6,11 +6,11 @@ import Hero from '~/components/widgets/Hero.astro';
 import Treatments from '~/components/widgets/Treatments.astro';
 import Concerns from '~/components/widgets/Concerns.astro';
 import Process from '~/components/widgets/Process.astro';
+import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import ImageHotspot from '~/components/widgets/ImageHotspot.astro';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -211,7 +211,7 @@ const wordDuration = totalDuration / animatedWords.length;
     <!-- <Concerns tagline="We Address All" title="Your Skin Concerns" /> -->
     <Concerns
       title="We Address <span class='underline'>All</span> Your Skin Concerns"
-      subtitle="Every skin concern deserves a solution that actually works."
+      subtitle=""
       classes={{ container: '!pb-0' }}
       items={[
         {
@@ -261,7 +261,6 @@ const wordDuration = totalDuration / animatedWords.length;
     <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
 
     <Process
-      client:load
       title="Our Process"
       classes={{ container: '!pt-0' }}
       items={[
@@ -308,7 +307,26 @@ const wordDuration = totalDuration / animatedWords.length;
       ]}
     />
 
-    <ImageHotspot
+    <TreatmentAreas
+      isReversed
+      subtitle="Target exactly what bothers you most"
+      images={[
+        {
+          src: '~/assets/images/face_lift_graphic.jpg',
+          alt: 'Face Lift Graphic',
+        },
+        {
+          src: '~/assets/images/woman_magnifying_glasses.jpg',
+          alt: 'Woman with Magnifying Glasses',
+        },
+        {
+          src: '~/assets/images/woman_magnifying_glasses.jpg',
+          alt: 'Woman with Magnifying Glasses',
+        },
+      ]}
+    />
+
+    <!-- <ImageHotspot
       imageUrl="~/assets/images/woman_magnifying_glasses.jpg"
       imageAlt="Interactive treatment areas"
       hotspots={[
@@ -340,7 +358,7 @@ const wordDuration = totalDuration / animatedWords.length;
           popupPosition: { right: '40%', bottom: '20%' },
         },
       ]}
-    />
+    /> -->
 
     <!-- Treatments Widget ************** -->
     <Treatments

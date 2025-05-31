@@ -4,11 +4,10 @@ import Timeline from '~/components/ui/Timeline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
 import Image from '~/components/common/Image.astro';
-import type { Process as Props } from '~/types';
 
 const {
-  title = await Astro.slots.render('title'),
-  subtitle = await Astro.slots.render('subtitle'),
+  title = 'Treatment Areas',
+  subtitle = 'Everywhere You Want to See Change',
   tagline = await Astro.slots.render('tagline'),
   items = [],
   images = [],
@@ -17,15 +16,14 @@ const {
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
-} = Astro.props as Props;
+} = Astro.props;
 
-// Default steps if none provided
-const defaultSteps = [
+// Default treatment areas if none provided
+const defaultAreas = [
   {
-    title: 'We Listen First',
-    description:
-      'Your consultation focuses on understanding exactly what bothers you most and what you hope to achieve.',
-    icon: 'tabler:ear',
+    title: 'Facial',
+    description: 'Face, neck, décolletage, jawline—restore lifted, firm appearance that turns back the clock.',
+    icon: 'tabler:face-mask',
     classes: {
       panel: '',
       title: 'text-xl font-medium mb-2',
@@ -34,21 +32,20 @@ const defaultSteps = [
     },
   },
   {
-    title: 'We Reveal Hidden Issues',
-    description: 'Our Observ 520X imaging shows you exactly why your skin looks and feels the way it does.',
+    title: 'Body',
+    description: 'Arms, abdomen, thighs—tighten areas where life has left its mark.',
+    icon: 'tabler:body-scan',
+    classes: {
+      panel: '',
+      title: 'text-xl font-medium mb-2',
+      description: 'text-neutral-600',
+      icon: '',
+    },
+  },
+  {
+    title: 'Texture',
+    description: 'Address scarring, stretch marks, and uneven skin anywhere on face or body.',
     icon: 'tabler:microscope',
-    classes: {
-      panel: '',
-      title: 'text-xl font-medium mb-2',
-      description: 'text-neutral-600',
-      icon: '',
-    },
-  },
-  {
-    title: 'Your Personal Plan',
-    description:
-      'We design a treatment protocol that fits your lifestyle, timeline, and budget—no pressure, just solutions.',
-    icon: 'tabler:clipboard-check',
     classes: {
       panel: '',
       title: 'text-xl font-medium mb-2',
@@ -65,19 +62,19 @@ const defaultImage = {
 };
 
 // Use provided items or defaults
-const steps = items.length > 0 ? items : defaultSteps;
+const areas = items.length > 0 ? items : defaultAreas;
 
 // Handle images with fallbacks
 let processedImages = images;
 if (images.length === 0) {
-  // If no images provided, use default image for each step
-  processedImages = Array(steps.length).fill(defaultImage);
-} else if (images.length !== steps.length) {
-  // If images length doesn't match steps, pad with default image or truncate
-  if (images.length < steps.length) {
-    processedImages = [...images, ...Array(steps.length - images.length).fill(defaultImage)];
+  // If no images provided, use default image for each area
+  processedImages = Array(areas.length).fill(defaultImage);
+} else if (images.length !== areas.length) {
+  // If images length doesn't match areas, pad with default image or truncate
+  if (images.length < areas.length) {
+    processedImages = [...images, ...Array(areas.length - images.length).fill(defaultImage)];
   } else {
-    processedImages = images.slice(0, steps.length);
+    processedImages = images.slice(0, areas.length);
   }
 }
 
@@ -88,7 +85,7 @@ processedImages = processedImages.map((img) => ({
 }));
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`treatment-areas max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
   <div
     class:list={[
       'flex flex-col gap-8 md:gap-12',
@@ -114,7 +111,7 @@ processedImages = processedImages.map((img) => ({
         }}
       />
       <Timeline
-        items={steps}
+        items={areas}
         classes={{
           container: '',
           panel: 'rounded-2xl group',
@@ -143,12 +140,12 @@ processedImages = processedImages.map((img) => ({
           ))}
           <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
             <div class="p-8 text-white">
-              <h4 class="text-2xl font-serif mb-2" id="process_step-title">
-                {steps[0].title}
+              <h4 class="text-2xl font-serif mb-2" id="areas_step-title">
+                {areas[0].title}
               </h4>
               <div class="flex items-center mt-4">
-                <span class="text-sm mr-2">Next Step</span>
-                <button class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors" id="process_next-step">
+                <span class="text-sm mr-2">Next Area</span>
+                <button class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors" id="areas_next-step">
                   <Icon name="tabler:arrow-right" size={16} />
                 </button>
               </div>
@@ -168,10 +165,10 @@ processedImages = processedImages.map((img) => ({
 
 <script>
   let currentStep = 0;
-  const steps = document.querySelectorAll('[data-step]');
-  const stepImages = document.querySelectorAll('[data-step-image]');
-  const stepTitle = document.getElementById('process_step-title');
-  const nextButton = document.getElementById('process_next-step');
+  const steps = document.querySelectorAll('.treatment-areas [data-step]');
+  const stepImages = document.querySelectorAll('.treatment-areas [data-step-image]');
+  const stepTitle = document.getElementById('areas_step-title');
+  const nextButton = document.getElementById('areas_next-step');
 
   function updateStep(index: number) {
     // Update active step
@@ -187,7 +184,7 @@ processedImages = processedImages.map((img) => ({
 
     // Update text
     if (stepTitle) {
-      const titleElement = steps[index].querySelector('[data-title]');
+      const titleElement = steps[index].querySelector('.treatment-areas [data-title]');
       if (titleElement) stepTitle.textContent = titleElement.textContent;
     }
     currentStep = index;
