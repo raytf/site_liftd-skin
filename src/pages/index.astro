@@ -75,29 +75,28 @@ const wordDuration = totalDuration / animatedWords.length;
   requestAnimationFrame(raf);
 
   // Only initialize GSAP animations if not on mobile
-  if (window.innerWidth > 768) {
-    const tl_hero = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 0,
-        markers: false,
-      },
-    });
-    tl_hero.to('.hero-image', { y: 333, ease: 'none' }, 0);
+  // if (window.innerWidth > 768) {
+  const tl_hero = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.hero-section',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 0,
+      markers: false,
+    },
+  });
+  tl_hero.to('.hero-image', { y: 333, ease: 'none' }, 0);
 
-    const tl_about = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.about-section',
-        start: 'top bottom',
-        end: 'bottom center',
-        scrub: 0,
-        markers: false,
-      },
-    });
-    tl_about.to('.about-image', { y: 0, ease: 'none' }, 0);
-  }
+  const tl_about = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.about-section',
+      start: 'top bottom',
+      end: 'bottom center',
+      scrub: 0,
+      markers: false,
+    },
+  });
+  tl_about.to('.about-image', { y: 0, ease: 'none' }, 0);
 
   // const tl_process = gsap.timeline({
   //   scrollTrigger: {
@@ -129,7 +128,7 @@ const wordDuration = totalDuration / animatedWords.length;
       <div class="absolute inset-0 size-full bg-black opacity-50"></div>
       <Image
         class="relative size-full z-[-1] hero-image"
-        objectPosition="80% 10%"
+        objectPosition="60% 10%"
         aspectRatio="auto"
         loading="eager"
         src={'~/assets/images/looking_at_ocean.jpg'}
@@ -169,6 +168,7 @@ const wordDuration = totalDuration / animatedWords.length;
     />
     <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
     <Content
+      id="about"
       classes={{ container: 'about-section' }}
       isReversed
       items={[
@@ -213,6 +213,7 @@ const wordDuration = totalDuration / animatedWords.length;
 
     <!-- <Concerns tagline="We Address All" title="Your Skin Concerns" /> -->
     <Concerns
+      id="concerns"
       title="We Address <span class='underline'>All</span> Your Skin Concerns"
       subtitle=""
       classes={{ container: '!pb-0' }}
@@ -264,6 +265,7 @@ const wordDuration = totalDuration / animatedWords.length;
     <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
 
     <Process
+      id="process"
       title="Our Process"
       classes={{ container: '!pt-0' }}
       items={[
@@ -311,6 +313,7 @@ const wordDuration = totalDuration / animatedWords.length;
     />
 
     <TreatmentAreas
+      id="areas"
       isReversed
       subtitle="Target exactly what bothers you most"
       images={[
