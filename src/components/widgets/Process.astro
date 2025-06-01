@@ -88,7 +88,7 @@ processedImages = processedImages.map((img) => ({
 }));
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`process-section max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
   <div
     class:list={[
       'flex flex-col gap-8 md:gap-12',
@@ -168,8 +168,8 @@ processedImages = processedImages.map((img) => ({
 
 <script>
   let currentStep = 0;
-  const steps = document.querySelectorAll('[data-step]');
-  const stepImages = document.querySelectorAll('[data-step-image]');
+  const steps = document.querySelectorAll('.process-section [data-step]');
+  const stepImages = document.querySelectorAll('.process-section [data-step-image]');
   const stepTitle = document.getElementById('process_step-title');
   const nextButton = document.getElementById('process_next-step');
 

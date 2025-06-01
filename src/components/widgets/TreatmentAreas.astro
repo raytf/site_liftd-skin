@@ -85,7 +85,7 @@ processedImages = processedImages.map((img) => ({
 }));
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`treatment-areas max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper id={id} isDark={isDark} containerClass={`areas-section max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
   <div
     class:list={[
       'flex flex-col gap-8 md:gap-12',
@@ -165,8 +165,8 @@ processedImages = processedImages.map((img) => ({
 
 <script>
   let currentStep = 0;
-  const steps = document.querySelectorAll('.treatment-areas [data-step]');
-  const stepImages = document.querySelectorAll('.treatment-areas [data-step-image]');
+  const steps = document.querySelectorAll('.areas-section [data-step]');
+  const stepImages = document.querySelectorAll('.areas-section [data-step-image]');
   const stepTitle = document.getElementById('areas_step-title');
   const nextButton = document.getElementById('areas_next-step');
 
