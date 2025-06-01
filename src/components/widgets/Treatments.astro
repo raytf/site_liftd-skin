@@ -25,50 +25,49 @@ const {
 
 const slides = [
   {
-    title: 'Liftera HIFU Treatment',
-    subtitle: 'Advanced Face Lifting',
-    content: 'Experience non-surgical face lifting with High-Intensity Focused Ultrasound technology. Targets deep skin layers for natural-looking results.',
+    title: 'Non-Surgical Facial Lifting',
+    subtitle: 'HIFU (Our Specialty)',
+    content:
+      'Experience non-surgical face lifting with High-Intensity Focused Ultrasound technology. Targets deep skin layers for natural-looking results.',
     backgroundImage: {
-      src: 'https://images.unsplash.com/photo-1598970605070-a8fd7c4eaf75?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      src: '~/assets/images/hifu/hifu_6.jpeg',
       alt: 'HIFU Treatment Background',
     },
   },
   {
-    title: 'SlimLux Body Contouring',
-    subtitle: 'Targeted Fat Reduction',
-    content: 'Revolutionary non-invasive body sculpting technology that helps eliminate stubborn fat cells and contours your body naturally.',
+    title: 'Body Contouring',
+    subtitle: 'Ultrasound',
+    content:
+      'Revolutionary non-invasive body sculpting technology that helps eliminate stubborn fat cells and contours your body naturally.',
     backgroundImage: {
-      src: 'https://images.unsplash.com/photo-1532446785438-1a6986a2f6f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      src: '~/assets/images/ultrasound/body_contouring_9.jpg',
       alt: 'Body Contouring Background',
     },
   },
   {
-    title: 'Radio Frequency Skin Tightening',
-    subtitle: 'Collagen Stimulation',
-    content: 'Advanced RF technology that stimulates collagen production, tightens skin, and reduces the appearance of fine lines and wrinkles.',
+    title: 'Skin Tightening',
+    subtitle: 'Radio Frequency',
+    content:
+      'Advanced RF technology that stimulates collagen production, tightens skin, and reduces the appearance of fine lines and wrinkles.',
     backgroundImage: {
-      src: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      src: '~/assets/images/rf/skin_tightening_face_05.jpg',
       alt: 'RF Treatment Background',
     },
   },
   {
     title: 'Vacuum Suction',
     subtitle: 'Enhanced Circulation',
-    content: 'Improve lymphatic drainage and blood circulation while reducing the appearance of cellulite with our advanced vacuum therapy.',
+    content:
+      'Improve lymphatic drainage and blood circulation while reducing the appearance of cellulite with our advanced vacuum therapy.',
     backgroundImage: {
-      src: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      src: '~/assets/images/vacuum_suction/vacuum_suction_8.jpg',
       alt: 'Vacuum Therapy Background',
     },
   },
 ];
 ---
 
-<WidgetWrapper
-  id={id}
-  isDark={isDark}
-  containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`}
-  bg={bg}
->
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <Headline
     title={title}
     subtitle={subtitle}
