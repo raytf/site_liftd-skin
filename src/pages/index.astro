@@ -74,27 +74,30 @@ const wordDuration = totalDuration / animatedWords.length;
 
   requestAnimationFrame(raf);
 
-  const tl_hero = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.hero-section',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 0,
-      markers: false,
-    },
-  });
-  tl_hero.to('.hero-image', { y: 333, ease: 'none' }, 0);
+  // Only initialize GSAP animations if not on mobile
+  if (window.innerWidth > 768) {
+    const tl_hero = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.hero-section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0,
+        markers: false,
+      },
+    });
+    tl_hero.to('.hero-image', { y: 333, ease: 'none' }, 0);
 
-  const tl_about = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.about-section',
-      start: 'top bottom',
-      end: 'bottom center',
-      scrub: 0,
-      markers: false,
-    },
-  });
-  tl_about.to('.about-image', { y: 0, ease: 'none' }, 0);
+    const tl_about = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.about-section',
+        start: 'top bottom',
+        end: 'bottom center',
+        scrub: 0,
+        markers: false,
+      },
+    });
+    tl_about.to('.about-image', { y: 0, ease: 'none' }, 0);
+  }
 
   // const tl_process = gsap.timeline({
   //   scrollTrigger: {
