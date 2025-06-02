@@ -1,0 +1,40 @@
+---
+// Calendly widget component
+import { Icon } from 'astro-icon/components';
+---
+
+<dialog
+  closedby="any"
+  id="calendly-modal"
+  class="fixed inset-0 size-full max-h-none max-w-none pointer-events-none bg-black/50 z-[100] pt-20"
+>
+  <Icon aria-label="Close Calendly" name="tabler:x" class="absolute top-4 right-4 w-6 h-6 text-white" />
+  <div
+    class="calendly-inline-widget pointer-events-auto"
+    data-url="https://calendly.com/liftdskin"
+    style="min-width:320px;height:700px;"
+  >
+  </div>
+</dialog>
+
+<script is:inline async src="https://assets.calendly.com/assets/external/widget.js"></script>
+<script is:inline>
+  window.openCalendly = function () {
+    const modal = document.getElementById('calendly-modal');
+    if (modal) {
+      modal.showModal();
+      // Focus the Calendly widget instead of the close button
+      const widget = modal.querySelector('.calendly-inline-widget');
+      if (widget) {
+        widget.focus();
+      }
+    }
+  };
+
+  window.closeCalendly = function () {
+    const modal = document.getElementById('calendly-modal');
+    if (modal) {
+      modal.close();
+    }
+  };
+</script>

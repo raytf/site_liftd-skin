@@ -43,7 +43,7 @@ export const headerData: HeaderData = {
       // ],
     },
   ],
-  actions: [{ text: 'Book Now', href: 'https://github.com/onwidget/astrowind', target: '_blank', variant: 'outline' }],
+  actions: [{ text: 'Book Now', onclick: 'openCalendly()', variant: 'outline' }],
 };
 
 export const footerData = {

@@ -9,6 +9,17 @@ import { UI } from 'astrowind:config';
 
   window.basic_script = true;
 
+  // Add global Calendly function
+  window.openCalendlyModal = function (calendlyUrl) {
+    if (typeof Calendly !== 'undefined') {
+      Calendly.initPopupWidget({
+        url: calendlyUrl,
+      });
+    } else {
+      console.error('Calendly is not loaded');
+    }
+  };
+
   function applyTheme(theme) {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
