@@ -50,11 +50,11 @@
   }
 
   .highlight {
-    @apply text-accent after:w-full;
+    @apply text-secondary after:w-full;
   }
 
   .custom-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-accent transition-all after:transition-all duration-300 after:duration-300;
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-secondary transition-all after:transition-all duration-300 after:duration-300;
   }
 }
 

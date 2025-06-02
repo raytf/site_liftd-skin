@@ -51,7 +51,7 @@ const {
               {title && (
                 <p
                   data-title
-                  class={twMerge('text-xl font-bold inline-block', titleClass, itemClasses?.title)}
+                  class={twMerge('text-xl font-medium inline-block', titleClass, itemClasses?.title)}
                   set:html={title}
                 />
               )}
@@ -75,6 +75,6 @@ const {
     @apply bg-secondary text-white;
   }
   [data-step].is-active [data-title] {
-    @apply font-bold;
+    @apply font-bold text-secondary;
   }
 </style>

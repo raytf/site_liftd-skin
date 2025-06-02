@@ -158,15 +158,23 @@ const wordDuration = totalDuration / animatedWords.length;
     </Fragment>
   </Hero>
 
-  <!-- Content Widget **************** -->
   <div class="relative">
-    <Image
-      class="absolute inset-0 size-full opacity-50 object-cover"
-      src={'~/assets/images/wavy.jpg'}
-      objectPosition="center"
-      alt="Wavy Background"
-    />
-    <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
+    <div class="absolute inset-0 size-full">
+      <Image
+        class="w-full opacity-40 object-cover"
+        src={'~/assets/images/wavy.jpg'}
+        objectPosition="top"
+        alt="Wavy Background"
+      />
+      <Image
+        class="w-full opacity-40 object-cover scale-y-[-1]"
+        src={'~/assets/images/wavy.jpg'}
+        objectPosition="center"
+        alt="Wavy Background"
+      />
+    </div>
+
+    <!-- About Section **************** -->
     <Content
       id="about"
       classes={{ container: 'about-section' }}
@@ -211,59 +219,7 @@ const wordDuration = totalDuration / animatedWords.length;
       </Fragment>
     </Content>
 
-    <!-- <Concerns tagline="We Address All" title="Your Skin Concerns" /> -->
-    <Concerns
-      id="concerns"
-      title="We Address <span class='underline'>All</span> Your Skin Concerns"
-      subtitle=""
-      classes={{ container: '!pb-0' }}
-      items={[
-        {
-          title: 'Fine Lines and Wrinkles',
-          quote: '"I want to look refreshed but terrified of looking \'done\' or unnatural."',
-          solution: 'Erase years while preserving everything that makes you uniquely beautiful.',
-        },
-        {
-          title: 'Acne Scarring and Texture Issues',
-          quote: '"I\'ve tried everything for my scars—nothing makes a real difference."',
-          solution: "Smooth skin texture from the inside out for the clear, even complexion you've been seeking.",
-        },
-        {
-          title: 'Post-Pregnancy Skin Changes',
-          quote: '"I don\'t recognize the loose, stretched skin where my firm body used to be."',
-          solution: 'Restore natural elasticity exactly where you need it most—no surgery required.',
-        },
-        {
-          title: 'Weight Loss Skin Laxity',
-          quote: '"I lost the weight, but now I have sagging skin that makes me want to hide."',
-          solution:
-            "Target areas where skin hasn't bounced back, restoring the tight appearance your transformation deserves.",
-        },
-        {
-          title: 'Injectable Fatigue',
-          quote: '"I\'m tired of needles and never knowing if I\'ll look natural or frozen."',
-          solution:
-            'Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.',
-        },
-
-        {
-          title: 'Professional Time Constraints',
-          quote: '"I need to look polished but can\'t afford weeks of recovery."',
-          solution: 'Walk in during lunch, return to work immediately—your skin improves over the coming weeks.',
-        },
-      ]}
-    />
-  </div>
-
-  <div class="relative">
-    <Image
-      class="absolute inset-0 size-full opacity-50 object-cover scale-y-[-1]"
-      src={'~/assets/images/wavy.jpg'}
-      objectPosition="center"
-      alt="Wavy Background"
-    />
-    <div class="absolute inset-0 size-full bg-primary dark:bg-transparent z-[-1]"></div>
-
+    <!-- Process Section **************** -->
     <Process
       id="process"
       title="Our Process"
@@ -312,6 +268,50 @@ const wordDuration = totalDuration / animatedWords.length;
       ]}
     />
 
+    <!-- Concerns Section **************** -->
+    <Concerns
+      id="concerns"
+      title="We Address <span class='underline'>All</span> Your Skin Concerns"
+      subtitle=""
+      classes={{ container: '!pb-0' }}
+      items={[
+        {
+          title: 'Fine Lines and Wrinkles',
+          quote: '"I want to look refreshed but terrified of looking \'done\' or unnatural."',
+          solution: 'Erase years while preserving everything that makes you uniquely beautiful.',
+        },
+        {
+          title: 'Acne Scarring and Texture Issues',
+          quote: '"I\'ve tried everything for my scars—nothing makes a real difference."',
+          solution: "Smooth skin texture from the inside out for the clear, even complexion you've been seeking.",
+        },
+        {
+          title: 'Post-Pregnancy Skin Changes',
+          quote: '"I don\'t recognize the loose, stretched skin where my firm body used to be."',
+          solution: 'Restore natural elasticity exactly where you need it most—no surgery required.',
+        },
+        {
+          title: 'Weight Loss Skin Laxity',
+          quote: '"I lost the weight, but now I have sagging skin that makes me want to hide."',
+          solution:
+            "Target areas where skin hasn't bounced back, restoring the tight appearance your transformation deserves.",
+        },
+        {
+          title: 'Injectable Fatigue',
+          quote: '"I\'m tired of needles and never knowing if I\'ll look natural or frozen."',
+          solution:
+            'Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.',
+        },
+
+        {
+          title: 'Professional Time Constraints',
+          quote: '"I need to look polished but can\'t afford weeks of recovery."',
+          solution: 'Walk in during lunch, return to work immediately—your skin improves over the coming weeks.',
+        },
+      ]}
+    />
+
+    <!-- Treatment Areas Section **************** -->
     <TreatmentAreas
       id="areas"
       isReversed
@@ -332,121 +332,101 @@ const wordDuration = totalDuration / animatedWords.length;
       ]}
     />
 
-    <!-- <ImageHotspot
-      imageUrl="~/assets/images/woman_magnifying_glasses.jpg"
-      imageAlt="Interactive treatment areas"
-      hotspots={[
-        {
-          id: 'H1',
-          position: { left: '10%', top: '15%' },
-          content: {
-            title: 'Forehead Treatment',
-            description: 'Target fine lines and wrinkles in the forehead area with our advanced HIFU technology.',
-          },
-          popupPosition: { left: '13%', top: '20%' },
-        },
-        {
-          id: 'H2',
-          position: { left: '80%', top: '45%' },
-          content: {
-            title: 'Cheek Enhancement',
-            description: 'Restore volume and lift to the cheeks for a more youthful appearance.',
-          },
-          popupPosition: { right: '20%', top: '50%' },
-        },
-        {
-          id: 'H3',
-          position: { left: '60%', top: '80%' },
-          content: {
-            title: 'Jawline Definition',
-            description: 'Tighten and define the jawline for a more sculpted look.',
-          },
-          popupPosition: { right: '40%', bottom: '20%' },
-        },
-      ]}
-    /> -->
-
-    <!-- Treatments Widget ************** -->
+    <!-- Treatments Section **************** -->
     <Treatments
       id="treatments"
       title="Our Treatments"
       subtitle="Experience our range of advanced aesthetic treatments designed to enhance your natural beauty"
       tagline="Featured Treatments"
+    >
+      <!-- <Fragment slot="bg"><div class="absolute inset-0 size-full bg-secondary"></div></Fragment> -->
+    </Treatments>
+
+    <!-- FAQs Section **************** -->
+    <FAQs
+      title="Frequently Asked Questions"
+      subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+      tagline="FAQs"
+      classes={{ container: 'max-w-6xl' }}
+      items={[
+        {
+          title: 'Why AstroWind?',
+          description:
+            "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+        },
+        {
+          title: 'What do I need to start?',
+          description:
+            "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it's actually our duty to future generations.",
+        },
+        {
+          title: 'How to install the Astro + Tailwind CSS template?',
+          description:
+            "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+        },
+        {
+          title: "What's something that you don't understand?",
+          description:
+            "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+        },
+        {
+          title: 'What is something that you would like to try again?',
+          description:
+            "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+        },
+        {
+          title: 'If you could only ask one question to each person you meet, what would that question be?',
+          description:
+            "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+        },
+      ]}
+    >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 size-full bg-white"></div>
+      </Fragment>
+    </FAQs>
+
+    <!-- Stats Widget ****************** -->
+
+    <Stats
+      stats={[
+        { title: 'Downloads', amount: '132K' },
+        { title: 'Stars', amount: '24.8K' },
+        { title: 'Forks', amount: '10.3K' },
+        { title: 'Users', amount: '48.4K' },
+      ]}
     />
+
+    <!-- CallToAction Widget *********** -->
+
+    <CallToAction
+      actions={[
+        {
+          variant: 'primary',
+          text: 'Get template',
+          href: 'https://github.com/onwidget/astrowind',
+          target: '_blank',
+          icon: 'tabler:download',
+        },
+      ]}
+    >
+      <Fragment slot="title">
+        Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      </Fragment>
+
+      <Fragment slot="subtitle">
+        Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
+        waste more time! :P
+      </Fragment>
+    </CallToAction>
   </div>
 
-  <!-- FAQs Widget ******************* -->
+  <!-- Content Widget **************** -->
+  <div class="relative">
+    <div class="absolute inset-0 size-full bg-white dark:bg-transparent z-[-1]"></div>
+  </div>
 
-  <FAQs
-    title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
-    tagline="FAQs"
-    classes={{ container: 'max-w-6xl' }}
-    items={[
-      {
-        title: 'Why AstroWind?',
-        description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
-      },
-      {
-        title: 'What do I need to start?',
-        description:
-          "Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it's actually our duty to future generations.",
-      },
-      {
-        title: 'How to install the Astro + Tailwind CSS template?',
-        description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
-      },
-      {
-        title: "What's something that you don't understand?",
-        description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
-      },
-      {
-        title: 'What is something that you would like to try again?',
-        description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
-      },
-      {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
-        description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
-      },
-    ]}
-  />
-
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
-      { title: 'Users', amount: '48.4K' },
-    ]}
-  />
-
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
-    </Fragment>
-  </CallToAction>
+  <div class="relative">
+    <div class="absolute inset-0 size-full bg-white dark:bg-transparent z-[-1]"></div>
+  </div>
 </Layout>

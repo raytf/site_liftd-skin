@@ -17,8 +17,8 @@ export const headerData: HeaderData = {
   position: 'left',
   links: [
     { text: 'About', href: '#about' },
-    { text: 'Concerns', href: '#concerns' },
     { text: 'Process', href: '#process' },
+    { text: 'Concerns', href: '#concerns' },
     { text: 'Treatment Areas', href: '#areas' },
     {
       text: 'Treatments',
