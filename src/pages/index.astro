@@ -10,7 +10,7 @@ import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
+import CTA from '~/components/widgets/CTA.astro';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -119,7 +119,7 @@ const wordDuration = totalDuration / animatedWords.length;
     actions={[
       {
         text: 'Book Your Free Consultation',
-        variant: 'outline',
+        variant: 'fill',
         onclick: 'openCalendly()',
       },
     ]}
@@ -137,7 +137,7 @@ const wordDuration = totalDuration / animatedWords.length;
     </Fragment>
     <Fragment slot="title">
       Reclaim Your Skin's
-      <span class="relative inline-block text-accent brightness-110" style={`--total-duration: ${totalDuration}s`}>
+      <span class="relative inline-block text-accent brightness-105" style={`--total-duration: ${totalDuration}s`}>
         &#160;<span class="sr-only">{animatedWords.join('/')}</span>
         {
           animatedWords.map((word, index) => (
@@ -398,35 +398,43 @@ const wordDuration = totalDuration / animatedWords.length;
     />
 
     <!-- CallToAction Widget *********** -->
-
-    <CallToAction
+    <CTA
+      id="contact"
+      title="Ready to Invest in Your Beauty?"
+      subtitle="Your complimentary consultation reveals exactly what's possible for your skin—no obligation, no pressure, just honest answers about what we can achieve together."
       actions={[
         {
-          variant: 'primary',
-          text: 'Get template',
-          href: 'https://github.com/onwidget/astrowind',
-          target: '_blank',
-          icon: 'tabler:download',
+          text: 'Book Your Complimentary Consultation',
+          variant: 'accent',
+          onclick: 'openCalendly()',
         },
+        {
+          text: 'See Real Results',
+          variant: 'outline',
+          href: '#',
+        },
+        // {
+        //   text: 'Call Now',
+        //   variant: 'outline',
+        //   href: 'tel:',
+        //   icon: 'tabler:phone',
+        // },
       ]}
+      guarantee="<span class='font-bold'>90-Day Guarantee</span>: If you don't see noticeable improvement, we'll refund your investment."
+      classes={{ container: '' }}
     >
-      <Fragment slot="title">
-        Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      <Fragment slot="bg">
+        <div class="size-full overflow-hidden">
+          <div class="absolute inset-0 size-full bg-black/50"></div>
+          <Image
+            class="!max-w-none w-full object-cover"
+            src="~/assets/images/girl_at_resort.jpg"
+            alt="Girl at Resort"
+            aspectRatio="auto"
+            objectPosition="50% 0%"
+          />
+        </div>
       </Fragment>
-
-      <Fragment slot="subtitle">
-        Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-        waste more time! :P
-      </Fragment>
-    </CallToAction>
-  </div>
-
-  <!-- Content Widget **************** -->
-  <div class="relative">
-    <div class="absolute inset-0 size-full bg-white dark:bg-transparent z-[-1]"></div>
-  </div>
-
-  <div class="relative">
-    <div class="absolute inset-0 size-full bg-white dark:bg-transparent z-[-1]"></div>
+    </CTA>
   </div>
 </Layout>

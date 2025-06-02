@@ -183,7 +183,7 @@ export interface Disclaimer {
 
 // COMPONENTS
 export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline' | 'link';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'outline' | 'link' | 'accent' | 'fill';
   text?: string;
   icon?: string;
   classes?: Record<string, string>;
@@ -281,7 +281,7 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
 
-export interface Process {
+export interface Process extends Omit<Headline, 'classes'>, Widget {
   title?: string;
   subtitle?: string;
   tagline?: string;
@@ -291,12 +291,12 @@ export interface Process {
     alt: string;
   }>;
   isReversed?: boolean;
-  id?: string;
-  isDark?: boolean;
-  classes?: {
-    container?: string;
-    headline?: Record<string, unknown>;
-    items?: Record<string, unknown>;
-  };
-  bg?: string;
+}
+
+export interface CTA extends Omit<Headline, 'classes'>, Widget {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  actions?: string | CallToAction[];
+  guarantee?: string;
 }

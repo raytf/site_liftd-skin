@@ -1,0 +1,53 @@
+---
+import type { CTA as Props } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Button from '~/components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  actions = [],
+  guarantee = await Astro.slots.render('guarantee'),
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <div class="container">
+    <div class="max-w-3xl mx-auto text-center text-white">
+      {title && <h2 class="text-3xl md:text-4xl font-bold mb-6" set:html={title} />}
+      {subtitle && <p class="text-lg text-neutral-100 mb-8" set:html={subtitle} />}
+      {tagline && <p class="text-xl font-medium mb-10" set:html={tagline} />}
+
+      {
+        actions && actions.length > 0 && (
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            {Array.isArray(actions) ? (
+              actions.map((action) => (
+                <Button variant={action.variant || 'primary'} href={action.href} class="h-11 px-8" {...action}>
+                  {action.text}
+                </Button>
+              ))
+            ) : (
+              <Fragment set:html={actions} />
+            )}
+          </div>
+        )
+      }
+
+      {
+        guarantee && (
+          <div class="bg-white/80 text-dark rounded-xl p-6 flex items-center justify-center gap-3">
+            <Icon name="tabler:check" class="h-8 w-8 flex-shrink-0" />
+            <p class="font-medium" set:html={guarantee} />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</WidgetWrapper>

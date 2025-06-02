@@ -43,7 +43,7 @@ export const headerData: HeaderData = {
       // ],
     },
   ],
-  actions: [{ text: 'Book Now', onclick: 'openCalendly()', variant: 'outline' }],
+  actions: [{ text: 'Book Now', onclick: 'openCalendly()', variant: 'fill' }],
 };
 
 export const footerData = {

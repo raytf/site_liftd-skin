@@ -30,11 +30,11 @@
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-2xl border-gray-400 border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 hover:bg-accent hover:border-gray-600 dark:text-slate-300 dark:border-slate-500 dark:hover:bg-slate-800 dark:hover:border-slate-800 cursor-pointer;
+    @apply inline-flex items-center justify-center rounded-2xl border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 cursor-pointer hover:scale-105;
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-primary text-white border-primary hover:bg-secondary hover:border-secondary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-secondary dark:hover:bg-secondary;
+    @apply btn font-semibold bg-white text-dark border-primary;
   }
 
   .btn-secondary {
@@ -45,8 +45,16 @@
     @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
   }
 
+  .btn-accent {
+    @apply btn bg-accent text-white border-none;
+  }
+
+  .btn-fill {
+    @apply btn text-primary border-primary hover:bg-accent hover:border-accent;
+  }
+
   .btn-outline {
-    @apply btn text-primary border-primary hover:bg-accent;
+    @apply btn text-primary border-primary;
   }
 
   .highlight {
@@ -79,9 +87,9 @@
   /* height: 80px; */
 }
 
-#header.scroll .btn-outline,
-#header.expanded .btn-outline {
-  @apply bg-accent border-none hover:bg-accent/60;
+#header.scroll .btn,
+#header.expanded .btn {
+  @apply bg-accent border-none;
 }
 
 #header.scroll > .header_content {
