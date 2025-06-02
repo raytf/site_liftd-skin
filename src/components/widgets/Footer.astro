@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import Image from '~/components/common/Image.astro';
 import { getHomePermalink } from '~/utils/permalinks';
+import { footerData } from '~/navigation';
 
 interface Link {
   text?: string;
@@ -15,15 +16,35 @@ interface Links {
   links: Array<Link>;
 }
 
+interface OpeningHours {
+  day: string;
+  hours: string;
+}
+
+interface ContactInfo {
+  phone: string;
+  email: string;
+  address: string;
+}
+
 export interface Props {
   links: Array<Links>;
   secondaryLinks: Array<Link>;
   socialLinks: Array<Link>;
   footNote?: string;
   theme?: string;
+  openingHours?: OpeningHours[];
+  contactInfo?: ContactInfo;
 }
 
-const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+const {
+  socialLinks = footerData.socialLinks,
+  links = footerData.links,
+  footNote = footerData.footNote,
+  theme = 'light',
+  openingHours = footerData.openingHours,
+  contactInfo = footerData.contactInfo,
+} = Astro.props;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative not-prose']}>
@@ -63,7 +84,7 @@ const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.p
       {
         links.map(({ title, links }) => (
           <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="text-gray-300 font-medium mb-2">{title}</div>
+            <div class="text-gray-500 font-medium mb-2">{title}</div>
             {links && Array.isArray(links) && links.length > 0 && (
               <ul class="text-sm">
                 {links.map(({ text, href, ariaLabel }) => (
@@ -83,37 +104,25 @@ const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.p
         ))
       }
       <div class="col-span-6 md:col-span-3 lg:col-span-2">
-        <div class="text-gray-300 font-medium mb-2">Opening Hours</div>
+        <div class="text-gray-500 font-medium mb-2">Opening Hours</div>
         <div class="grid grid-cols-3 text-sm text-gray-400">
           <div class="col-span-1">
-            <p>Mon</p>
-            <p>Tue</p>
-            <p>Wed</p>
-            <p>Thur</p>
-            <p>Fri</p>
-            <p>Sat</p>
-            <p>Sun</p>
+            {openingHours.map(({ day }) => <p>{day}</p>)}
           </div>
           <div class="col-span-2">
-            <p>8.00 - 5.00</p>
-            <p>8.00 - 5.00</p>
-            <p>8.00 - 5.00</p>
-            <p>8.00 - 5.00</p>
-            <p>8.00 - 5.00</p>
-            <p>8.00 - 5.00</p>
-            <p>8.00 - 5.00</p>
+            {openingHours.map(({ hours }) => <p>{hours}</p>)}
           </div>
         </div>
       </div>
       <div class="col-span-6 lg:col-span-2">
-        <div class="text-gray-300 font-medium mb-2">Contact</div>
+        <div class="text-gray-500 font-medium mb-2">Contact</div>
         <div class="text-sm text-gray-400 mb-2">
-          <p>07 1234 5678</p>
-          <a href="mailto:liftdskin@gmail.com" class="my-1">liftdskin@gmail.com</a>
+          <p>{contactInfo.phone}</p>
+          <a href={`mailto:${contactInfo.email}`} class="my-2">{contactInfo.email}</a>
         </div>
-        <div class="text-gray-300 font-medium mb-2">Address</div>
+        <div class="text-gray-500 font-medium mb-2">Address</div>
         <div class="text-sm text-gray-400">
-          <p>1371 Gold Coast Hwy, Palm Beach QLD 4221</p>
+          <p>{contactInfo.address}</p>
         </div>
       </div>
       <div class="col-span-12 lg:col-span-4 h-[250px] overflow-hidden rounded-2xl">
@@ -156,7 +165,7 @@ const { socialLinks = [], links = [], footNote = '', theme = 'light' } = Astro.p
         )
       }
 
-      <div class="text-sm mr-4 dark:text-muted">
+      <div class="text-sm mr-4 text-gray-400">
         <Fragment set:html={footNote} />
       </div>
     </div>

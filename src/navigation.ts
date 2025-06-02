@@ -55,6 +55,20 @@ export const footerData = {
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
   ],
+  openingHours: [
+    { day: 'Mon', hours: '8.00 - 5.00' },
+    { day: 'Tue', hours: '8.00 - 5.00' },
+    { day: 'Wed', hours: '8.00 - 5.00' },
+    { day: 'Thur', hours: '8.00 - 5.00' },
+    { day: 'Fri', hours: '8.00 - 5.00' },
+    { day: 'Sat', hours: '8.00 - 5.00' },
+    { day: 'Sun', hours: '8.00 - 5.00' },
+  ],
+  contactInfo: {
+    phone: '07 1234 5678',
+    email: 'liftdskin@gmail.com',
+    address: '1371 Gold Coast Hwy, Palm Beach QLD 4221',
+  },
   footNote: `
     All rights reserved © 2024 - LIFTD Skin
   `,
