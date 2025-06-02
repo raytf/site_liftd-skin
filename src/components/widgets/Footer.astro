@@ -115,14 +115,14 @@ const {
         </div>
       </div>
       <div class="col-span-6 lg:col-span-2">
-        <div class="text-gray-500 font-medium mb-2">Contact</div>
-        <div class="text-sm text-gray-400 mb-2">
-          <p>{contactInfo.phone}</p>
-          <a href={`mailto:${contactInfo.email}`} class="my-2">{contactInfo.email}</a>
-        </div>
         <div class="text-gray-500 font-medium mb-2">Address</div>
         <div class="text-sm text-gray-400">
           <p>{contactInfo.address}</p>
+        </div>
+        <div class="text-gray-500 font-medium my-2">Contact</div>
+        <div class="text-sm text-gray-400 mb-2">
+          <p>{contactInfo.phone}</p>
+          <a href={`mailto:${contactInfo.email}`} class="my-2">{contactInfo.email}</a>
         </div>
       </div>
       <div class="col-span-12 lg:col-span-4 h-[250px] overflow-hidden rounded-2xl">
