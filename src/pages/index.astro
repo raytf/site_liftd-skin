@@ -158,7 +158,7 @@ const wordDuration = totalDuration / animatedWords.length;
   </Hero>
 
   <div class="relative">
-    <div class="absolute inset-0 size-full">
+    <div class="absolute inset-0 size-full z-[-1]">
       <Image
         class="w-full opacity-40 object-cover"
         src={'~/assets/images/wavy.jpg'}
@@ -171,6 +171,12 @@ const wordDuration = totalDuration / animatedWords.length;
         objectPosition="center"
         alt="Wavy Background"
       />
+      <!-- <Image
+        class="w-full opacity-40 object-cover"
+        src={'~/assets/images/wavy.jpg'}
+        objectPosition="top"
+        alt="Wavy Background"
+      /> -->
     </div>
 
     <!-- About Section **************** -->
@@ -272,7 +278,7 @@ const wordDuration = totalDuration / animatedWords.length;
       id="concerns"
       title="We Address <span class='underline'>All</span> Your Skin Concerns"
       subtitle=""
-      classes={{ container: '!pb-0' }}
+      classes={{ container: '' }}
       items={[
         {
           title: 'Fine Lines and Wrinkles',
@@ -310,7 +316,14 @@ const wordDuration = totalDuration / animatedWords.length;
       ]}
     >
       <Fragment slot="bg">
-        <div class="absolute inset-0 size-full bg-secondary"></div>
+        <div class="absolute inset-0 size-full bg-secondary">
+          <Image
+            class="w-full opacity-40 object-cover"
+            src={'~/assets/images/wavy.jpg'}
+            objectPosition="top"
+            alt="Wavy Background"
+          />
+        </div>
       </Fragment>
     </Concerns>
 
