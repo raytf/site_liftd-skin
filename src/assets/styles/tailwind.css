@@ -1,68 +1,108 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer utilities {
-  .bg-page {
-    background-color: var(--aw-color-bg-page);
-  }
-
-  .bg-dark {
-    background-color: var(--aw-color-bg-page-dark);
-  }
-
-  .bg-light {
-    background-color: var(--aw-color-bg-page);
-  }
-
-  .bg-accent {
-    background-color: var(--aw-color-accent);
-  }
-
-  .text-page {
-    color: var(--aw-color-text-page);
-  }
-
-  .text-muted {
-    color: var(--aw-color-text-muted);
-  }
+@theme {
+  --color-primary: rgb(233 241 242);
+  --color-secondary: rgb(133 160 166);
+  --color-tertiary: rgb(70 87 117);
+  --color-accent: rgb(166 137 111);
 }
 
-@layer components {
-  .btn {
-    @apply inline-flex items-center justify-center rounded-2xl border bg-transparent font-medium text-center text-base text-page leading-snug transition py-3.5 px-6 md:px-8 ease-in duration-200 focus:ring-blue-500 focus:ring-offset-blue-200 focus:ring-2 focus:ring-offset-2 cursor-pointer hover:scale-105;
-  }
+@utility bg-page {
+  background-color: var(--aw-color-bg-page);
+}
 
-  .btn-primary {
-    @apply btn font-semibold bg-white text-dark border-primary;
-  }
+@utility bg-dark {
+  background-color: var(--aw-color-bg-page-dark);
+}
 
-  .btn-secondary {
-    @apply btn text-primary border-primary;
-  }
+@utility bg-light {
+  background-color: var(--aw-color-bg-page);
+}
 
-  .btn-tertiary {
-    @apply btn border-none shadow-none text-muted hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
-  }
+@utility bg-accent {
+  background-color: var(--aw-color-accent);
+}
 
-  .btn-accent {
-    @apply btn bg-accent text-white border-none;
-  }
+@utility text-page {
+  color: var(--aw-color-text-page);
+}
 
-  .btn-fill {
-    @apply btn text-primary border-primary hover:bg-accent hover:border-accent;
-  }
+@utility text-muted {
+  color: var(--aw-color-text-muted);
+}
 
-  .btn-outline {
-    @apply btn text-primary border-primary;
-  }
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  border: 1px solid;
+  background-color: transparent;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.875rem 1.5rem;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+}
 
-  .highlight {
-    @apply text-secondary after:w-full;
-  }
+@utility btn-primary {
+  composes: btn;
+  font-weight: 600;
+  background-color: white;
+  color: var(--aw-color-text-dark);
+  border-color: var(--aw-color-primary);
+}
 
-  .custom-underline {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-secondary transition-all after:transition-all duration-300 after:duration-300;
+@utility btn-secondary {
+  composes: btn;
+  color: var(--aw-color-primary);
+  border-color: var(--aw-color-primary);
+}
+
+@utility btn-tertiary {
+  composes: btn;
+  border: none;
+  box-shadow: none;
+  color: var(--aw-color-text-muted);
+}
+
+@utility btn-accent {
+  composes: btn;
+  background-color: var(--aw-color-accent);
+  color: white;
+  border: none;
+}
+
+@utility btn-fill {
+  composes: btn;
+  color: var(--aw-color-primary);
+  border-color: var(--aw-color-primary);
+}
+
+@utility btn-outline {
+  composes: btn;
+  color: var(--aw-color-primary);
+  border-color: var(--aw-color-primary);
+}
+
+@utility highlight {
+  color: var(--aw-color-secondary);
+}
+
+@utility custom-underline {
+  position: relative;
+
+  ::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: var(--aw-color-secondary);
+    transition: all 0.3s;
   }
 }
 
@@ -83,7 +123,7 @@
 }
 
 #header > .header_content {
-  @apply text-primary;
+  @apply text-white;
   /* height: 80px; */
 }
 
@@ -93,7 +133,7 @@
 }
 
 #header.scroll > .header_content {
-  @apply text-dark;
+  @apply text-black;
 }
 
 #header.scroll > div:first-child {
