@@ -70,6 +70,6 @@ export const footerData = {
     address: '1371 Gold Coast Hwy, Palm Beach QLD 4221',
   },
   footNote: `
-    All rights reserved © 2024 - LIFTD Skin
+    © 2025 LIFTD Skin. All Rights Reserved
   `,
 };
