@@ -1,0 +1,206 @@
+---
+import { Icon } from 'astro-icon/components';
+import Timeline from '~/components/ui/Timeline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+
+const {
+  title = 'Treatment Areas',
+  subtitle = 'Everywhere You Want to See Change',
+  tagline = await Astro.slots.render('tagline'),
+  items = [],
+  images = [],
+  isReversed = false,
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+// Default treatment areas if none provided
+const defaultAreas = [
+  {
+    title: 'Facial',
+    description: 'Face, neck, décolletage, jawline—restore lifted, firm appearance that turns back the clock.',
+    icon: 'tabler:face-mask',
+    classes: {
+      panel: '',
+      title: 'text-xl font-medium mb-2',
+      description: 'text-neutral-600',
+      icon: '',
+    },
+  },
+  {
+    title: 'Body',
+    description: 'Arms, abdomen, thighs—tighten areas where life has left its mark.',
+    icon: 'tabler:body-scan',
+    classes: {
+      panel: '',
+      title: 'text-xl font-medium mb-2',
+      description: 'text-neutral-600',
+      icon: '',
+    },
+  },
+  {
+    title: 'Texture',
+    description: 'Address scarring, stretch marks, and uneven skin anywhere on face or body.',
+    icon: 'tabler:microscope',
+    classes: {
+      panel: '',
+      title: 'text-xl font-medium mb-2',
+      description: 'text-neutral-600',
+      icon: '',
+    },
+  },
+];
+
+// Single default image
+const defaultImage = {
+  src: '~/assets/images/face_lift_graphic.jpg',
+  alt: 'Face lift treatment visualization',
+};
+
+// Use provided items or defaults
+const areas = items.length > 0 ? items : defaultAreas;
+
+// Handle images with fallbacks
+let processedImages = images;
+if (images.length === 0) {
+  // If no images provided, use default image for each area
+  processedImages = Array(areas.length).fill(defaultImage);
+} else if (images.length !== areas.length) {
+  // If images length doesn't match areas, pad with default image or truncate
+  if (images.length < areas.length) {
+    processedImages = [...images, ...Array(areas.length - images.length).fill(defaultImage)];
+  } else {
+    processedImages = images.slice(0, areas.length);
+  }
+}
+
+// Ensure all images have required properties
+processedImages = processedImages.map((img) => ({
+  src: img.src || defaultImage.src,
+  alt: img.alt || defaultImage.alt,
+}));
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`areas-section max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
+  <div
+    class:list={[
+      'flex flex-col gap-8 md:gap-12',
+      { 'md:flex-row-reverse': isReversed },
+      { 'md:flex-row': processedImages.length > 0 },
+    ]}
+  >
+    <div
+      class:list={[
+        'md:py-4 md:self-center',
+        { 'md:basis-1/2': processedImages.length > 0 },
+        { 'w-full': processedImages.length === 0 },
+      ]}
+    >
+      <Headline
+        title={title}
+        subtitle={subtitle}
+        tagline={tagline}
+        classes={{
+          container: 'text-left rtl:text-right',
+          title: 'text-3xl lg:text-4xl',
+          ...((classes?.headline as object) ?? {}),
+        }}
+      />
+      <Timeline
+        items={areas}
+        classes={{
+          container: '',
+          panel: 'rounded-2xl group',
+          title: 'group-hover:underline',
+          ...((classes?.items as object) ?? {}),
+        }}
+      />
+    </div>
+
+    {
+      processedImages.length > 0 && (
+        <div class="relative rounded-2xl shadow-2xl overflow-hidden md:basis-1/2">
+          {processedImages.map((image, index) => (
+            <Image
+              data-step-image={index}
+              src={image.src}
+              alt={image.alt}
+              class:list={[
+                'absolute inset-0 size-full object-cover transition-opacity duration-500',
+                { 'opacity-0': index !== 0 },
+              ]}
+              widths={[400, 768]}
+              sizes="(max-width: 768px) 100vw, 432px"
+              layout="cover"
+            />
+          ))}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+            <div class="p-8 text-white">
+              <h4 class="text-2xl font-serif mb-2" id="areas_step-title">
+                {areas[0].title}
+              </h4>
+              <div class="flex items-center mt-4">
+                <span class="text-sm mr-2">Next Area</span>
+                <button class="p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors" id="areas_next-step">
+                  <Icon name="tabler:arrow-right" size={16} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</WidgetWrapper>
+
+<style>
+  [data-step-image].is-active {
+    @apply opacity-100;
+  }
+</style>
+
+<script>
+  let currentStep = 0;
+  const steps = document.querySelectorAll('.areas-section [data-step]');
+  const stepImages = document.querySelectorAll('.areas-section [data-step-image]');
+  const stepTitle = document.getElementById('areas_step-title');
+  const nextButton = document.getElementById('areas_next-step');
+
+  function updateStep(index: number) {
+    // Update active step
+    steps.forEach((step, i) => {
+      step.setAttribute('data-active', i === index ? 'true' : 'false');
+      step.classList.toggle('is-active', i === index);
+    });
+
+    // Update images
+    stepImages.forEach((img, i) => {
+      img.classList.toggle('is-active', i === index);
+    });
+
+    // Update text
+    if (stepTitle) {
+      const titleElement = steps[index].querySelector('.areas-section [data-title]');
+      if (titleElement) stepTitle.textContent = titleElement.textContent;
+    }
+    currentStep = index;
+  }
+
+  // Add click handlers to steps
+  steps.forEach((step, index) => {
+    step.addEventListener('click', () => updateStep(index));
+  });
+
+  // Add click handler to next button
+  nextButton?.addEventListener('click', () => {
+    const nextIndex = (currentStep + 1) % steps.length;
+    updateStep(nextIndex);
+  });
+
+  // Initialize first step
+  updateStep(0);
+</script>

@@ -23,9 +23,28 @@ interface Props {
   imageUrl: string;
   imageAlt?: string;
   hotspots: Hotspot[];
+  classes?: {
+    container?: string;
+    image?: string;
+    wrapper?: string;
+    modal?: string;
+    modalContent?: string;
+    modalTitle?: string;
+    modalDescription?: string;
+  };
 }
 
-const { imageUrl, imageAlt = '', hotspots } = Astro.props;
+const { imageUrl, imageAlt = '', hotspots, classes = {} } = Astro.props;
+
+const defaultClasses = {
+  container: 'container h-full bg-blue-200',
+  image: 'img-fluid h-full w-full',
+  wrapper: 'BornHS__Wrapper',
+  modal: 'BornHS__Modal',
+  modalContent: 'BornHS__Modal__Content',
+  modalTitle: 'BornHS__Title',
+  modalDescription: '',
+};
 ---
 
 <style>
@@ -212,15 +231,21 @@ const { imageUrl, imageAlt = '', hotspots } = Astro.props;
   }
 </style>
 
-<div class="container">
+<div class={`${defaultClasses.container} ${classes?.container ?? ''}`}>
   <div class="row">
     <div class="col-md-12">
-      <div class="BornHS__Wrapper bg-blue-200">
+      <div class={`${defaultClasses.wrapper} ${classes?.wrapper ?? ''}`}>
         <figure>
-          <Image class="img-fluid h-full w-full" src={imageUrl} alt={imageAlt} loading="eager" decoding="async" />
+          <Image
+            class={`${defaultClasses.image} ${classes?.image ?? ''}`}
+            src={imageUrl}
+            alt={imageAlt}
+            loading="eager"
+            decoding="async"
+          />
         </figure>
 
-        <div class="BornHS__Modal">
+        <div class={`${defaultClasses.modal} ${classes?.modal ?? ''}`}>
           {
             hotspots.map((hotspot) => (
               <div class="BornHS__Modal__Input">
@@ -239,7 +264,7 @@ const { imageUrl, imageAlt = '', hotspots } = Astro.props;
                 <label for={hotspot.id} class="BornHS__Overlay" />
 
                 <div
-                  class="BornHS__Modal__Content"
+                  class={`${defaultClasses.modalContent} ${classes?.modalContent ?? ''}`}
                   style={`
                   ${hotspot.popupPosition.left ? `left: ${hotspot.popupPosition.left};` : ''}
                   ${hotspot.popupPosition.right ? `right: ${hotspot.popupPosition.right};` : ''}
@@ -249,8 +274,10 @@ const { imageUrl, imageAlt = '', hotspots } = Astro.props;
                 >
                   <div class="Content__Wrapper">
                     <label for={hotspot.id} class="BornHS__Close" />
-                    <h3 class="BornHS__Title">{hotspot.content.title}</h3>
-                    <p>{hotspot.content.description}</p>
+                    <h3 class={`${defaultClasses.modalTitle} ${classes?.modalTitle ?? ''}`}>{hotspot.content.title}</h3>
+                    <p class={`${defaultClasses.modalDescription} ${classes?.modalDescription ?? ''}`}>
+                      {hotspot.content.description}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -200,8 +200,8 @@ const wordDuration = totalDuration / animatedWords.length;
         <div class="mt-4 relative h-[600px] rounded-2xl overflow-hidden bg-blue-200">
           <Image
             class="about-image h-full rounded-2xl"
-            src="~/assets/images/skin_mirror.jpg"
-            alt="Skin in mirror"
+            src="~/assets/images/face_lift_graphic.jpg"
+            alt="Face Lift Graphic"
             objectPosition="50% 50%"
           />
         </div>
@@ -282,47 +282,49 @@ const wordDuration = totalDuration / animatedWords.length;
       items={[
         {
           title: 'Fine Lines and Wrinkles',
-          quote: '"I want to look refreshed but terrified of looking \'done\' or unnatural."',
-          solution: 'Erase years while preserving everything that makes you uniquely beautiful.',
+          description:
+            '<p class="italic text-gray-200">"I want to look refreshed but terrified of looking \'done\' or unnatural."</p><p class="text-secondary brightness-125">Erase years while preserving everything that makes you uniquely beautiful.</p>',
         },
         {
           title: 'Acne Scarring and Texture Issues',
-          quote: '"I\'ve tried everything for my scars—nothing makes a real difference."',
-          solution: "Smooth skin texture from the inside out for the clear, even complexion you've been seeking.",
+          description:
+            '<p class="italic text-gray-200">"I\'ve tried everything for my scars—nothing makes a real difference."</p><p class="text-secondary brightness-125">Smooth skin texture from the inside out for the clear, even complexion you\'ve been seeking.</p>',
         },
         {
           title: 'Post-Pregnancy Skin Changes',
-          quote: '"I don\'t recognize the loose, stretched skin where my firm body used to be."',
-          solution: 'Restore natural elasticity exactly where you need it most—no surgery required.',
+          description:
+            '<p class="italic text-gray-200">"I don\'t recognize the loose, stretched skin where my firm body used to be."</p><p class="text-secondary brightness-125">Restore natural elasticity exactly where you need it most—no surgery required.</p>',
         },
         {
           title: 'Weight Loss Skin Laxity',
-          quote: '"I lost the weight, but now I have sagging skin that makes me want to hide."',
-          solution:
-            "Target areas where skin hasn't bounced back, restoring the tight appearance your transformation deserves.",
+          description:
+            '<p class="italic text-gray-200">"I lost the weight, but now I have sagging skin that makes me want to hide."</p><p class="text-secondary brightness-125">Target areas where skin hasn\'t bounced back, restoring the tight appearance your transformation deserves.</p>',
         },
         {
           title: 'Injectable Fatigue',
-          quote: '"I\'m tired of needles and never knowing if I\'ll look natural or frozen."',
-          solution:
-            'Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.',
+          description:
+            '<p class="italic text-gray-200">"I\'m tired of needles and never knowing if I\'ll look natural or frozen."</p><p class="text-secondary brightness-125">Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.</p>',
         },
-
         {
           title: 'Professional Time Constraints',
-          quote: '"I need to look polished but can\'t afford weeks of recovery."',
-          solution: 'Walk in during lunch, return to work immediately—your skin improves over the coming weeks.',
+          description:
+            '<p class="italic text-gray-200">"I need to look polished but can\'t afford weeks of recovery."</p><p class="text-secondary brightness-125">Walk in during lunch, return to work immediately—your skin improves over the coming weeks.</p>',
         },
       ]}
     >
       <Fragment slot="bg">
-        <div class="absolute inset-0 size-full bg-secondary">
-          <!-- <Image
-            class="w-full opacity-40 object-cover"
-            src={'~/assets/images/wavy.jpg'}
-            objectPosition="top"
-            alt="Wavy Background"
-          /> -->
+        <div class="relative size-full overflow-hidden">
+          <!-- <div
+            class="absolute inset-0 size-full bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('~/assets/images/skin_mirror.jpg')] bg-fixed bg-cover bg-top"
+          >
+          </div> -->
+          <div class="absolute inset-0 size-full bg-black/60"></div>
+          <Image
+            class="h-full md:w-full object-cover !max-w-none !max-h-none"
+            src="~/assets/images/skin_mirror.jpg"
+            alt="Skin in mirror"
+            objectPosition="25% 50%"
+          />
         </div>
       </Fragment>
     </Concerns>

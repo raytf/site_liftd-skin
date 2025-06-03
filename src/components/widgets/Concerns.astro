@@ -1,174 +1,32 @@
 ---
 import Headline from '~/components/ui/Headline.astro';
+import ItemGrid from '~/components/ui/ItemGrid.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import { Icon } from 'astro-icon/components';
-
-export interface ConcernItem {
-  title: string;
-  quote: string;
-  solution: string;
-}
-
-export interface Props {
-  title?: string;
-  subtitle?: string;
-  tagline?: string;
-  id?: string;
-  isDark?: boolean;
-  classes?: {
-    container?: string;
-    item?: string;
-    title?: string;
-    quote?: string;
-    solution?: string;
-  };
-  bg?: string;
-  items?: ConcernItem[];
-  defaultExpanded?: number;
-  containerHeight?: string;
-}
+import type { Concerns as Props } from '~/types';
 
 const {
-  title = "You're Not Alone in These Struggles",
-  subtitle = "Our clients come to us with common concerns. Here's how we help them reclaim their confidence.",
-  tagline = await Astro.slots.render('tagline'),
+  title = '',
+  subtitle = '',
+  tagline = '',
+  items = [],
+  columns = 2,
+
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
-  items = [
-    {
-      title: 'Post-Pregnancy Skin Changes',
-      quote: '"I don\'t recognize the loose, stretched skin where my firm body used to be."',
-      solution: 'Restore natural elasticity exactly where you need it most—no surgery required.',
-    },
-    {
-      title: 'Weight Loss Skin Laxity',
-      quote: '"I lost the weight, but now I have sagging skin that makes me want to hide."',
-      solution:
-        "Target areas where skin hasn't bounced back, restoring the tight appearance your transformation deserves.",
-    },
-    {
-      title: 'Injectable Fatigue',
-      quote: '"I\'m tired of needles and never knowing if I\'ll look natural or frozen."',
-      solution: 'Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.',
-    },
-    {
-      title: 'Fine Lines and Wrinkles',
-      quote: '"I want to look refreshed but terrified of looking \'done\' or unnatural."',
-      solution: 'Erase years while preserving everything that makes you uniquely beautiful.',
-    },
-    {
-      title: 'Acne Scarring and Texture Issues',
-      quote: '"I\'ve tried everything for my scars—nothing makes a real difference."',
-      solution: "Smooth skin texture from the inside out for the clear, even complexion you've been seeking.",
-    },
-    {
-      title: 'Professional Time Constraints',
-      quote: '"I need to look polished but can\'t afford weeks of recovery."',
-      solution: 'Walk in during lunch, return to work immediately—your skin improves over the coming weeks.',
-    },
-  ],
-  defaultExpanded = -1,
 } = Astro.props;
 ---
 
-<style>
-  .concerns-container {
-    min-height: var(--container-height);
-  }
-
-  .concern-item {
-    transition: all 0.3s ease;
-  }
-
-  .concern-item:hover {
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .concern-item.expanded {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .concern-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s none;
-  }
-
-  .concern-item.expanded .concern-content {
-    max-height: 200px;
-  }
-
-  .chevron {
-    transition: transform 0.3s ease;
-  }
-
-  .concern-item.expanded .chevron {
-    transform: rotate(180deg);
-  }
-</style>
-
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline
-    title={title}
-    subtitle={subtitle}
-    tagline={tagline}
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={{ title: 'text-white' }} />
+  <ItemGrid
+    items={items}
+    columns={columns}
     classes={{
-      container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
-      title: 'text-3xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-      subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400',
+      container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
+      panel: 'max-w-none text-white',
+      icon: 'flex-shrink-0 mt-1 w-6 h-6 text-white',
     }}
   />
-
-  <div class="max-w-3xl mx-auto px-4 md:px-6">
-    {
-      items.map((item, index) => (
-        <div class="mb-4">
-          <button
-            class={`concern-item group w-full text-left p-4 rounded-lg bg-neutral-100 ${classes?.item ?? ''}`}
-            data-index={index}
-            data-expanded={index === defaultExpanded}
-          >
-            <div class="flex justify-between items-center">
-              <h3 class={`text-xl font-medium custom-underline group-hover:highlight ${classes?.title ?? ''}`}>
-                {item.title}
-              </h3>
-              <Icon name="tabler:chevron-down" class="chevron text-neutral-400" />
-            </div>
-
-            <div class="concern-content pt-4 border-t border-neutral-100">
-              <p class={`text-neutral-600 italic mb-3 ${classes?.quote ?? ''}`}>{item.quote}</p>
-              <p class={`text-accent ${classes?.solution ?? ''}`}>{item.solution}</p>
-            </div>
-          </button>
-        </div>
-      ))
-    }
-  </div>
 </WidgetWrapper>
-
-<script>
-  document.querySelectorAll('.concern-item').forEach((item) => {
-    // Set initial expanded state
-    if ((item as HTMLElement).dataset.expanded === 'true') {
-      item.classList.add('expanded');
-    }
-
-    item.addEventListener('click', () => {
-      const isExpanded = item.classList.contains('expanded');
-
-      // Close all other items
-      document.querySelectorAll('.concern-item').forEach((otherItem) => {
-        otherItem.classList.remove('expanded');
-      });
-
-      // Toggle current item
-      if (!isExpanded) {
-        item.classList.add('expanded');
-      }
-    });
-  });
-</script>

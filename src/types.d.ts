@@ -262,6 +262,11 @@ export interface Faqs extends Omit<Headline, 'classes'>, Widget {
   columns?: number;
 }
 
+export interface Concerns extends Omit<Headline, 'classes'>, Widget {
+  items?: Array<Item>;
+  columns?: number;
+}
+
 export interface Steps extends Omit<Headline, 'classes'>, Widget {
   items?: Array<Item>;
   callToAction?: string | CallToAction;
