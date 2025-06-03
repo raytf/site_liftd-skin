@@ -2,6 +2,7 @@
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Carousel from '~/components/ui/Carousel.astro';
+import type { Image, CallToAction } from '~/types';
 
 export interface Props {
   title?: string;
@@ -25,44 +26,85 @@ const {
 
 const slides = [
   {
-    title: 'Non-Surgical Facial Lifting',
-    subtitle: 'HIFU (Our Specialty)',
-    content:
-      'Experience non-surgical face lifting with High-Intensity Focused Ultrasound technology. Targets deep skin layers for natural-looking results.',
+    title: 'HIFU Facial Lifting',
     backgroundImage: {
       src: '~/assets/images/hifu/hifu_6.jpeg',
       alt: 'HIFU Treatment Background',
-    },
+    } as Image,
+    description:
+      '<span class="font-bold">Our Specialty:</span> Non-surgical face lifting using High-Intensity Focused Ultrasound for natural-looking results.',
+    benefits: ['Stimulates collagen production', 'Tightens and firms skin', 'No downtime required'],
+    actions: [
+      {
+        text: 'Learn More',
+        href: '/treatments/hifu',
+        variant: 'accent',
+      } as CallToAction,
+      {
+        text: 'See Results',
+        href: '/treatments/hifu/results',
+      } as CallToAction,
+    ],
   },
   {
     title: 'Body Contouring',
-    subtitle: 'Ultrasound',
-    content:
-      'Revolutionary non-invasive body sculpting technology that helps eliminate stubborn fat cells and contours your body naturally.',
     backgroundImage: {
       src: '~/assets/images/ultrasound/body_contouring_9.jpg',
       alt: 'Body Contouring Background',
-    },
+    } as Image,
+    description: 'Non-invasive body sculpting technology that eliminates stubborn fat cells naturally.',
+    benefits: ['Targets stubborn fat cells', 'No recovery time needed', 'Long-lasting results'],
+    actions: [
+      {
+        text: 'Learn More',
+        href: '/treatments/body-contouring',
+        variant: 'accent',
+      } as CallToAction,
+      {
+        text: 'See Results',
+        href: '/treatments/body-contouring/results',
+      } as CallToAction,
+    ],
   },
   {
     title: 'Skin Tightening',
-    subtitle: 'Radio Frequency',
-    content:
-      'Advanced RF technology that stimulates collagen production, tightens skin, and reduces the appearance of fine lines and wrinkles.',
     backgroundImage: {
       src: '~/assets/images/rf/skin_tightening_face_05.jpg',
       alt: 'RF Treatment Background',
-    },
+    } as Image,
+    description: 'Advanced RF technology that tightens skin and reduces fine lines and wrinkles.',
+    benefits: ['Stimulates collagen growth', 'Reduces fine lines and wrinkles', 'Suitable for all skin types'],
+    actions: [
+      {
+        text: 'Learn More',
+        href: '/treatments/skin-tightening',
+        variant: 'accent',
+      } as CallToAction,
+      {
+        text: 'See Results',
+        href: '/treatments/skin-tightening/results',
+      } as CallToAction,
+    ],
   },
   {
     title: 'Vacuum Suction',
-    subtitle: 'Enhanced Circulation',
-    content:
-      'Improve lymphatic drainage and blood circulation while reducing the appearance of cellulite with our advanced vacuum therapy.',
     backgroundImage: {
       src: '~/assets/images/vacuum_suction/vacuum_suction_8.jpg',
       alt: 'Vacuum Therapy Background',
-    },
+    } as Image,
+    description: 'Advanced vacuum therapy that improves circulation and reduces cellulite appearance.',
+    benefits: ['Improves lymphatic drainage', 'Reduces cellulite appearance', 'Promotes skin rejuvenation'],
+    actions: [
+      {
+        text: 'Learn More',
+        href: '/treatments/vacuum-suction',
+        variant: 'accent',
+      } as CallToAction,
+      {
+        text: 'See Results',
+        href: '/treatments/vacuum-suction/results',
+      } as CallToAction,
+    ],
   },
 ];
 ---

@@ -1,15 +1,18 @@
 ---
 import type { Image } from '~/types';
+import type { CallToAction } from '~/types';
 import ImageComponent from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
   id?: string;
   slides?: Array<{
     title?: string;
-    subtitle?: string;
-    image?: Image;
     backgroundImage?: Image;
-    content?: string;
+    description?: string;
+    benefits?: string[];
+    actions?: CallToAction[];
   }>;
   showPagination?: boolean;
   showNavigation?: boolean;
@@ -73,27 +76,28 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
                 </div>
               )}
 
-              {/* Background overlay for better text readability */}
-              {/* <div
-                class={`slide-overlay absolute inset-0 ${slide.backgroundImage ? 'bg-black/40' : 'bg-gradient-to-br from-primary/10 to-secondary/10'} rounded-2xl`}
-              /> */}
-
               {/* Content */}
               <div class="relative bg-white flex flex-col items-start px-6 py-4 text-start">
-                {slide.image && (
-                  <div class="w-full h-48 mb-4 overflow-hidden rounded-lg">
-                    <ImageComponent
-                      src={slide.image.src}
-                      alt={slide.image.alt || slide.title || `Slide ${index + 1}`}
-                      class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                      width={800}
-                      height={400}
-                    />
-                  </div>
+                {slide.description && <p class="text-medium mb-4 text-dark/80" set:html={slide.description} />}
+
+                {slide.benefits && slide.benefits.length > 0 && (
+                  <ul class="space-y-2 mb-6">
+                    {slide.benefits.map((benefit) => (
+                      <li class="flex items-center text-dark/90">
+                        <Icon name="tabler:check" class="w-5 h-5 mr-2 text-secondary" />
+                        <Fragment set:html={benefit} />
+                      </li>
+                    ))}
+                  </ul>
                 )}
 
-                {slide.subtitle && <p class={`text-lg mb-3 text-dark/90`}>{slide.subtitle}</p>}
-                {slide.content && <p class={`text-sm line-clamp-3 text-dark/80`}>{slide.content}</p>}
+                {slide.actions && slide.actions.length > 0 && (
+                  <div class="flex flex-wrap gap-4">
+                    {slide.actions.map((action) => (
+                      <Button class="text-sm" {...action} />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -162,7 +166,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
   .swiper-slide {
     transition: all 0.3s ease;
     /* padding-top: 4rem; */
-    height: 28rem;
+    height: 32rem;
   }
 
   .swiper-slide-active {
@@ -174,7 +178,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
   .swiper-slide-active .slide-content {
     /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     border: 2px solid rgb(var(--color-primary, 79 70 229)); */
-    height: 28rem;
+    height: 32rem;
   }
 
   .swiper-slide-next,
@@ -190,7 +194,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
 
   /* Smooth transitions for all slide elements */
   .slide-content {
-    height: 24rem;
+    height: 28rem;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
