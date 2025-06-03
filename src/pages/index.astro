@@ -6,6 +6,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Treatments from '~/components/widgets/Treatments.astro';
 import Concerns from '~/components/widgets/Concerns.astro';
 import Process from '~/components/widgets/Process.astro';
+import ImageHotspot from '~/components/widgets/ImageHotspot.astro';
 // import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQ from '~/components/widgets/FAQ.astro';
@@ -395,11 +396,53 @@ const wordDuration = totalDuration / animatedWords.length;
         objectPosition="center"
         alt="Wavy Background"
       />
+      <Image
+        class="w-full opacity-40 object-cover"
+        src={'~/assets/images/wavy.jpg'}
+        objectPosition="top"
+        alt="Wavy Background"
+      />
     </div>
     <!-- Treatments Section **************** -->
     <Treatments id="treatments" title="Our Treatments" subtitle="" tagline="" classes={{ container: '!pb-0' }}>
       <!-- <Fragment slot="bg"><div class="absolute inset-0 size-full bg-secondary"></div></Fragment> -->
     </Treatments>
+
+    <div class="max-w-7xl mx-auto px-4 py-16">
+      <ImageHotspot
+        imageUrl="~/assets/images/woman_magnifying_glasses.jpg"
+        imageAlt="Common skin concerns and solutions"
+        hotspots={[
+          {
+            id: 'face',
+            position: { left: '50%', top: '30%' },
+            content: {
+              title: 'Tear Truff',
+              description: 'description',
+            },
+            popupPosition: { right: '50%', top: '30%' },
+          },
+          {
+            id: 'neck',
+            position: { left: '45%', top: '60%' },
+            content: {
+              title: 'Neck',
+              description: 'Improve neck firmness and reduce sagging',
+            },
+            popupPosition: { left: '45%', top: '60%' },
+          },
+          {
+            id: 'decolletage',
+            position: { left: '55%', top: '75%' },
+            content: {
+              title: 'Décolletage',
+              description: 'Smooth chest wrinkles and restore firmness',
+            },
+            popupPosition: { left: '55%', top: '75%' },
+          },
+        ]}
+      />
+    </div>
 
     <FAQ
       title="Frequently Asked Questions"
@@ -459,7 +502,7 @@ const wordDuration = totalDuration / animatedWords.length;
       classes={{ container: 'max-w-6xl' }}
     >
       <Fragment slot="bg">
-        <div class="absolute inset-0 size-full bg-white"></div>
+        <!-- <div class="absolute inset-0 size-full bg-white"></div> -->
       </Fragment>
     </FAQ>
   </div>
