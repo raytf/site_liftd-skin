@@ -13,18 +13,23 @@ interface HeaderData {
   actions: Array<CallToAction>;
 }
 
+const homepageNav = [
+  { text: 'About', href: '#about' },
+  { text: 'Process', href: '#process' },
+  { text: 'Concerns', href: '#concerns' },
+  {
+    text: 'Treatments',
+    href: '#treatments',
+  },
+  {
+    text: 'FAQs',
+    href: '#faqs',
+  },
+];
+
 export const headerData: HeaderData = {
   position: 'left',
-  links: [
-    { text: 'About', href: '#about' },
-    { text: 'Process', href: '#process' },
-    { text: 'Concerns', href: '#concerns' },
-    { text: 'Treatment Areas', href: '#areas' },
-    {
-      text: 'Treatments',
-      href: '#treatments',
-    },
-  ],
+  links: homepageNav,
   actions: [{ text: 'Book Now', onclick: 'openCalendly()', variant: 'fill' }],
 };
 
@@ -32,16 +37,7 @@ export const footerData = {
   links: [
     {
       title: 'Navigation',
-      links: [
-        { text: 'About', href: '#about' },
-        { text: 'Process', href: '#process' },
-        { text: 'Concerns', href: '#concerns' },
-        { text: 'Treatment Areas', href: '#areas' },
-        {
-          text: 'Treatments',
-          href: '#treatments',
-        },
-      ],
+      links: homepageNav,
     },
   ],
   secondaryLinks: [

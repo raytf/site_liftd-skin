@@ -8,6 +8,7 @@ import Concerns from '~/components/widgets/Concerns.astro';
 import Process from '~/components/widgets/Process.astro';
 import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 import Content from '~/components/widgets/Content.astro';
+import FAQ from '~/components/widgets/FAQ.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import CTA from '~/components/widgets/CTA.astro';
 
@@ -272,65 +273,66 @@ const wordDuration = totalDuration / animatedWords.length;
         },
       ]}
     />
+  </div>
 
-    <!-- Concerns Section **************** -->
-    <Concerns
-      id="concerns"
-      title="We Address <span class='underline'>All</span> Your Skin Concerns"
-      subtitle=""
-      classes={{ container: '' }}
-      items={[
-        {
-          title: 'Fine Lines and Wrinkles',
-          description:
-            '<p class="italic text-gray-200">"I want to look refreshed but terrified of looking \'done\' or unnatural."</p><p class="text-secondary brightness-125">Erase years while preserving everything that makes you uniquely beautiful.</p>',
-        },
-        {
-          title: 'Acne Scarring and Texture Issues',
-          description:
-            '<p class="italic text-gray-200">"I\'ve tried everything for my scars—nothing makes a real difference."</p><p class="text-secondary brightness-125">Smooth skin texture from the inside out for the clear, even complexion you\'ve been seeking.</p>',
-        },
-        {
-          title: 'Post-Pregnancy Skin Changes',
-          description:
-            '<p class="italic text-gray-200">"I don\'t recognize the loose, stretched skin where my firm body used to be."</p><p class="text-secondary brightness-125">Restore natural elasticity exactly where you need it most—no surgery required.</p>',
-        },
-        {
-          title: 'Weight Loss Skin Laxity',
-          description:
-            '<p class="italic text-gray-200">"I lost the weight, but now I have sagging skin that makes me want to hide."</p><p class="text-secondary brightness-125">Target areas where skin hasn\'t bounced back, restoring the tight appearance your transformation deserves.</p>',
-        },
-        {
-          title: 'Injectable Fatigue',
-          description:
-            '<p class="italic text-gray-200">"I\'m tired of needles and never knowing if I\'ll look natural or frozen."</p><p class="text-secondary brightness-125">Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.</p>',
-        },
-        {
-          title: 'Professional Time Constraints',
-          description:
-            '<p class="italic text-gray-200">"I need to look polished but can\'t afford weeks of recovery."</p><p class="text-secondary brightness-125">Walk in during lunch, return to work immediately—your skin improves over the coming weeks.</p>',
-        },
-      ]}
-    >
-      <Fragment slot="bg">
-        <div class="relative size-full overflow-hidden">
-          <!-- <div
+  <!-- Concerns Section **************** -->
+  <Concerns
+    id="concerns"
+    title="We Address <span class='underline'>All</span> Your Skin Concerns"
+    subtitle=""
+    classes={{ container: '' }}
+    items={[
+      {
+        title: 'Fine Lines and Wrinkles',
+        description:
+          '<p class="italic text-gray-200">"I want to look refreshed but terrified of looking \'done\' or unnatural."</p><p class="text-secondary brightness-125">Erase years while preserving everything that makes you uniquely beautiful.</p>',
+      },
+      {
+        title: 'Acne Scarring and Texture Issues',
+        description:
+          '<p class="italic text-gray-200">"I\'ve tried everything for my scars—nothing makes a real difference."</p><p class="text-secondary brightness-125">Smooth skin texture from the inside out for the clear, even complexion you\'ve been seeking.</p>',
+      },
+      {
+        title: 'Post-Pregnancy Skin Changes',
+        description:
+          '<p class="italic text-gray-200">"I don\'t recognize the loose, stretched skin where my firm body used to be."</p><p class="text-secondary brightness-125">Restore natural elasticity exactly where you need it most—no surgery required.</p>',
+      },
+      {
+        title: 'Weight Loss Skin Laxity',
+        description:
+          '<p class="italic text-gray-200">"I lost the weight, but now I have sagging skin that makes me want to hide."</p><p class="text-secondary brightness-125">Target areas where skin hasn\'t bounced back, restoring the tight appearance your transformation deserves.</p>',
+      },
+      {
+        title: 'Injectable Fatigue',
+        description:
+          '<p class="italic text-gray-200">"I\'m tired of needles and never knowing if I\'ll look natural or frozen."</p><p class="text-secondary brightness-125">Stimulate your own collagen for gradual, natural, long-lasting improvements—no artificial fillers.</p>',
+      },
+      {
+        title: 'Professional Time Constraints',
+        description:
+          '<p class="italic text-gray-200">"I need to look polished but can\'t afford weeks of recovery."</p><p class="text-secondary brightness-125">Walk in during lunch, return to work immediately—your skin improves over the coming weeks.</p>',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="relative size-full overflow-hidden">
+        <!-- <div
             class="absolute inset-0 size-full bg-[linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('~/assets/images/skin_mirror.jpg')] bg-fixed bg-cover bg-top"
           >
           </div> -->
-          <div class="absolute inset-0 size-full bg-black/60"></div>
-          <Image
-            class="h-full md:w-full object-cover !max-w-none !max-h-none"
-            src="~/assets/images/skin_mirror.jpg"
-            alt="Skin in mirror"
-            objectPosition="25% 50%"
-          />
-        </div>
-      </Fragment>
-    </Concerns>
+        <div class="absolute inset-0 size-full bg-black/60"></div>
+        <Image
+          class="h-full md:w-full object-cover !max-w-none !max-h-none"
+          src="~/assets/images/skin_mirror.jpg"
+          alt="Skin in mirror"
+          objectPosition="25% 50%"
+        />
+      </div>
+    </Fragment>
+  </Concerns>
 
-    <!-- Treatment Areas Section **************** -->
-    <TreatmentAreas
+  <!-- Treatment Areas Section **************** -->
+  <!-- <TreatmentAreas
       id="areas"
       isReversed
       subtitle="Target exactly what bothers you most"
@@ -348,15 +350,33 @@ const wordDuration = totalDuration / animatedWords.length;
           alt: 'Woman with Magnifying Glasses',
         },
       ]}
-    />
+    /> -->
 
+  <div class="relative">
+    <div class="absolute inset-0 size-full z-[-1]">
+      <Image
+        class="w-full opacity-40 object-cover"
+        src={'~/assets/images/wavy.jpg'}
+        objectPosition="top"
+        alt="Wavy Background"
+      />
+      <Image
+        class="w-full opacity-40 object-cover scale-y-[-1]"
+        src={'~/assets/images/wavy.jpg'}
+        objectPosition="center"
+        alt="Wavy Background"
+      />
+    </div>
     <!-- Treatments Section **************** -->
-    <Treatments id="treatments" title="Our Treatments" subtitle="" tagline="">
+    <Treatments id="treatments" title="Our Treatments" subtitle="" tagline="" classes={{ container: '!pb-0' }}>
       <!-- <Fragment slot="bg"><div class="absolute inset-0 size-full bg-secondary"></div></Fragment> -->
     </Treatments>
 
-    <!-- FAQs Section **************** -->
-    <FAQs
+    <FAQ />
+  </div>
+
+  <!-- FAQs Section **************** -->
+  <!-- <FAQs
       title="Frequently Asked Questions"
       subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
       tagline="FAQs"
@@ -397,47 +417,46 @@ const wordDuration = totalDuration / animatedWords.length;
       <Fragment slot="bg">
         <div class="absolute inset-0 size-full bg-white"></div>
       </Fragment>
-    </FAQs>
+    </FAQs> -->
 
-    <!-- CallToAction Widget *********** -->
-    <CTA
-      id="contact"
-      title="Let's Chat"
-      subtitle="Book in for a complimentary consultation to find out what's possible for your skin."
-      tagline="No obligation, no pressure, just honest answers about what we can achieve together."
-      actions={[
-        {
-          text: 'Book Your Complimentary Consultation',
-          variant: 'accent',
-          onclick: 'openCalendly()',
-        },
-        {
-          text: 'See Real Results',
-          variant: 'outline',
-          href: '#',
-        },
-        // {
-        //   text: 'Call Now',
-        //   variant: 'outline',
-        //   href: 'tel:',
-        //   icon: 'tabler:phone',
-        // },
-      ]}
-      guarantee="<span class='font-bold'>90-Day Guarantee</span>: If you don't see noticeable improvement, we'll refund your investment."
-      classes={{ container: '' }}
-    >
-      <Fragment slot="bg">
-        <div class="size-full overflow-hidden">
-          <div class="absolute inset-0 size-full bg-black/50"></div>
-          <Image
-            class="!max-w-none w-full object-cover"
-            src="~/assets/images/girl_at_resort.jpg"
-            alt="Girl at Resort"
-            aspectRatio="auto"
-            objectPosition="50% 0%"
-          />
-        </div>
-      </Fragment>
-    </CTA>
-  </div>
+  <!-- CallToAction Widget *********** -->
+  <CTA
+    id="contact"
+    title="Let's Chat"
+    subtitle="Book in for a complimentary consultation to find out what's possible for your skin."
+    tagline="No obligation, no pressure, just honest answers about what we can achieve together."
+    actions={[
+      {
+        text: 'Book Your Complimentary Consultation',
+        variant: 'accent',
+        onclick: 'openCalendly()',
+      },
+      {
+        text: 'See Real Results',
+        variant: 'outline',
+        href: '#',
+      },
+      // {
+      //   text: 'Call Now',
+      //   variant: 'outline',
+      //   href: 'tel:',
+      //   icon: 'tabler:phone',
+      // },
+    ]}
+    guarantee="<span class='font-bold'>90-Day Guarantee</span>: If you don't see noticeable improvement, we'll refund your investment."
+    classes={{ container: '' }}
+  >
+    <Fragment slot="bg">
+      <div class="size-full overflow-hidden">
+        <div class="absolute inset-0 size-full bg-black/50"></div>
+        <Image
+          class="!max-w-none w-full object-cover"
+          src="~/assets/images/girl_at_resort.jpg"
+          alt="Girl at Resort"
+          aspectRatio="auto"
+          objectPosition="50% 0%"
+        />
+      </div>
+    </Fragment>
+  </CTA>
 </Layout>
