@@ -134,6 +134,7 @@ processedImages = processedImages.map((img) => ({
               alt={image.alt}
               class:list={[
                 'absolute inset-0 size-full object-cover transition-opacity duration-500',
+                { relative: index === 0 },
                 { 'opacity-0': index !== 0 },
               ]}
               aspectRatio="auto"
@@ -191,6 +192,8 @@ processedImages = processedImages.map((img) => ({
     }
     currentStep = index;
   }
+
+  window.updateStep = updateStep;
 
   // Add click handlers to steps
   steps.forEach((step, index) => {
