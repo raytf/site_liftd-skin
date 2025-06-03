@@ -1,135 +1,71 @@
 ---
-const faqs = [
-  {
-    question: 'What is HIFU and how does it work?',
-    answer:
-      'HIFU (High-Intensity Focused Ultrasound) uses focused ultrasound energy to target the layers of skin just below the surface. The ultrasound energy causes the tissue to heat up rapidly, which stimulates the cells to produce more collagen—a natural protein that gives skin its youthfulness by keeping it firm and toned. The treatment actually encourages your body to heal and rejuvenate itself naturally.',
-  },
-  {
-    question: 'Is the treatment painful?',
-    answer:
-      "Most clients report minimal discomfort during the procedure. You may feel tiny amounts of energy being deposited at specific depths, indicating that the collagen-building process has been initiated. Our technicians work to ensure your comfort throughout the treatment, and unlike surgery, there's no anesthesia or sedation required.",
-  },
-  {
-    question: 'How long does a treatment take?',
-    answer:
-      "Treatment times vary depending on the area being treated and your specific plan. A facial treatment typically takes 60-90 minutes, while body treatments may take longer depending on the size of the area. During your consultation, we'll provide you with a precise timeline for your specific needs.",
-  },
-  {
-    question: 'How soon will I see results?',
-    answer:
-      'Many clients report seeing an initial effect immediately after their treatment, but the real results appear over 2-3 months as your body naturally regenerates collagen. Since the procedure stimulates your own collagen production, how long the results last depends on you. The treatment produces new collagen on the inside, but your natural aging process will dictate how long that translates into visible results on the outside.',
-  },
-  {
-    question: 'How many treatments will I need?',
-    answer:
-      "Most clients need just one treatment; however, based on the degree of skin laxity, the biological response to ultrasound energy and the individual's collagen-building process, some clients benefit from additional treatments. Because skin continues to age, future touch-up treatments can help maintain results. Your personalized treatment plan will be discussed during your consultation.",
-  },
-  {
-    question: 'Is there any downtime after treatment?',
-    answer:
-      "One of the key benefits of HIFU treatments is that there's no downtime. You can return to your normal activities immediately after your procedure without any post-treatment restrictions or requirements. Some clients experience slight redness for a few hours, and a small percentage may have slight swelling, tingling, or tenderness, but these are mild and temporary.",
-  },
-  {
-    question: 'How is HIFU different from lasers or surgery?',
-    answer:
-      "Unlike lasers, which typically address issues in the superficial layers of the skin, HIFU penetrates to depths only previously reached with surgery. While lasers and radio frequency treat the skin from the outside-in, HIFU bypasses the surface of the skin to deliver energy at the right depths, temperature, and precision to trigger collagen production from the inside-out. And unlike surgery, there's no cutting, no scarring, and no extended recovery time.",
-  },
-  {
-    question: 'What areas can be treated?',
-    answer:
-      "HIFU treatments can address concerns on the face, neck, décolletage, jawline, arms, abdomen, thighs, and other areas where skin laxity is an issue. It's also effective for improving skin texture, including scarring and stretch marks. During your consultation, we'll discuss your specific concerns and determine the best treatment areas for your goals.",
-  },
-  {
-    question: 'What is the 90-day guarantee?',
-    answer:
-      "We stand behind our treatments with a 90-day guarantee. If you don't see noticeable improvement within 90 days of your treatment, we'll refund your investment. We can offer this guarantee because we're confident in our technology and expertise, and because we carefully select candidates who will benefit from our treatments during the consultation process.",
-  },
-  {
-    question: 'How much do treatments cost?',
-    answer:
-      "Treatment costs vary depending on the areas being treated and your specific needs. We offer flexible packages designed to fit different budgets while delivering the results you deserve. During your complimentary consultation, we'll provide transparent pricing based on your personalized treatment plan, with no hidden costs or pressure to commit.",
-  },
-];
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { Faqs as Props } from '~/types';
 
-const leftColumnFaqs = faqs.slice(0, 5);
-const rightColumnFaqs = faqs.slice(5);
+const {
+  title = 'Frequently Asked Questions',
+  subtitle = '',
+  items = [],
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+const leftColumnFaqs = items.slice(0, Math.ceil(items.length / 2));
+const rightColumnFaqs = items.slice(Math.ceil(items.length / 2));
 ---
 
-<section id="faqs" class="flex justify-center size-full py-16 md:py-24">
-  <div class="container">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
-      <!-- <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-        Get answers to the most common questions about our treatments and technology.
-      </p> -->
-    </div>
-
-    <div class="grid md:grid-cols-2 gap-x-12 gap-y-2 max-w-5xl mx-auto">
-      <div class="space-y-2">
-        {
-          leftColumnFaqs.map((faq, index) => (
-            <div class="border rounded-lg">
-              <button
-                class="faq-trigger flex justify-between items-center w-full px-6 py-4 text-left font-medium hover:bg-muted/50 transition-colors"
-                data-target={`faq-${index}`}
-              >
-                <span>{faq.question}</span>
-                <svg
-                  class="faq-icon h-4 w-4 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div id={`faq-${index}`} class="faq-content hidden px-6 pb-4">
-                <p class="text-muted-foreground">{faq.answer}</p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-
-      <div class="space-y-2">
-        {
-          rightColumnFaqs.map((faq, index) => (
-            <div class="border rounded-lg">
-              <button
-                class="faq-trigger flex justify-between items-center w-full px-6 py-4 text-left font-medium hover:bg-muted/50 transition-colors"
-                data-target={`faq-${index + 5}`}
-              >
-                <span>{faq.question}</span>
-                <svg
-                  class="faq-icon h-4 w-4 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div id={`faq-${index + 5}`} class="faq-content hidden px-6 pb-4">
-                <p class="text-muted-foreground">{faq.answer}</p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-
-    <!-- <div class="text-center mt-12">
-      <p class="text-lg mb-6">Still have questions? We're here to help.</p>
-      <a
-        href="#contact"
-        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-      >
-        Contact Us
-      </a>
-    </div> -->
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <div class="text-center mb-16">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+    {subtitle && <p class="text-lg text-muted-foreground max-w-2xl mx-auto">{subtitle}</p>}
   </div>
-</section>
+
+  <div class="grid md:grid-cols-2 gap-x-12 gap-y-2 max-w-5xl mx-auto">
+    <div class="space-y-2">
+      {
+        leftColumnFaqs.map((faq, index) => (
+          <div class="border rounded-lg">
+            <button
+              class="faq-trigger flex justify-between items-center w-full px-6 py-4 text-left font-medium group transition-colors"
+              data-target={`faq-${index}`}
+            >
+              <span class="custom-underline group-hover:highlight">{faq.title}</span>
+              <svg class="faq-icon h-4 w-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id={`faq-${index}`} class="faq-content hidden px-6 pb-4">
+              <p class="text-muted-foreground">{faq.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="space-y-2">
+      {
+        rightColumnFaqs.map((faq, index) => (
+          <div class="border rounded-lg">
+            <button
+              class="faq-trigger flex justify-between items-center w-full px-6 py-4 text-left font-medium group transition-colors"
+              data-target={`faq-${index + leftColumnFaqs.length}`}
+            >
+              <span class="custom-underline group-hover:highlight">{faq.title}</span>
+              <svg class="faq-icon h-4 w-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id={`faq-${index + leftColumnFaqs.length}`} class="faq-content hidden px-6 pb-4">
+              <p class="text-muted-foreground">{faq.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</WidgetWrapper>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -138,8 +74,10 @@ const rightColumnFaqs = faqs.slice(5);
     faqTriggers.forEach((trigger) => {
       trigger.addEventListener('click', () => {
         const targetId = trigger.getAttribute('data-target');
+        if (!targetId) return;
+
         const content = document.getElementById(targetId);
-        const icon = trigger.querySelector('.faq-icon');
+        const icon = trigger.querySelector('.faq-icon') as HTMLElement;
 
         if (content && icon) {
           const isHidden = content.classList.contains('hidden');
@@ -149,7 +87,7 @@ const rightColumnFaqs = faqs.slice(5);
             item.classList.add('hidden');
           });
           document.querySelectorAll('.faq-icon').forEach((item) => {
-            item.style.transform = 'rotate(0deg)';
+            (item as HTMLElement).style.transform = 'rotate(0deg)';
           });
 
           // Toggle current item
