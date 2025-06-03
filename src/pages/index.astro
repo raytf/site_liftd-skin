@@ -110,28 +110,30 @@ const wordDuration = totalDuration / animatedWords.length;
   //   },
   // });
   //tl_process.to('.process-item', { backgroundColor: 'red', ease: 'none', stagger: 1 });
-  const tl_process = gsap.timeline({
-    scrollTrigger: {
-      trigger: '#process',
-      pin: true,
-      start: '0% 10%',
-      end: '+=200%',
-      scrub: 0,
-      markers: false,
-    },
-  });
-  tl_process.add(() => {
-    window.updateStep(0);
-  }, 0);
-  tl_process.add(() => {
-    window.updateStep(1);
-  }, 1);
-  tl_process.add(() => {
-    window.updateStep(2);
-  }, 2);
-  tl_process.add(() => {
-    window.updateStep(3);
-  }, 3);
+  if (window.innerWidth > 768) {
+    const tl_process = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#process',
+        pin: true,
+        start: '0% 10%',
+        end: '+=200%',
+        scrub: 0,
+        markers: false,
+      },
+    });
+    tl_process.add(() => {
+      window.updateStep(0);
+    }, 0);
+    tl_process.add(() => {
+      window.updateStep(1);
+    }, 1);
+    tl_process.add(() => {
+      window.updateStep(2);
+    }, 2);
+    tl_process.add(() => {
+      window.updateStep(3);
+    }, 3);
+  }
 </script>
 
 <Layout metadata={metadata}>

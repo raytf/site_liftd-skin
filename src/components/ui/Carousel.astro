@@ -94,7 +94,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
                 {slide.actions && slide.actions.length > 0 && (
                   <div class="flex flex-wrap gap-4">
                     {slide.actions.map((action) => (
-                      <Button class="text-sm" {...action} />
+                      <Button class="text-xs py-2 px-3" {...action} />
                     ))}
                   </div>
                 )}
