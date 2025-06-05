@@ -12,6 +12,7 @@ const {
   tagline = '',
   items = [],
   actions = await Astro.slots.render('actions'),
+  isReversed = false,
 
   id,
   isDark = false,
@@ -23,7 +24,7 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`!px-0 !py-0 max-w-none ${classes?.container ?? ''}`} bg={bg}>
   <div class="relative md:flex size-full">
-    <div class="md:basis-1/2 self-center py-8 px-8 md:px-16">
+    <div class={`md:basis-1/2 self-center py-8 px-8 md:px-16 ${isReversed ? 'md:order-2' : ''}`}>
       <Headline
         title={title}
         subtitle={subtitle}
@@ -58,7 +59,7 @@ const {
         }
       </div>
     </div>
-    <div aria-hidden="true" class="md:basis-1/2">
+    <div aria-hidden="true" class={`md:basis-1/2 ${isReversed ? 'md:order-1' : ''}`}>
       {
         image && (
           <div class="relative h-full">

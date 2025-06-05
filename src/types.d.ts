@@ -267,6 +267,7 @@ export interface Concerns extends Omit<Headline, 'classes'>, Widget {
   columns?: number;
   image?: string | unknown;
   actions?: string | CallToAction[];
+  isReversed?: boolean;
 }
 
 export interface Steps extends Omit<Headline, 'classes'>, Widget {
