@@ -198,6 +198,7 @@ processedImages = processedImages.map((img) => ({
   // Add click handlers to steps
   steps.forEach((step, index) => {
     step.addEventListener('click', () => updateStep(index));
+    step.addEventListener('mouseenter', () => updateStep(index));
   });
 
   // Add click handler to next button
