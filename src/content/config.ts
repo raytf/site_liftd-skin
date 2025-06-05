@@ -65,6 +65,23 @@ const postCollection = defineCollection({
   }),
 });
 
+const treatmentsCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    heroImage: z.object({
+      src: z.string(),
+      alt: z.string(),
+      id: z.string(),
+    }),
+    benefits: z.array(z.string()),
+    order: z.number(),
+    isDark: z.boolean().optional(),
+  }),
+});
+
 export const collections = {
   post: postCollection,
+  treatments: treatmentsCollection,
 };

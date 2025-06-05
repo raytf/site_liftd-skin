@@ -61,6 +61,7 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
                     src={slide.backgroundImage.src}
                     alt={slide.backgroundImage.alt || slide.title || `Slide ${index + 1} background`}
                     class="group-hover:scale-110 w-full h-full object-cover transition-all duration-300"
+                    style={`view-transition-name: ${slide.backgroundImage.id}`}
                     width={1920}
                     height={1080}
                   />
@@ -204,6 +205,14 @@ const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
+
+<script is:inline>
+  window.addEventListener('pageswap', async (e) => {
+    if (e.viewTransition) {
+      console.log('view transition');
+    }
+  });
+</script>
 
 <script>
   import { Swiper } from 'swiper';

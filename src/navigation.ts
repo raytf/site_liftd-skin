@@ -20,6 +20,12 @@ const homepageNav = [
   {
     text: 'Treatments',
     href: '#treatments',
+    links: [
+      { text: 'HIFU', href: '/treatments/hifu' },
+      { text: 'Body Contouring', href: '/treatments/body-contouring' },
+      { text: 'Skin Tightening', href: '/treatments/skin-tightening' },
+      { text: 'Vacuum Suction', href: '/treatments/vacuum-suction' },
+    ],
   },
   {
     text: 'FAQs',
