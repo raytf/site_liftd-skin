@@ -6,7 +6,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Treatments from '~/components/widgets/Treatments.astro';
 import Concerns from '~/components/widgets/Concerns.astro';
 import Process from '~/components/widgets/Process.astro';
-import ImageHotspot from '~/components/widgets/ImageHotspot.astro';
+// import ImageHotspot from '~/components/widgets/ImageHotspot.astro';
 // import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQ from '~/components/widgets/FAQ.astro';
@@ -28,6 +28,7 @@ const wordDuration = totalDuration / animatedWords.length;
     opacity: 0;
     transform: translateY(55px);
     animation: fadeInUp2 var(--total-duration) infinite;
+    will-change: transform, opacity;
   }
 
   @keyframes fadeInUp2 {
@@ -45,6 +46,14 @@ const wordDuration = totalDuration / animatedWords.length;
     100% {
       opacity: 0;
       transform: translateY(-80px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animated-word {
+      animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
 </style>
@@ -112,28 +121,28 @@ const wordDuration = totalDuration / animatedWords.length;
   // });
   //tl_process.to('.process-item', { backgroundColor: 'red', ease: 'none', stagger: 1 });
   if (window.innerWidth > 768) {
-    const tl_process = gsap.timeline({
-      scrollTrigger: {
-        trigger: '#process',
-        pin: true,
-        start: '0% 10%',
-        end: '+=200%',
-        scrub: 0,
-        markers: false,
-      },
-    });
-    tl_process.add(() => {
-      window.updateStep(0);
-    }, 0);
-    tl_process.add(() => {
-      window.updateStep(1);
-    }, 1);
-    tl_process.add(() => {
-      window.updateStep(2);
-    }, 2);
-    tl_process.add(() => {
-      window.updateStep(3);
-    }, 3);
+    // const tl_process = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: '#process',
+    //     pin: true,
+    //     start: '0% 10%',
+    //     end: '+=200%',
+    //     scrub: 0,
+    //     markers: false,
+    //   },
+    // });
+    // tl_process.add(() => {
+    //   window.updateStep(0);
+    // }, 0);
+    // tl_process.add(() => {
+    //   window.updateStep(1);
+    // }, 1);
+    // tl_process.add(() => {
+    //   window.updateStep(2);
+    // }, 2);
+    // tl_process.add(() => {
+    //   window.updateStep(3);
+    // }, 3);
   }
 </script>
 
@@ -396,15 +405,21 @@ const wordDuration = totalDuration / animatedWords.length;
         objectPosition="center"
         alt="Wavy Background"
       />
-      <Image
+      <!-- <Image
         class="w-full opacity-40 object-cover"
         src={'~/assets/images/wavy.jpg'}
         objectPosition="top"
         alt="Wavy Background"
-      />
+      /> -->
     </div>
     <!-- Treatments Section **************** -->
-    <Treatments id="treatments" title="Our Treatments" subtitle="" tagline="" classes={{ container: '!pb-0' }}>
+    <Treatments
+      id="treatments"
+      title="Our Treatments"
+      subtitle="All our treatments are non-invasive, pain-free, and require no downtime."
+      tagline=""
+      classes={{ container: '!pb-0' }}
+    >
       <!-- <Fragment slot="bg"><div class="absolute inset-0 size-full bg-secondary"></div></Fragment> -->
     </Treatments>
 
