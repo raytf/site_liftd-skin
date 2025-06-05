@@ -2,6 +2,7 @@
 import Headline from '~/components/ui/Headline.astro';
 import ItemGrid from '~/components/ui/ItemGrid.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
 import type { Concerns as Props } from '~/types';
 
 const {
@@ -9,24 +10,54 @@ const {
   subtitle = '',
   tagline = '',
   items = [],
-  columns = 2,
 
   id,
   isDark = false,
   classes = {},
+  image = await Astro.slots.render('image'),
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={{ title: 'text-white' }} />
-  <ItemGrid
-    items={items}
-    columns={columns}
-    classes={{
-      container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
-      panel: 'max-w-none bg-black/20 p-4 rounded-2xl text-white',
-      icon: 'flex-shrink-0 mt-1 w-6 h-6 text-white',
-    }}
-  />
+<WidgetWrapper id={id} isDark={isDark} containerClass={`!px-0 !py-0 max-w-none ${classes?.container ?? ''}`} bg={bg}>
+  <div class="relative md:flex size-full">
+    <div class="md:basis-1/2 self-center py-8 px-8 md:px-16">
+      <Headline
+        title={title}
+        subtitle={subtitle}
+        tagline={tagline}
+        classes={{ title: 'text-start text-white md:px-8' }}
+      />
+      <ItemGrid
+        items={items}
+        columns={2}
+        classes={{
+          container: `gap-y-2 md:gap-y-4 md:px-8 text-primary`,
+          panel: 'min-h-12',
+          icon: 'flex-shrink-0 mt-1 w-6 h-6',
+        }}
+      />
+    </div>
+    <div aria-hidden="true" class="md:basis-1/2">
+      {
+        image && (
+          <div class="relative h-full">
+            {typeof image === 'string' ? (
+              <Fragment set:html={image} />
+            ) : (
+              <Image
+                class="mx-auto w-full rounded-lg bg-gray-500 shadow-lg"
+                width={400}
+                height={400}
+                widths={[400, 768]}
+                sizes="(max-width: 768px) 100vw, 432px"
+                layout="responsive"
+                {...image}
+              />
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
 </WidgetWrapper>
