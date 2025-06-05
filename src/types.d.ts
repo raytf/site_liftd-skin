@@ -266,6 +266,7 @@ export interface Concerns extends Omit<Headline, 'classes'>, Widget {
   items?: Array<Item>;
   columns?: number;
   image?: string | unknown;
+  actions?: string | CallToAction[];
 }
 
 export interface Steps extends Omit<Headline, 'classes'>, Widget {

@@ -340,6 +340,18 @@ const wordDuration = totalDuration / animatedWords.length;
         icon: 'tabler:face-mask',
       },
     ]}
+    actions={[
+      {
+        text: 'Learn How',
+        variant: 'accent',
+        onclick: 'openCalendly()',
+      },
+      {
+        text: 'See Results',
+        variant: 'outline',
+        href: '#',
+      },
+    ]}
   >
     <Fragment slot="image">
       <div class="relative overflow-hidden h-full">

@@ -11,6 +11,7 @@ const {
   subtitle = '',
   tagline = '',
   items = [],
+  actions = await Astro.slots.render('actions'),
 
   id,
   isDark = false,
@@ -27,7 +28,7 @@ const {
         title={title}
         subtitle={subtitle}
         tagline={tagline}
-        classes={{ title: 'text-start text-white md:px-8' }}
+        classes={{ container: 'mb-4 md:mb-8', title: 'text-start text-white md:px-8' }}
       />
       <ItemGrid
         items={items}
@@ -40,7 +41,21 @@ const {
         }}
       />
       <div class="md:px-8 mt-4 md:mt-8">
-        <Button variant="accent" text="Learn How" onclick="openCalendly()" />
+        {
+          actions && (
+            <div class="flex flex-nowrap flex-col justify-center sm:flex-row sm:justify-start gap-4">
+              {Array.isArray(actions) ? (
+                actions.map((action) => (
+                  <div class="flex w-full sm:w-auto">
+                    <Button {...(action || {})} class="w-full sm:mb-0" />
+                  </div>
+                ))
+              ) : (
+                <Fragment set:html={actions} />
+              )}
+            </div>
+          )
+        }
       </div>
     </div>
     <div aria-hidden="true" class="md:basis-1/2">
