@@ -70,6 +70,26 @@ const { slides = [] } = Astro.props;
 </ul>
 
 <style>
+  @media (prefers-reduced-motion: no-preference) {
+    .carousel {
+      scroll-behavior: smooth;
+    }
+  }
+  @media (min-width: 768px) {
+    .carousel {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(2, 1fr);
+      overflow-x: visible;
+      scroll-snap-type: none;
+    }
+    .carousel::scroll-marker-group {
+      display: none;
+    }
+    .carousel::scroll-button(*) {
+      display: none;
+    }
+  }
+
   .carousel {
     anchor-name: --carousel;
     display: grid;
@@ -85,37 +105,11 @@ const { slides = [] } = Astro.props;
     > li {
       scroll-snap-align: center;
     }
-
-    @media (prefers-reduced-motion: no-preference) {
-      scroll-behavior: smooth;
-    }
-
-    /* Convert to standard 2-column grid on desktop */
-    @media (min-width: 768px) {
-      grid-auto-flow: row;
-      grid-template-columns: repeat(2, 1fr);
-      overflow-x: visible;
-      scroll-snap-type: none;
-    }
   }
 
   .slide {
     position: relative;
     border-radius: 0.5rem;
-  }
-
-  /* Remove scroll markers on desktop */
-  @media (min-width: 768px) {
-    .carousel::scroll-marker-group {
-      display: none;
-    }
-  }
-
-  /* Remove scroll buttons on desktop */
-  @media (min-width: 768px) {
-    .carousel::scroll-button(*) {
-      display: none;
-    }
   }
 
   .content {
