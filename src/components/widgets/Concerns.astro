@@ -22,20 +22,26 @@ const {
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`!px-0 !py-0 max-w-none ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`!px-0 !py-0 max-w-none bg-black/10 ${classes?.container ?? ''}`}
+  bg={bg}
+  revealAnimation={false}
+>
   <div class="relative md:flex size-full">
     <div class={`md:basis-1/2 self-center py-8 px-8 md:px-16 ${isReversed ? 'md:order-2' : ''}`}>
       <Headline
         title={title}
         subtitle={subtitle}
         tagline={tagline}
-        classes={{ container: 'mb-4 md:mb-8', title: 'text-start text-white md:px-8' }}
+        classes={{ container: 'mb-4 md:mb-8', title: 'text-start text-white md:px-8 md:text-4xl' }}
       />
       <ItemGrid
         items={items}
         columns={2}
         classes={{
-          container: `gap-y-2 md:gap-y-4 md:px-8 text-primary`,
+          container: `gap-y-2 md:gap-y-4 md:px-8 text-gray-300`,
           panel: 'min-h-12',
           title: 'font-medium',
           icon: 'flex-shrink-0 mt-1 w-6 h-6',
