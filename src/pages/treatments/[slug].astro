@@ -24,7 +24,7 @@ const { Content: MDXContent } = await treatment.render();
 ---
 
 <PageLayout>
-  <Hero class="hero-section md:h-screen" title={treatment.data.title} subtitle={treatment.data.description}>
+  <Hero class="hero-section" title={treatment.data.title} subtitle={treatment.data.description}>
     <Fragment slot="bg">
       <div
         class="absolute inset-0 size-full bg-black opacity-50"
@@ -33,7 +33,7 @@ const { Content: MDXContent } = await treatment.render();
       </div>
       <Image
         class="relative size-full z-[-1] hero-image"
-        objectPosition="60% 10%"
+        objectPosition="50% 25%"
         aspectRatio="auto"
         loading="eager"
         src={treatment.data.heroImage.src}
