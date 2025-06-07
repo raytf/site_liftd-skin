@@ -74,7 +74,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     <div class:list={['flex justify-between items-center', { 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }]}>
       <a class="flex items-center h-[60px]" href={getHomePermalink()}>
         <!-- <Logo /> -->
-        <Image class="h-full" src={`~/assets/images/logo_square.png`} alt="Logo" />
+        <Image class="h-full" src={`~/assets/images/logo_square.png`} alt="Logo" loading="eager" />
         <span class="font-heading self-center ml-1 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold whitespace-nowrap">
           <span class="text-secondary">LIFTD</span>
           <span class="text-accent">Skin</span>
