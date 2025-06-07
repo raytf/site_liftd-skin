@@ -6,4 +6,6 @@
 
 interface Window {
   updateStep: (index: number) => void;
+  openCalendly: () => void;
+  closeCalendly: () => void;
 }

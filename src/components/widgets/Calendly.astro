@@ -17,22 +17,34 @@ import { Icon } from 'astro-icon/components';
   </div>
 </dialog>
 
-<script is:inline async src="https://assets.calendly.com/assets/external/widget.js"></script>
-<script is:inline>
+<script>
+  let calendlyScriptLoaded = false;
+
+  function loadCalendlyScript() {
+    if (!calendlyScriptLoaded) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+      calendlyScriptLoaded = true;
+    }
+  }
+
   window.openCalendly = function () {
-    const modal = document.getElementById('calendly-modal');
+    loadCalendlyScript();
+    const modal = document.getElementById('calendly-modal') as HTMLDialogElement;
     if (modal) {
       modal.showModal();
       // Focus the Calendly widget instead of the close button
       const widget = modal.querySelector('.calendly-inline-widget');
       if (widget) {
-        widget.focus();
+        (widget as HTMLElement).focus();
       }
     }
   };
 
   window.closeCalendly = function () {
-    const modal = document.getElementById('calendly-modal');
+    const modal = document.getElementById('calendly-modal') as HTMLDialogElement;
     if (modal) {
       modal.close();
     }
