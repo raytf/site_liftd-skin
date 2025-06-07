@@ -39,7 +39,11 @@ const {
                   <Icon
                     data-icon
                     name={icon || defaultIcon}
-                    class={twMerge('w-10 h-10 p-2 rounded-full border-2', defaultIconClass, itemClasses?.icon)}
+                    class={twMerge(
+                      'w-10 h-10 p-2 rounded-full border-2 transition-all duration-300',
+                      defaultIconClass,
+                      itemClasses?.icon
+                    )}
                   />
                 )}
               </div>
