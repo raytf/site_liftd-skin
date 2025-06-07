@@ -103,7 +103,13 @@ const slides = [
 ];
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`}
+  bg={bg}
+  revealAnimation={false}
+>
   <Headline
     title={title}
     subtitle={subtitle}
@@ -115,15 +121,6 @@ const slides = [
     }}
   />
   <div class="mx-auto max-w-7xl p-4 md:px-8">
-    <Carousel
-      slides={[...slides, ...slides]}
-      showPagination={true}
-      showNavigation={false}
-      autoplay={false}
-      loop={true}
-      centeredSlides={true}
-      spaceBetween={30}
-      slidesPerView={3}
-    />
+    <Carousel slides={slides} />
   </div>
 </WidgetWrapper>

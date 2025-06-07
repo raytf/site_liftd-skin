@@ -53,3 +53,42 @@ const { Content: MDXContent } = await treatment.render();
     isDark={treatment.data.isDark}
   />
 </PageLayout>
+
+<style>
+  /* View Transition Styles */
+  ::view-transition-old(hero-image),
+  ::view-transition-new(hero-image) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(hero-image) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(hero-image) {
+    z-index: 2;
+  }
+
+  /* Ensure hero image maintains aspect ratio during transition */
+  .hero-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Add smooth transition for the entire page */
+  :global(.view-transition-active) {
+    view-transition-name: none;
+  }
+
+  :global(.view-transition-active) * {
+    view-transition-name: none;
+  }
+</style>
+
+<script>
+  // Enable view transitions
+  document.documentElement.classList.add('view-transition-enabled');
+</script>

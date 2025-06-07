@@ -1,0 +1,360 @@
+---
+import type { Image } from '~/types';
+import type { CallToAction } from '~/types';
+import ImageComponent from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  id?: string;
+  slides?: Array<{
+    title?: string;
+    backgroundImage?: Image;
+    description?: string;
+    benefits?: string[];
+    action?: CallToAction;
+  }>;
+  showPagination?: boolean;
+  showNavigation?: boolean;
+  autoplay?: boolean;
+  loop?: boolean;
+  centeredSlides?: boolean;
+  spaceBetween?: number;
+  slidesPerView?: number | 'auto';
+  class?: string;
+}
+
+const {
+  id = 'carousel',
+  slides = [],
+  showPagination = true,
+  showNavigation = false,
+  autoplay = false,
+  loop = true,
+  centeredSlides = true,
+  spaceBetween = 30,
+  slidesPerView = 'auto',
+  class: className = '',
+} = Astro.props;
+
+const uniqueId = `${id}-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class:list={['w-full relative', className]}>
+  <div
+    class={`swiper ${uniqueId} swiper-container relative`}
+    data-autoplay={autoplay}
+    data-loop={loop}
+    data-centered-slides={centeredSlides}
+    data-space-between={spaceBetween}
+    data-slides-per-view={slidesPerView}
+  >
+    <div class="swiper-wrapper">
+      {
+        slides.map((slide, index) => (
+          <div class="swiper-slide !flex justify-center items-center">
+            <div class="slide-content group relative rounded-2xl flex flex-col justify-center items-center text-center transition-all duration-500 hover:shadow-2xl overflow-hidden">
+              {/* Background image using Image component */}
+              {slide.backgroundImage && (
+                <div class="group/image relative inset-0 w-full h-full">
+                  <ImageComponent
+                    src={slide.backgroundImage.src}
+                    alt={slide.backgroundImage.alt || slide.title || `Slide ${index + 1} background`}
+                    class="group-hover:scale-110 w-full h-full object-cover transition-all duration-300"
+                    style={`view-transition-name: ${slide.backgroundImage.id}`}
+                    width={1920}
+                    height={1080}
+                  />
+                  <div class="absolute inset-0 flex items-end z-[1] p-4 bg-gradient-to-t from-black/70 to-transparent">
+                    {slide.title && (
+                      <h3
+                        class={`text-2xl font-semibold mb-2 overflow-hidden ${slide.backgroundImage ? 'text-white' : 'text-dark'}`}
+                      >
+                        <span class="block">{slide.title}</span>
+                      </h3>
+                    )}
+                  </div>
+                  <div
+                    class:list={[
+                      'slide-actions absolute top-0 right-0 p-4 z-[2] transition-[opacity,transform] duration-300',
+                      'opacity-100 translate-y-0',
+                      'md:opacity-0 md:-translate-y-12 md:group-hover:opacity-100 md:group-hover:translate-y-0',
+                    ]}
+                  >
+                    {slide.action && <Button class="text-xs py-2 px-3" {...slide.action} />}
+                  </div>
+                </div>
+              )}
+
+              {/* Content */}
+              <div class="relative bg-white flex flex-col items-start px-6 py-4 text-start">
+                {slide.description && <p class="text-medium mb-4 text-dark/80" set:html={slide.description} />}
+
+                {slide.benefits && slide.benefits.length > 0 && (
+                  <ul class="space-y-2 mb-6">
+                    {slide.benefits.map((benefit) => (
+                      <li class="flex items-center text-dark/90">
+                        <Icon name="tabler:check" class="w-5 h-5 mr-2 text-secondary" />
+                        <Fragment set:html={benefit} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {showPagination && <div class="swiper-pagination !relative !bottom-0 !mt-8 !text-center" />}
+
+    {
+      showNavigation && (
+        <>
+          <button
+            class={`${uniqueId}-prev absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50`}
+            aria-label="Previous slide"
+          >
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            class={`${uniqueId}-next absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary/50`}
+            aria-label="Next slide"
+          >
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .swiper-wrapper {
+    width: 100%;
+    height: max-content !important;
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+    position: relative;
+  }
+
+  /* View Transition Styles */
+  ::view-transition-old(slide-image),
+  ::view-transition-new(slide-image) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  ::view-transition-old(slide-image) {
+    z-index: 1;
+  }
+
+  ::view-transition-new(slide-image) {
+    z-index: 2;
+  }
+
+  /* Ensure images maintain aspect ratio during transition */
+  /* .group\/image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+  } */
+
+  .swiper-pagination {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 2rem !important;
+    text-align: center !important;
+  }
+
+  .swiper-pagination-bullet {
+    background: rgb(var(--color-primary, 79 70 229)) !important;
+    opacity: 0.5 !important;
+    width: 12px !important;
+    height: 12px !important;
+    margin: 0 6px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: rgb(var(--color-primary, 79 70 229)) !important;
+    opacity: 1 !important;
+    transform: scale(1.2) !important;
+  }
+
+  .swiper-slide {
+    transition: all 0.3s ease;
+    /* padding-top: 4rem; */
+    height: 32rem;
+  }
+
+  .swiper-slide-active {
+    /* opacity: 1; */
+    /* transform: scale(1.5); */
+    z-index: 10;
+  }
+
+  .swiper-slide-active .slide-actions {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .swiper-slide-active .slide-content {
+    /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgb(var(--color-primary, 79 70 229)); */
+    height: 32rem;
+  }
+
+  .swiper-slide-next,
+  .swiper-slide-prev {
+    opacity: 0.5;
+    /* filter: blur(2px); */
+  }
+
+  .swiper-slide-next:hover,
+  .swiper-slide-prev:hover {
+    opacity: 0.7;
+  }
+
+  /* Smooth transitions for all slide elements */
+  .slide-content {
+    height: 28rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
+
+<script is:inline>
+  window.addEventListener('pageswap', async (e) => {
+    if (e.viewTransition) {
+      // Add a class to the body during transition
+      document.body.classList.add('view-transition-active');
+
+      // Remove the class after transition completes
+      e.viewTransition.finished.then(() => {
+        document.body.classList.remove('view-transition-active');
+      });
+    }
+  });
+</script>
+
+<script>
+  import { Swiper } from 'swiper';
+  import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+  import 'swiper/css/navigation';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get all carousel elements
+    const carousels = document.querySelectorAll('.swiper');
+
+    carousels.forEach((carousel) => {
+      const carouselEl = carousel as HTMLElement;
+
+      // Get the carousel's data attributes or use defaults
+      const autoplay = carouselEl.dataset.autoplay === 'true';
+      const loop = carouselEl.dataset.loop !== 'false';
+      const centeredSlides = carouselEl.dataset.centeredSlides !== 'false';
+      const spaceBetween = parseInt(carouselEl.dataset.spaceBetween || '30') || 30;
+      const slidesPerView = carouselEl.dataset.slidesPerView || 'auto';
+      const showPagination = carouselEl.querySelector('.swiper-pagination') !== null;
+      const showNavigation = carouselEl.querySelector('[class*="-prev"]') !== null;
+
+      // Check if we have enough slides for loop to work properly
+      const slideCount = carouselEl.querySelectorAll('.swiper-slide').length;
+      const effectiveLoop = loop && slideCount > 1;
+
+      // Determine which modules to use
+      const modules: unknown[] = [];
+      if (showPagination) modules.push(Pagination);
+      if (showNavigation) modules.push(Navigation);
+      if (autoplay) modules.push(Autoplay);
+
+      const swiperConfig: Record<string, unknown> = {
+        modules,
+        centeredSlides,
+        loop: effectiveLoop,
+        spaceBetween,
+        slidesPerView: slidesPerView === 'auto' ? 'auto' : parseInt(slidesPerView),
+        slideToClickedSlide: true,
+        grabCursor: true,
+        loopAdditionalSlides: effectiveLoop ? 2 : 0,
+        loopFillGroupWithBlank: false,
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: slidesPerView === 'auto' ? 'auto' : Math.min(2, parseInt(slidesPerView)),
+            spaceBetween: Math.max(15, spaceBetween / 2),
+          },
+          1024: {
+            slidesPerView: slidesPerView === 'auto' ? 'auto' : Math.min(3, parseInt(slidesPerView)),
+            spaceBetween: spaceBetween,
+          },
+          1280: {
+            slidesPerView: slidesPerView === 'auto' ? 'auto' : Math.min(4, parseInt(slidesPerView)),
+            spaceBetween: spaceBetween,
+          },
+        },
+      };
+
+      // Add pagination if element exists
+      if (showPagination) {
+        swiperConfig.pagination = {
+          el: carouselEl.querySelector('.swiper-pagination'),
+          clickable: true,
+          dynamicBullets: true,
+          type: 'bullets',
+        };
+      }
+
+      // Add navigation if elements exist
+      if (showNavigation) {
+        const prevButton = carouselEl.querySelector('[class*="-prev"]');
+        const nextButton = carouselEl.querySelector('[class*="-next"]');
+        if (prevButton && nextButton) {
+          swiperConfig.navigation = {
+            nextEl: nextButton,
+            prevEl: prevButton,
+          };
+        }
+      }
+
+      // Add autoplay if enabled
+      if (autoplay) {
+        swiperConfig.autoplay = {
+          delay: 3000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        };
+      }
+
+      // Initialize Swiper
+      const swiper = new Swiper(carouselEl, swiperConfig);
+
+      // Fix for loop behavior with pagination clicks
+      if (showPagination && effectiveLoop) {
+        const paginationEl = carouselEl.querySelector('.swiper-pagination');
+        if (paginationEl) {
+          paginationEl.addEventListener('click', (e) => {
+            const target = e.target as HTMLElement;
+            if (target.classList.contains('swiper-pagination-bullet')) {
+              // Small delay to ensure the slide transition completes
+              setTimeout(() => {
+                swiper.update();
+              }, 100);
+            }
+          });
+        }
+      }
+    });
+  });
+</script>
