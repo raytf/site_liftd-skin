@@ -1,0 +1,157 @@
+---
+import TreatmentLayout from '~/layouts/TreatmentLayout.astro';
+import Image from '~/components/common/Image.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
+import Gallery from '~/components/ui/Gallery.astro';
+import FAQ from '~/components/widgets/FAQ.astro';
+
+const treatmentId = 'facial-lifting';
+const title = 'Facial Lifting';
+const description = 'Tighten, lift, smooth and sculpt the face and neck';
+
+const beforeAfterImages = [
+  { src: '~/assets/images/hifu/before_after/Liftera-A-01.jpg', alt: 'HIFU Before & After 1' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-10.jpg', alt: 'HIFU Before & After 2' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-12.jpg', alt: 'HIFU Before & After 3' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-14(2).jpg', alt: 'HIFU Before & After 4' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-19.jpg', alt: 'HIFU Before & After 5' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-21.jpg', alt: 'HIFU Before & After 6' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-24.jpg', alt: 'HIFU Before & After 7' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-25.jpg', alt: 'HIFU Before & After 8' },
+  { src: '~/assets/images/hifu/before_after/Liftera-A-29.jpg', alt: 'HIFU Before & After 9' },
+];
+const faqs = [
+  {
+    title: 'How do HIFU-Non-Surgical Treatments work?',
+    description:
+      "HIFU involves delivering focused ultrasound energy to targeted layers of the skin and underlying tissues. The treatment emits high-energy ultrasound waves at a swift 10Hz speed that accurately penetrates the skin surface without causing damage, targeting precise depths within the skin. By generating thermal and mechanical effects in the tissue, HIFU stimulates the body's natural healing response, triggering increased collagen production and tissue remodeling.",
+  },
+  {
+    title: 'What areas of the face can be treated with HIFU Non-Surgical Lifting?',
+    description:
+      'Optimised for versatility, Liftera brings the transformative results of HIFU to areas beyond the reach of traditional HIFU like the orbital ridge, tear trough, perinasal region and more.',
+  },
+  {
+    title: 'What results can I expect from HIFU Non-Surgical Lifting?',
+    description:
+      'While some immediate skin tightening effects may be noticeable, the full benefits of HIFU typically become more apparent over the following weeks to months as collagen production continues.',
+  },
+  {
+    title: 'How long does the treatment take and what is the treatment downtime?',
+    description:
+      'With the advancements of Liftera, it enables rapid, comfortable and precise treatments in as little as 30 minutes per session with noticeable enhancements after just one treatment. Liftera minimises swelling and redness side effects, allowing patients to resume normal activities immediately.',
+  },
+];
+---
+
+<TreatmentLayout description={description}>
+  <Fragment slot="hero-image">
+    <div
+      class="absolute inset-0 size-full bg-black opacity-50"
+      style={`view-transition-name: ${treatmentId}-bgOverlay`}
+    >
+    </div>
+    <Image
+      class="relative size-full z-[-1] hero-image"
+      objectPosition="50% 25%"
+      aspectRatio="auto"
+      loading="eager"
+      src="~/assets/images/hifu/hifu_6.jpeg"
+      alt="HIFU Lifting"
+      style={`view-transition-name: ${treatmentId}-bgImage`}
+    />
+  </Fragment>
+  <Fragment slot="title">
+    <span style={`view-transition-name: ${treatmentId}-title`}>{title}</span>
+  </Fragment>
+  <Content
+    tagline="Liftera"
+    title="HIFU Non-Surgical Lifting"
+    items={[
+      {
+        title: 'Forehead and temples',
+      },
+      {
+        title: 'Tear trough',
+      },
+      {
+        title: 'Orbital ridge',
+      },
+      {
+        title: 'Perinasal region',
+      },
+      {
+        title: 'Mandibular jowls',
+      },
+      {
+        title: 'Upper lip',
+      },
+      {
+        title: 'Neck region',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/hifu/hifu_1.jpeg',
+      alt: 'HIFU Lifting',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-xl font-bold tracking-tight dark:text-white sm:text-2xl mb-2">
+        A CLINICALLY-PROVEN AND MEDICAL-GRADE SOLUTION FOR RAPID AND PRECISE FACIAL LIFTING + SCULPTING
+      </h3>
+      <p>
+        In as little as one 30-minute treatment, the next-generation of HIFU Non-Surgical Lifting can deliver
+        transformative results in tightening, lifting, smoothing and sculpting more areas than traditional HIFU
+        including:
+      </p>
+    </Fragment>
+  </Content>
+  <Features
+    classes={{
+      items: {
+        icon: 'w-12 h-12 mx-4',
+        panel: 'text-white',
+        description: 'text-grey-100',
+      },
+    }}
+    items={[
+      {
+        title: 'ADVANCED, MEDICAL GRADE TECHNOLOGY',
+        description:
+          'Developed by Korean medi-aesthetic leaders, Asterasys, Liftera is a medical-grade, non-surgical lifting technology (ARTG #393230) that elevates traditional HIFU. Utilising exclusive Thermal Diffusion Treatment™ technology it delivers powerful and effective face and neck lifting results.',
+        icon: 'tabler:device-heart-monitor',
+      },
+      {
+        title: 'OPTIMISED FOR PRECISION AND VERSATILITY',
+        description:
+          'Liftera offers comprehensive facial lifting capabilities for effective enhancement across the entire face - including the forehead, eye area, cheeks, mouth, and chin - delivering results comparable to more invasive cosmetic procedures, especially notable in periorbital lifting.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'ENHANCED SAFETY AND COMFORT',
+        description:
+          'Liftera generates stable and precise Peak Power to increase the efficacy of thermal energy within targeted tissues. This innovation reduces patient discomfort and the risk of adverse reactions, without compromising on treatment results.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'REDUCED DISCOMFORT AND DOWNTIME',
+        description:
+          'With a tailored approach, Liftera offers an ideal balance of comfort, minimal downtime and impressive results that clients love. Patients can resume normal activities immediately, making this the perfect treatment for those seeking non-invasive lifting and contouring procedures.',
+        icon: 'tabler:clock-check',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-secondary brightness-75"></div>
+    </Fragment>
+  </Features>
+  <!-- <Image src="~/assets/images/hifu/hifu_results.png" alt="HIFU Results" /> -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Before & After Results</h2>
+      <Gallery images={beforeAfterImages} />
+    </div>
+  </section>
+  <FAQ title="Frequently Asked Questions" items={faqs} />
+</TreatmentLayout>

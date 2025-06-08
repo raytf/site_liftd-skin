@@ -12,6 +12,7 @@ interface Props {
     description?: string;
     benefits?: string[];
     action?: CallToAction;
+    tagline?: string;
   }>;
 }
 
@@ -32,13 +33,22 @@ const { slides = [] } = Astro.props;
               height={1080}
             />
             <div class="absolute inset-0 flex items-end z-[1] p-4 bg-gradient-to-t from-black/70 to-transparent">
-              {slide.title && (
-                <h3
-                  class={`text-2xl font-semibold mb-2 overflow-hidden ${slide.backgroundImage ? 'text-white' : 'text-dark'}`}
-                >
-                  <span class="block">{slide.title}</span>
-                </h3>
-              )}
+              <div>
+                {slide.tagline && (
+                  <h4 class="text-sm inline-block py-2 px-4 bg-secondary text-white rounded-full mb-2">
+                    {slide.tagline}
+                  </h4>
+                )}
+                {slide.title && (
+                  <h3
+                    class={`text-2xl font-semibold mb-2 overflow-hidden ${slide.backgroundImage ? 'text-white' : 'text-dark'}`}
+                  >
+                    <span class="block" style={`view-transition-name: ${slide.id}-title`}>
+                      {slide.title}
+                    </span>
+                  </h3>
+                )}
+              </div>
             </div>
             <div
               class:list={[
