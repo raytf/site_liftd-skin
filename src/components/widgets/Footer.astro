@@ -127,11 +127,7 @@ const {
         </div>
       </div>
       <div class="col-span-12 lg:col-span-4 h-[250px] overflow-hidden rounded-2xl">
-        <Map
-          client:visible
-          apiKey={import.meta.env.PUBLIC_GOOGLE_MAP_API_KEY}
-          query="LIFTD SKIN, Gold Coast Highway, Palm Beach QLD, Australia"
-        />
+        <Map client:visible />
       </div>
     </div>
     <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
@@ -162,29 +158,3 @@ const {
     </div>
   </div>
 </footer>
-
-<script>
-  const mapContainer = document.getElementById('embed-ded-map-canvas');
-  const mapPlaceholder = document.getElementById('map-placeholder');
-  const mapIframe = mapContainer?.querySelector('iframe');
-
-  if (mapContainer && mapIframe) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            mapIframe.src = mapIframe.dataset.src || '';
-            mapIframe.classList.remove('hidden');
-            mapPlaceholder?.classList.add('hidden');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        rootMargin: '50px',
-      }
-    );
-
-    observer.observe(mapContainer);
-  }
-</script>

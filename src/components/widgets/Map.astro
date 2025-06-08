@@ -1,10 +1,11 @@
 ---
-interface Props {
-  apiKey: string;
-  query: string;
-}
+// interface Props {
+//   apiKey: string;
+//   query: string;
+// }
 
-const { apiKey, query } = Astro.props;
+// const { apiKey, query } = Astro.props;
+const query = 'LIFTD SKIN, Gold Coast Highway, Palm Beach QLD, Australia';
 ---
 
 <div style="text-decoration:none; overflow:hidden;max-width:100%;width:500px;height:250px;">
@@ -12,7 +13,8 @@ const { apiKey, query } = Astro.props;
     <iframe
       style="height:100%;width:100%;border:0;"
       loading="lazy"
-      src={`https://www.google.com/maps/embed/v1/place?q=${query}&key=${apiKey}`}></iframe>
+      src={`https://www.google.com/maps/embed/v1/place?q=${query}&key=${import.meta.env.PUBLIC_GOOGLE_MAP_API_KEY}`}
+    ></iframe>
     <!-- <a class="code-for-google-map" href="https://kbj9qpmy.com/bp" id="get-data-for-map">Internet Provider</a> -->
   </div>
 </div>
