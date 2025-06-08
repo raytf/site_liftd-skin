@@ -13,7 +13,7 @@ const { apiKey, query } = Astro.props;
       style="height:100%;width:100%;border:0;"
       loading="lazy"
       src={`https://www.google.com/maps/embed/v1/place?q=${encodeURIComponent(query)}&key=${apiKey}`}></iframe>
-    <a class="code-for-google-map" href="https://kbj9qpmy.com/bp" id="get-data-for-map">Internet Provider</a>
+    <!-- <a class="code-for-google-map" href="https://kbj9qpmy.com/bp" id="get-data-for-map">Internet Provider</a> -->
   </div>
 </div>
 
@@ -24,22 +24,3 @@ const { apiKey, query } = Astro.props;
     background: none !important;
   }
 </style>
-
-<script></script>
-
-<!-- <script define:vars={{ apiKey, query }}>
-  const mapPlaceholder = document.getElementById('map-placeholder');
-  const mapContainer = document.getElementById('map-container');
-
-  if (mapPlaceholder && mapContainer) {
-    const iframe = document.createElement('iframe');
-    iframe.style.height = '100%';
-    iframe.style.width = '100%';
-    iframe.style.border = '0';
-    iframe.src = `https://www.google.com/maps/embed/v1/place?q=${encodeURIComponent(query)}&key=${apiKey}`;
-
-    mapContainer.appendChild(iframe);
-    mapPlaceholder.classList.add('hidden');
-    mapContainer.classList.remove('hidden');
-  }
-</script> -->
