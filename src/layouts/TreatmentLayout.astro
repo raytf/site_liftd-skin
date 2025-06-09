@@ -4,12 +4,15 @@ import Hero from '~/components/widgets/Hero.astro';
 import Image from '~/components/common/Image.astro';
 import Carousel from '~/components/ui/Carousel.astro';
 import FAQ from '~/components/widgets/FAQ.astro';
+import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 
 const {
   treatmentId,
   title = await Astro.slots.render('title'),
   description = await Astro.slots.render('description'),
   heroImage = await Astro.slots.render('hero-image'),
+  treatmentAreas = await Astro.slots.render('treatment-areas'),
+  treatmentAreasImage = await Astro.slots.render('treatment-areas-image'),
   beforeAfterImages = await Astro.slots.render('before-after-images'),
   faqItems = await Astro.slots.render('faq-items'),
 } = Astro.props;
@@ -70,6 +73,16 @@ const metadata = {
     </Fragment>
   </Hero>
   <slot />
+  <TreatmentAreas
+    title="Common Treatment Areas"
+    items={treatmentAreas}
+    image={treatmentAreasImage}
+    classes={{ container: 'md:h-[500px]' }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-[#D3C2AE]"></div>
+    </Fragment>
+  </TreatmentAreas>
   {
     beforeAfterImages && (
       <section class="py-16">

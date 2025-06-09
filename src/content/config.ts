@@ -68,15 +68,39 @@ const postCollection = defineCollection({
 const treatmentsCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    treatmentId: z.string(),
     title: z.string(),
     description: z.string(),
     heroImage: z.object({
       src: z.string(),
       alt: z.string(),
-      id: z.string(),
+      objectPosition: z.string().optional(),
     }),
-    benefits: z.array(z.string()),
-    order: z.number(),
+    treatmentAreas: z.array(
+      z.object({
+        title: z.string(),
+        icon: z.string(),
+      })
+    ),
+    treatmentAreasImage: z.object({
+      src: z.string(),
+      alt: z.string(),
+      objectPosition: z.string().optional(),
+    }),
+    beforeAfterImages: z.array(
+      z.object({
+        src: z.string(),
+        alt: z.string(),
+      })
+    ),
+    faqs: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+      })
+    ),
+    benefits: z.array(z.string()).optional(),
+    order: z.number().optional(),
     isDark: z.boolean().optional(),
   }),
 });
