@@ -1,19 +1,52 @@
 ---
 import PageLayout from './PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
+import Image from '~/components/common/Image.astro';
+import FAQ from '~/components/widgets/FAQ.astro';
 
 const {
+  treatmentId,
   title = await Astro.slots.render('title'),
   description = await Astro.slots.render('description'),
   heroImage = await Astro.slots.render('hero-image'),
+  faqItems = await Astro.slots.render('faq-items'),
 } = Astro.props;
 ---
 
 <PageLayout>
-  <Hero class="hero-section" title={title} subtitle={description}>
+  <Hero class="hero-section" subtitle={description}>
+    <!-- Hero Background -->
     <Fragment slot="bg">
-      <Fragment set:html={heroImage} />
+      {
+        heroImage && (
+          <Fragment>
+            {typeof heroImage === 'string' ? (
+              <Fragment set:html={heroImage} />
+            ) : (
+              <Fragment>
+                <div
+                  class="absolute inset-0 size-full bg-black opacity-50"
+                  style={`view-transition-name: ${treatmentId}-bgOverlay`}
+                />
+                <Image
+                  class="relative size-full z-[-1] hero-image"
+                  objectPosition="50% 25%"
+                  aspectRatio="auto"
+                  loading="eager"
+                  style={`view-transition-name: ${treatmentId}-bgImage`}
+                  {...heroImage}
+                />
+              </Fragment>
+            )}
+          </Fragment>
+        )
+      }
+    </Fragment>
+    <!-- Hero Title -->
+    <Fragment slot="title">
+      <span style={`view-transition-name: ${treatmentId}-title`}>{title}</span>
     </Fragment>
   </Hero>
   <slot />
+  <FAQ title="Frequently Asked Questions" items={faqItems} />
 </PageLayout>

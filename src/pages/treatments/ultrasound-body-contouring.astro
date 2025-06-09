@@ -1,0 +1,230 @@
+---
+import TreatmentLayout from '~/layouts/TreatmentLayout.astro';
+import Content from '~/components/widgets/Content.astro';
+import Gallery from '~/components/ui/Gallery.astro';
+import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
+
+const treatmentId = 'body-contouring';
+const title = 'Body Contouring';
+const description = 'Slim, Sculpt, Tighten and Contour the body';
+
+const beforeAfterImages = [
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_01.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 1',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_06.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 2',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_08.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 3',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_09.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 4',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_10.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 5',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_11.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 6',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_12.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 7',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_13.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 8',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_14.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 9',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_15.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 10',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_16.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 11',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_17.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 12',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_18.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 13',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_19.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 14',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_20.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 15',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_22.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 16',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_23.png',
+    alt: 'Ultrasound Body Contouring Before & After 17',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring_Before_After_26.png',
+    alt: 'Ultrasound Body Contouring Before & After 18',
+  },
+  {
+    src: '~/assets/images/ultrasound/before_after/Ultrasound_Body_Contouring-32.jpg',
+    alt: 'Ultrasound Body Contouring Before & After 19',
+  },
+];
+const faqs = [
+  {
+    title: 'What is Ultrasound Body Contouring?',
+    description:
+      'Ultrasound Body Contouring is a breakthrough nonsurgical technology that targets stubborn areas on the body. High-frequency ultrasound waves are utilised to contour and sculpt treatment areas.',
+  },
+  {
+    title: 'Can I combine Ultrasound Body Contouring with RF Skin Tightening?',
+    description:
+      'Yes. Ultrasound Body Contouring and RF Skin Tightening work hand in hand to tighten loosened skin plus tone up larger areas such as thighs, arms and the abdomen.',
+  },
+  {
+    title: 'How many treatments will I need?',
+    description:
+      'This will vary depending on the size and type of area being treated. Typically to achieve maximum results, a course of 6-10 treatments will be prescribed spaced at one week apart. Your clinician will discuss the expected number of treatments, along with expected results during your consultation.',
+  },
+  {
+    title: 'Are the treatments painful?',
+    description:
+      'Ultrasound Body Contouring and RF Skin Tightening treatments are comfortable and even described by some clients as relaxing, making them a popular body contouring alternative to surgery and liposuction.',
+  },
+  {
+    title: 'Is there any downtime following treatment?',
+    description:
+      'Some patients may experience redness in the treatment area initially, but this will generally pass within 1-4 hours. For best results in Ultrasound Body Contouring, it is advised you undertake 20 minutes of cardiovascular exercise following treatment to encourage lymphatic flow and practice a healthy lifestyle.',
+  },
+];
+---
+
+<TreatmentLayout
+  treatmentId={treatmentId}
+  title={title}
+  description={description}
+  heroImage={{
+    src: '~/assets/images/ultrasound/body_contouring_9.jpg',
+    alt: 'Body Contouring Background',
+    objectPosition: '50% 0%',
+  }}
+  faqItems={faqs}
+>
+  <Content
+    tagline="LUX Series"
+    title="Ultrasound Body Contouring"
+    image={{
+      src: '~/assets/images/hifu/hifu_1.jpeg',
+      alt: 'HIFU Lifting',
+    }}
+    isReversed
+  >
+    <Fragment slot="content">
+      <h3 class="text-xl font-bold tracking-tight dark:text-white sm:text-2xl mb-2">
+        Sculpt your figure for a tightened and toned silhouette
+      </h3>
+      <div class="flex flex-col gap-2">
+        <p>
+          Ultrasound Body Contouring is an advanced method to contour, slim and tone the body, without the need for
+          invasive procedures and surgery.
+        </p>
+        <p>
+          Offering effective results on virtually any area of the body, Ultrasound Body Contouring is extremely popular
+          for targeting stubborn areas that refuse to budge, even despite a healthy diet and exercise regime.
+        </p>
+      </div>
+    </Fragment>
+  </Content>
+  <TreatmentAreas
+    title="Common Treatment Areas"
+    items={[
+      {
+        title: 'Abdomen/stomach',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Thighs',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Buttocks',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Upper Arms',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Jowls',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Hips',
+        icon: 'mdi:dot',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/ultrasound/body_contouring_5.jpg',
+      alt: 'Body Contouring',
+    }}
+    classes={{ container: '' }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-[#D3C2AE]"></div>
+    </Fragment>
+  </TreatmentAreas>
+  <!-- <Features
+    classes={{
+      items: {
+        icon: 'w-12 h-12 mr-4',
+      },
+    }}
+    title="Common Treatment Areas"
+    items={[
+      {
+        title: 'Abdomen/stomach',
+        icon: 'tabler:device-heart-monitor',
+      },
+      {
+        title: 'Thighs',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Buttocks',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'REDUCED DISCOMFORT AND DOWNTIME',
+        description:
+          'With a tailored approach, Liftera offers an ideal balance of comfort, minimal downtime and impressive results that clients love. Patients can resume normal activities immediately, making this the perfect treatment for those seeking non-invasive lifting and contouring procedures.',
+        icon: 'tabler:clock-check',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-[#D3C2AE]"></div>
+    </Fragment>
+  </Features> -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Before & After Results</h2>
+      <Gallery images={beforeAfterImages} />
+    </div>
+  </section>
+</TreatmentLayout>
