@@ -46,7 +46,7 @@
   }
 
   .btn-accent {
-    @apply btn bg-accent text-white border-none;
+    @apply btn bg-accent text-current border-none;
   }
 
   .btn-fill {
