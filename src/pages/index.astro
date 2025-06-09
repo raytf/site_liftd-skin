@@ -10,7 +10,6 @@ import Process from '~/components/widgets/Process.astro';
 // import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQ from '~/components/widgets/FAQ.astro';
-import CTA from '~/components/widgets/CTA.astro';
 
 const metadata = {
   title: 'Skin Clinic Gold Coast | LIFTD Skin',
@@ -414,46 +413,4 @@ const wordDuration = totalDuration / animatedWords.length;
       </Fragment>
     </FAQ>
   </div>
-
-  <!-- CallToAction Widget *********** -->
-  <CTA
-    id="contact"
-    title="Let's Chat"
-    subtitle="Book in for a complimentary consultation to find out what's possible for your skin."
-    tagline="No obligation, no pressure, just honest answers about what we can achieve together."
-    actions={[
-      {
-        text: 'Book Your Complimentary Consultation',
-        variant: 'accent',
-        type: 'button',
-        onclick: 'openCalendly()',
-      },
-      {
-        text: 'See Real Results',
-        variant: 'outline',
-        href: '#',
-      },
-      // {
-      //   text: 'Call Now',
-      //   variant: 'outline',
-      //   href: 'tel:',
-      //   icon: 'tabler:phone',
-      // },
-    ]}
-    guarantee="<span class='font-bold'>90-Day Guarantee</span>: If you don't see noticeable improvement, we'll refund your investment."
-    classes={{ container: '' }}
-  >
-    <Fragment slot="bg">
-      <div class="size-full overflow-hidden">
-        <div class="absolute inset-0 size-full bg-black/50"></div>
-        <Image
-          class="!max-w-none h-full md:w-full object-cover"
-          src="~/assets/images/girl_at_resort.jpg"
-          alt="Girl at Resort"
-          aspectRatio="auto"
-          objectPosition="50% 0%"
-        />
-      </div>
-    </Fragment>
-  </CTA>
 </Layout>
