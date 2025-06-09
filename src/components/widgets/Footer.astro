@@ -127,7 +127,10 @@ const {
         </div>
       </div>
       <div class="col-span-12 lg:col-span-4 h-[250px] overflow-hidden rounded-2xl">
-        <Map />
+        <Map
+          query="LIFTD SKIN, Gold Coast Highway, Palm Beach QLD, Australia"
+          apiKey={import.meta.env.PUBLIC_GOOGLE_MAP_API_KEY}
+        />
       </div>
     </div>
     <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
