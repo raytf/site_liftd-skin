@@ -12,6 +12,7 @@ const { apiKey, query } = Astro.props;
     <iframe
       style="height:100%;width:100%;border:0;"
       loading="lazy"
+      title="Google Maps location"
       src={`https://www.google.com/maps/embed/v1/place?q=${encodeURIComponent(query)}&key=${apiKey}`}></iframe>
   </div>
 </div>
