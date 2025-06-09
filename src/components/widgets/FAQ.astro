@@ -7,7 +7,7 @@ const {
   title = 'Frequently Asked Questions',
   subtitle = '',
   items = [],
-  id,
+  id = 'faq',
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
@@ -30,7 +30,7 @@ const rightColumnFaqs = items.slice(Math.ceil(items.length / 2));
           <div class="border rounded-lg">
             <button
               class="faq-trigger flex justify-between items-center w-full px-6 py-4 text-left font-medium group transition-colors"
-              data-target={`faq-${index}`}
+              data-target={`${id}-${index}`}
             >
               <div class="flex items-center gap-4">
                 {faq.icon && <Icon name={faq.icon} class="w-7 h-7" />}
@@ -40,7 +40,7 @@ const rightColumnFaqs = items.slice(Math.ceil(items.length / 2));
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div id={`faq-${index}`} class="faq-content hidden px-6 pb-4">
+            <div id={`${id}-${index}`} class="faq-content hidden px-6 pb-4">
               <p class="text-muted-foreground">{faq.description}</p>
             </div>
           </div>
@@ -54,7 +54,7 @@ const rightColumnFaqs = items.slice(Math.ceil(items.length / 2));
           <div class="border rounded-lg">
             <button
               class="faq-trigger flex justify-between items-center w-full px-6 py-4 text-left font-medium group transition-colors"
-              data-target={`faq-${index + leftColumnFaqs.length}`}
+              data-target={`${id}-${index + leftColumnFaqs.length}`}
             >
               <div class="flex items-center gap-4">
                 {faq.icon && <Icon name={faq.icon} class="w-7 h-7" />}
@@ -64,7 +64,7 @@ const rightColumnFaqs = items.slice(Math.ceil(items.length / 2));
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div id={`faq-${index + leftColumnFaqs.length}`} class="faq-content hidden px-6 pb-4">
+            <div id={`${id}-${index + leftColumnFaqs.length}`} class="faq-content hidden px-6 pb-4">
               <p class="text-muted-foreground">{faq.description}</p>
             </div>
           </div>
