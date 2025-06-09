@@ -1,0 +1,147 @@
+---
+import TreatmentLayout from '~/layouts/TreatmentLayout.astro';
+import Content from '~/components/widgets/Content.astro';
+import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
+
+const treatmentId = 'skin-tightening';
+const title = 'Skin Tightening';
+const description = 'Tighten loose or sagging skin to produce firmer, more youthful looking skin';
+
+const beforeAfterImages = [
+  {
+    src: '~/assets/images/rf/before_after/RF-Skin-Tightening-13(2).jpg',
+    alt: 'RF Skin Tightening Before and After Results 1',
+  },
+  {
+    src: '~/assets/images/rf/before_after/RF-Skin-Tightening-_-Ultrasound-Body-Contouring-01.jpg',
+    alt: 'RF Skin Tightening and Ultrasound Body Contouring Results',
+  },
+  {
+    src: '~/assets/images/rf/before_after/RF_Skin_Tightening-12(2).jpg',
+    alt: 'RF Skin Tightening Before and After Results 2',
+  },
+  {
+    src: '~/assets/images/rf/before_after/RF_Skin_Tightening_Before_After_03.jpg',
+    alt: 'RF Skin Tightening Before and After Results 3',
+  },
+  {
+    src: '~/assets/images/rf/before_after/RF-Skin-Tightening-16(2).jpg',
+    alt: 'RF Skin Tightening Before and After Results 4',
+  },
+  {
+    src: '~/assets/images/rf/before_after/RF-Skin-Tightening-15(2).jpg',
+    alt: 'RF Skin Tightening Before and After Results 5',
+  },
+  {
+    src: '~/assets/images/rf/before_after/RF-Skin-Tightening-14(2).jpg',
+    alt: 'RF Skin Tightening Before and After Results 6',
+  },
+];
+const faqs = [
+  {
+    title: 'How does RF work?',
+    description:
+      'RF works by generating heat and applying it to the epidermal and dermal layers of the skin. The heat causes tissue retraction, resulting in instantly tighter and firmer skin. It also works to stimulate collagen production which over time produces a more youthful looking appearance.',
+  },
+  {
+    title: 'Which areas of the body can RF treat?',
+    description:
+      'RF can be used on any area of the body, including the face, neck, arms, legs, abdomen, and buttocks. It is particularly effective for tightening loose or sagging skin, reducing the appearance of cellulite, and improving the overall tone and texture of the skin.',
+  },
+  {
+    title: 'What does the treatment feel like?',
+    description:
+      'RF is a painless treatment and most clients will experience zero discomfort. Some find the warm sensation relaxing. ',
+  },
+  {
+    title: 'Can I get on with my day after treatment?',
+    description:
+      'You sure can! Some clients may experience redness immediately post treatment, but this typically subsides not long after treatment.  As there is no downtime, you can get on with your day as usual.',
+  },
+  {
+    title: 'How many treatments will I need?',
+    description:
+      'This will all depend on your individual situation, and we will carefully assess this for you during your consultation. Some clients may only need 4 treatments, while other may require 6 or 8 to achieve brilliant results.',
+  },
+  {
+    title: 'When will I start seeing results?',
+    description:
+      'When it comes to the tightening and lifting effect of RF, it can produce instant results. You will notice immediate improvements to your skin tone that will just get better with each session. The collagen remodeling aspect of RF takes a little more time and you will reach full benefits of the collagen stimulation around 3 months after treatment.',
+  },
+];
+---
+
+<TreatmentLayout
+  treatmentId={treatmentId}
+  title={title}
+  description={description}
+  heroImage={{
+    src: '~/assets/images/rf/skin_tightening_face_05.jpg',
+    alt: 'RF Treatment Background',
+    objectPosition: '50% 50%',
+  }}
+  faqItems={faqs}
+  beforeAfterImages={beforeAfterImages}
+>
+  <Content
+    tagline="UltraLUX"
+    title="Radio Frequency Skin Tightening"
+    image={{
+      src: '~/assets/images/rf/RF_Skin_Tightening_Face_06.jpg',
+      alt: 'RF Skin Tightening',
+      height: 300,
+    }}
+    isReversed
+  >
+    <Fragment slot="content">
+      <h3 class="text-xl font-bold tracking-tight dark:text-white sm:text-2xl mb-2">
+        Remove sagging skin and signs of ageing
+      </h3>
+      <div class="flex flex-col gap-2">
+        <p>
+          RF works by generating heat and applying it to the epidermal and dermal layers of the skin. The heat causes
+          tissue retraction, resulting in instantly tighter and firmer skin. It also works to stimulate collagen
+          production which over time produces a more youthful looking appearance.
+        </p>
+      </div>
+    </Fragment>
+  </Content>
+  <TreatmentAreas
+    title="Common Treatment Areas"
+    items={[
+      {
+        title: 'Neck',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Chin',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Arms & Legs',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Tummy',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Buttocks',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Thighs',
+        icon: 'mdi:dot',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/rf/RF_Skin_Tightening_In-Use_01.jpg',
+      alt: 'RF Skin Tightening In Use',
+    }}
+    classes={{ container: 'md:h-[500px]' }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-[#D3C2AE]"></div>
+    </Fragment>
+  </TreatmentAreas>
+</TreatmentLayout>
