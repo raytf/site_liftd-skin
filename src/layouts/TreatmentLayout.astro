@@ -13,6 +13,10 @@ const {
   beforeAfterImages = await Astro.slots.render('before-after-images'),
   faqItems = await Astro.slots.render('faq-items'),
 } = Astro.props;
+
+const metadata = {
+  title: title,
+};
 ---
 
 <script>
@@ -31,7 +35,7 @@ const {
   requestAnimationFrame(raf);
 </script>
 
-<PageLayout>
+<PageLayout metadata={metadata}>
   <Hero class="hero-section" subtitle={description}>
     <!-- Hero Background -->
     <Fragment slot="bg">

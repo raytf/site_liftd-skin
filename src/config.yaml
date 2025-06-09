@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: LIFTD Skin
+  site: 'https://liftdskin.com.au'
   base: '/'
   trailingSlash: false
 
@@ -9,16 +9,16 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: LIFTD Skin
+    template: '%s — LIFTD Skin'
+  description: 'Gold Coast Skin Clinic - advanced non-surgical HIFU treatments'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: LIFTD Skin
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/liftd_screenshot.png'
         width: 1200
         height: 628
     type: website
