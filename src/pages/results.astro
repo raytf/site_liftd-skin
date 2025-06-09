@@ -1,0 +1,53 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Image from '~/components/common/Image.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Carousel from '~/components/ui/Carousel.astro';
+import { getCollection } from 'astro:content';
+
+const metadata = {
+  title: 'Results',
+};
+
+// Fetch treatment data from content collections and reverse the order
+const treatments = (await getCollection('treatments')).reverse();
+---
+
+<PageLayout metadata={metadata}>
+  <Hero title="Results" subtitle="See what our clients have achieved with our treatments">
+    <Fragment slot="bg">
+      <div class="size-full overflow-hidden">
+        <div class="absolute inset-0 size-full bg-black/50"></div>
+        <Image
+          class="!max-w-none h-full md:w-full object-cover"
+          src="~/assets/images/happy_woman_beach.jpg"
+          alt="Happy woman at beach"
+          aspectRatio="auto"
+          objectPosition="50% 0%"
+        />
+      </div>
+    </Fragment>
+  </Hero>
+
+  {
+    treatments.map((treatment, index) => (
+      <section class={`py-16 ${index % 2 === 1 ? 'bg-gray-50' : ''}`}>
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-4">{treatment.data.title}</h2>
+          <h3 class="text-center mb-4">{treatment.data.description}</h3>
+          <Carousel
+            slides={treatment.data.beforeAfterImages.map((image) => ({
+              backgroundImage: {
+                src: image.src,
+                alt: image.alt,
+              },
+              action: {
+                type: 'button',
+              },
+            }))}
+          />
+        </div>
+      </section>
+    ))
+  }
+</PageLayout>
