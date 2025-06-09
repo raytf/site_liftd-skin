@@ -15,9 +15,9 @@
     background-color: var(--aw-color-bg-page);
   }
 
-  .bg-accent {
+  /* .bg-accent {
     background-color: var(--aw-color-accent);
-  }
+  } */
 
   .text-page {
     color: var(--aw-color-text-page);
