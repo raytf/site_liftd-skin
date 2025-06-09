@@ -14,22 +14,22 @@ interface HeaderData {
 }
 
 const homepageNav = [
-  { text: 'About', href: '#about' },
-  { text: 'Process', href: '#process' },
-  { text: 'Concerns', href: '#concerns' },
+  { text: 'About', href: '/#about' },
+  { text: 'Process', href: '/#process' },
+  { text: 'Concerns', href: '/#concerns' },
   {
     text: 'Treatments',
-    href: '#treatments',
+    href: '/#treatments',
     links: [
-      { text: 'HIFU', href: '/treatments/hifu' },
-      { text: 'Body Contouring', href: '/treatments/body-contouring' },
-      { text: 'Skin Tightening', href: '/treatments/skin-tightening' },
-      { text: 'Vacuum Suction', href: '/treatments/vacuum-suction' },
+      { text: 'Facial Lifting', href: '/treatments/hifu-facial-lifting' },
+      { text: 'Body Contouring', href: '/treatments/ultrasound-body-contouring' },
+      { text: 'Skin Tightening', href: '/treatments/rf-skin-tightening' },
+      // { text: 'Vacuum Suction', href: '/treatments/vacuum-suction' },
     ],
   },
   {
     text: 'FAQs',
-    href: '#faqs',
+    href: '/#faqs',
   },
 ];
 

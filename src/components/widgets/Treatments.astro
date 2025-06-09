@@ -84,22 +84,22 @@ const slides = [
       variant: 'accent',
     } as CallToAction,
   },
-  {
-    id: 'cellulite-reduction',
-    title: 'Cellulite Reduction',
-    backgroundImage: {
-      src: '~/assets/images/vacuum_suction/vacuum_suction_8.jpg',
-      alt: 'Vacuum Therapy Background',
-    } as Image,
-    description: 'Vacuum therapy that stimulates blood flow and breaks down fat deposits for smoother, toned skin.',
-    benefits: ['Reduces appearance of cellulite', 'Improves skin texture and firmness', 'Enhances muscle tone'],
-    action: {
-      icon: 'cuida:open-in-new-tab-outline',
-      text: 'Learn More',
-      href: '/treatments/vacuum-suction',
-      variant: 'accent',
-    } as CallToAction,
-  },
+  // {
+  //   id: 'cellulite-reduction',
+  //   title: 'Cellulite Reduction',
+  //   backgroundImage: {
+  //     src: '~/assets/images/vacuum_suction/vacuum_suction_8.jpg',
+  //     alt: 'Vacuum Therapy Background',
+  //   } as Image,
+  //   description: 'Vacuum therapy that stimulates blood flow and breaks down fat deposits for smoother, toned skin.',
+  //   benefits: ['Reduces appearance of cellulite', 'Improves skin texture and firmness', 'Enhances muscle tone'],
+  //   action: {
+  //     icon: 'cuida:open-in-new-tab-outline',
+  //     text: 'Learn More',
+  //     href: '/treatments/vacuum-suction',
+  //     variant: 'accent',
+  //   } as CallToAction,
+  // },
 ];
 ---
 
@@ -121,7 +121,7 @@ const slides = [
     }}
   />
   <div class="mx-auto max-w-7xl p-4 md:px-8">
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
       {slides.map((slide) => <ImageCard {...slide} />)}
     </div>
   </div>
