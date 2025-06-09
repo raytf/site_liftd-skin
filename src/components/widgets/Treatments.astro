@@ -1,7 +1,7 @@
 ---
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Carousel from '~/components/ui/Carousel.astro';
+import ImageCard from '~/components/ui/ImageCard.astro';
 import type { Image, CallToAction } from '~/types';
 
 export interface Props {
@@ -27,7 +27,6 @@ const {
 const slides = [
   {
     id: 'facial-lifting',
-    tagline: 'HIFU',
     title: 'Facial Lifting',
     backgroundImage: {
       src: '~/assets/images/hifu/hifu_6.jpeg',
@@ -49,7 +48,6 @@ const slides = [
   },
   {
     id: 'body-contouring',
-    tagline: 'HIFU',
     title: 'Body Contouring',
     backgroundImage: {
       src: '~/assets/images/ultrasound/body_contouring_9.jpg',
@@ -71,7 +69,6 @@ const slides = [
   },
   {
     id: 'skin-tightening',
-    tagline: 'Radio Frequency',
     title: 'Skin Tightening',
     backgroundImage: {
       src: '~/assets/images/rf/skin_tightening_face_05.jpg',
@@ -89,7 +86,6 @@ const slides = [
   },
   {
     id: 'cellulite-reduction',
-    tagline: 'Vacuum Suction',
     title: 'Cellulite Reduction',
     backgroundImage: {
       src: '~/assets/images/vacuum_suction/vacuum_suction_8.jpg',
@@ -125,7 +121,8 @@ const slides = [
     }}
   />
   <div class="mx-auto max-w-7xl p-4 md:px-8">
-    <div class="hidden md:grid"></div>
-    <Carousel slides={slides} />
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      {slides.map((slide) => <ImageCard {...slide} />)}
+    </div>
   </div>
 </WidgetWrapper>

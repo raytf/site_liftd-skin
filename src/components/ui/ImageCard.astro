@@ -38,9 +38,11 @@ const CardTag = as;
               <h4 class="text-sm inline-block py-2 px-4 bg-secondary text-white rounded-full mb-2">{tagline}</h4>
             )}
             {title && (
-              <h3 class={`text-2xl font-semibold mb-2 overflow-hidden ${backgroundImage ? 'text-white' : 'text-dark'}`}>
-                <span class="block" style={`view-transition-name: ${id}-title`}>
-                  {title}
+              <h3
+                class={`text-2xl font-semibold md:mb-2 overflow-hidden ${backgroundImage ? 'text-white' : 'text-dark'}`}
+              >
+                <span class="inline-flex items-center gap-2" style={`view-transition-name: ${id}-title`}>
+                  {title} <Icon name="cuida:open-in-new-tab-outline" class="md:hidden w-5 h-5 text-white" />
                 </span>
               </h3>
             )}
@@ -48,7 +50,7 @@ const CardTag = as;
         </div>
         <div
           class:list={[
-            'absolute top-2 right-2',
+            'hidden md:block absolute top-2 right-2',
             'opacity-100 translate-y-0 transition-[opacity,transform] duration-300',
             'md:opacity-0 md:-translate-y-12 md:group-hover:opacity-100 md:group-hover:translate-y-0',
           ]}
