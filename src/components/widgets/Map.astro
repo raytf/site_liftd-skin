@@ -13,6 +13,7 @@ const { apiKey, query } = Astro.props;
       style="height:100%;width:100%;border:0;"
       loading="lazy"
       title="Google Maps location"
+      referrerpolicy="no-referrer-when-downgrade"
       src={`https://www.google.com/maps/embed/v1/place?q=${encodeURIComponent(query)}&key=${apiKey}`}></iframe>
   </div>
 </div>
