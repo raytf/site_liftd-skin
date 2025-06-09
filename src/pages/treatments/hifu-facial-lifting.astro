@@ -1,8 +1,8 @@
 ---
 import TreatmentLayout from '~/layouts/TreatmentLayout.astro';
 import Content from '~/components/widgets/Content.astro';
-import Features from '~/components/widgets/Features.astro';
-import Gallery from '~/components/ui/Gallery.astro';
+import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
+import FAQ from '~/components/widgets/FAQ.astro';
 
 const treatmentId = 'facial-lifting';
 const title = 'Facial Lifting';
@@ -53,33 +53,11 @@ const faqs = [
     objectPosition: '50% 25%',
   }}
   faqItems={faqs}
+  beforeAfterImages={beforeAfterImages}
 >
   <Content
     tagline="Liftera"
     title="HIFU Non-Surgical Lifting"
-    items={[
-      {
-        title: 'Forehead and temples',
-      },
-      {
-        title: 'Tear trough',
-      },
-      {
-        title: 'Orbital ridge',
-      },
-      {
-        title: 'Perinasal region',
-      },
-      {
-        title: 'Mandibular jowls',
-      },
-      {
-        title: 'Upper lip',
-      },
-      {
-        title: 'Neck region',
-      },
-    ]}
     image={{
       src: '~/assets/images/hifu/hifu_1.jpeg',
       alt: 'HIFU Lifting',
@@ -91,12 +69,84 @@ const faqs = [
       </h3>
       <p>
         In as little as one 30-minute treatment, the next-generation of HIFU Non-Surgical Lifting can deliver
-        transformative results in tightening, lifting, smoothing and sculpting more areas than traditional HIFU
-        including:
+        transformative results in tightening, lifting, smoothing and sculpting more areas than traditional HIFU.
       </p>
     </Fragment>
   </Content>
-  <Features
+  <FAQ
+    title="Why Liftera?"
+    items={[
+      {
+        title: 'ADVANCED, MEDICAL GRADE TECHNOLOGY',
+        description:
+          'Developed by Korean medi-aesthetic leaders, Asterasys, Liftera is a medical-grade, non-surgical lifting technology (ARTG #393230) that elevates traditional HIFU. Utilising exclusive Thermal Diffusion Treatment™ technology it delivers powerful and effective face and neck lifting results.',
+        icon: 'tabler:device-heart-monitor',
+      },
+      {
+        title: 'OPTIMISED FOR PRECISION AND VERSATILITY',
+        description:
+          'Liftera offers comprehensive facial lifting capabilities for effective enhancement across the entire face - including the forehead, eye area, cheeks, mouth, and chin - delivering results comparable to more invasive cosmetic procedures, especially notable in periorbital lifting.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'ENHANCED SAFETY AND COMFORT',
+        description:
+          'Liftera generates stable and precise Peak Power to increase the efficacy of thermal energy within targeted tissues. This innovation reduces patient discomfort and the risk of adverse reactions, without compromising on treatment results.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'REDUCED DISCOMFORT AND DOWNTIME',
+        description:
+          'With a tailored approach, Liftera offers an ideal balance of comfort, minimal downtime and impressive results that clients love. Patients can resume normal activities immediately, making this the perfect treatment for those seeking non-invasive lifting and contouring procedures.',
+        icon: 'tabler:clock-check',
+      },
+    ]}
+    classes={{ container: '!pt-0' }}
+  />
+  <TreatmentAreas
+    title="Common Treatment Areas"
+    items={[
+      {
+        title: 'Forehead and temples',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Tear trough',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Orbital ridge',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Perinasal region',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Mandibular jowls',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Upper lip',
+        icon: 'mdi:dot',
+      },
+      {
+        title: 'Neck region',
+        icon: 'mdi:dot',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/woman_magnifying_glasses.jpg',
+      alt: 'Woman Magnifying Glasses',
+    }}
+    classes={{ container: 'md:h-[500px]' }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-[#D3C2AE]"></div>
+    </Fragment>
+  </TreatmentAreas>
+
+  <!-- <Features
     classes={{
       items: {
         icon: 'w-12 h-12 mx-4',
@@ -134,12 +184,5 @@ const faqs = [
     <Fragment slot="bg">
       <div class="absolute inset-0 size-full bg-secondary brightness-75"></div>
     </Fragment>
-  </Features>
-  <!-- <Image src="~/assets/images/hifu/hifu_results.png" alt="HIFU Results" /> -->
-  <section class="py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">Before & After Results</h2>
-      <Gallery images={beforeAfterImages} />
-    </div>
-  </section>
+  </Features> -->
 </TreatmentLayout>

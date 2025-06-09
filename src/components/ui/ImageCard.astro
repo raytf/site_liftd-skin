@@ -18,48 +18,57 @@ interface Props {
 }
 
 const { as = 'div', id, title, backgroundImage, action, tagline, containerClass, ...rest } = Astro.props;
-const CardTag = as;
+const CardContainer = as;
+const CardContent = action ? (action.type === 'button' ? 'button' : 'a') : 'div';
 ---
 
-<CardTag class:list={['rounded-2xl overflow-hidden', containerClass]} {...rest}>
+<CardContainer class:list={['rounded-2xl overflow-hidden', containerClass]} {...rest}>
   {
-    backgroundImage && (
-      <a href={action?.href} class="group relative rounded-t-2xl overflow-hidden" data-slide-id={id}>
-        <ImageComponent
-          src={backgroundImage.src}
-          alt={backgroundImage.alt || title}
-          class="group-hover:scale-110 w-full h-full object-cover transition-all duration-300"
-          width={1920}
-          height={1080}
-        />
-        <div class="absolute inset-0 flex items-end z-[1] p-4 bg-gradient-to-t from-black/70 to-transparent">
+    (
+      <CardContent
+        data-slide-id={id}
+        {...(action || {})}
+        class="group relative flex size-full rounded-t-2xl overflow-hidden"
+      >
+        {backgroundImage && (
+          <ImageComponent
+            src={backgroundImage.src}
+            alt={backgroundImage.alt || title}
+            class="card-image group-hover:scale-110 w-full h-full object-cover transition-all duration-300"
+          />
+        )}
+        <div
+          class={`card-overlay absolute size-full inset-0 flex items-end z-[1] p-4 ${title && 'bg-gradient-to-t from-black/70 to-transparent'}`}
+        >
           <div>
             {tagline && (
               <h4 class="text-sm inline-block py-2 px-4 bg-secondary text-white rounded-full mb-2">{tagline}</h4>
             )}
             {title && (
-              <h3
-                class={`text-2xl font-semibold md:mb-2 overflow-hidden ${backgroundImage ? 'text-white' : 'text-dark'}`}
-              >
-                <span class="inline-flex items-center gap-2" style={`view-transition-name: ${id}-title`}>
+              <h3 class={`text-2xl font-semibold md:mb-2 overflow-hidden text-white`}>
+                <span class="inline-flex items-center gap-2">
                   {title} <Icon name="cuida:open-in-new-tab-outline" class="md:hidden w-5 h-5 text-white" />
                 </span>
               </h3>
             )}
           </div>
         </div>
-        <div
-          class:list={[
-            'hidden md:block absolute top-2 right-2',
-            'opacity-100 translate-y-0 transition-[opacity,transform] duration-300',
-            'md:opacity-0 md:-translate-y-12 md:group-hover:opacity-100 md:group-hover:translate-y-0',
-          ]}
-        >
-          <div class="btn btn-accent text-sm py-2 px-3 flex items-center gap-1">
-            Learn more <Icon name="cuida:open-in-new-tab-outline" class="w-4 h-4" />
+        {action?.type === 'button' ? (
+          ''
+        ) : (
+          <div
+            class:list={[
+              'hidden md:block absolute top-2 right-2',
+              'opacity-100 translate-y-0 transition-[opacity,transform] duration-300',
+              'md:opacity-0 md:-translate-y-12 md:group-hover:opacity-100 md:group-hover:translate-y-0',
+            ]}
+          >
+            <div class="btn btn-accent text-sm py-2 px-3 flex items-center gap-1">
+              Learn more <Icon name="cuida:open-in-new-tab-outline" class="w-4 h-4" />
+            </div>
           </div>
-        </div>
-      </a>
+        )}
+      </CardContent>
     )
   }
   {
@@ -78,16 +87,16 @@ const CardTag = as;
               )}
             </div> */
   }
-</CardTag>
+</CardContainer>
 
 <script>
-  document.querySelectorAll('a[data-slide-id]').forEach((link) => {
+  document.querySelectorAll('[data-slide-id]').forEach((link) => {
     link.addEventListener('click', () => {
       const slideId = link.getAttribute('data-slide-id');
       if (!slideId) return;
 
-      const image = link.querySelector('img') as HTMLImageElement;
-      const overlay = link.querySelector('div[class*="absolute inset-0"]') as HTMLDivElement;
+      const image = link.querySelector('.card-image') as HTMLImageElement;
+      const overlay = link.querySelector('.card-overlay') as HTMLDivElement;
 
       if (image) {
         image.style.viewTransitionName = `${slideId}-bgImage`;

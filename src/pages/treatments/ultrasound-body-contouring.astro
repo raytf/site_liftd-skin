@@ -1,7 +1,6 @@
 ---
 import TreatmentLayout from '~/layouts/TreatmentLayout.astro';
 import Content from '~/components/widgets/Content.astro';
-import Gallery from '~/components/ui/Gallery.astro';
 import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
 
 const treatmentId = 'body-contouring';
@@ -125,6 +124,7 @@ const faqs = [
     objectPosition: '50% 0%',
   }}
   faqItems={faqs}
+  beforeAfterImages={beforeAfterImages}
 >
   <Content
     tagline="LUX Series"
@@ -182,18 +182,12 @@ const faqs = [
     image={{
       src: '~/assets/images/ultrasound/body_contouring_5.jpg',
       alt: 'Body Contouring',
+      objectPosition: '50% 80%',
     }}
-    classes={{ container: '' }}
+    classes={{ container: 'md:h-[500px]' }}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 size-full bg-[#D3C2AE]"></div>
     </Fragment>
   </TreatmentAreas>
-
-  <section class="py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">Before & After Results</h2>
-      <Gallery images={beforeAfterImages} />
-    </div>
-  </section>
 </TreatmentLayout>
