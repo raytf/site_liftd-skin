@@ -34,7 +34,7 @@
   }
 
   .btn-primary {
-    @apply btn font-semibold bg-white text-dark border-dark;
+    @apply btn font-semibold text-dark border-dark;
   }
 
   .btn-secondary {

@@ -25,7 +25,7 @@ const {
 <WidgetWrapper
   id={id}
   isDark={isDark}
-  containerClass={`!px-0 !py-0 max-w-none bg-black/10 ${classes?.container ?? ''}`}
+  containerClass={`!px-0 !py-0 max-w-none ${classes?.container ?? ''}`}
   bg={bg}
   revealAnimation={false}
 >
@@ -35,13 +35,13 @@ const {
         title={title}
         subtitle={subtitle}
         tagline={tagline}
-        classes={{ container: 'mb-4 md:mb-8', title: 'text-start text-white md:px-8 md:text-4xl' }}
+        classes={{ container: 'mb-4 md:mb-8', title: 'text-start md:px-8 md:text-4xl' }}
       />
       <ItemGrid
         items={items}
         columns={2}
         classes={{
-          container: `gap-y-2 md:gap-y-4 md:px-8 text-gray-300`,
+          container: `gap-y-2 md:gap-y-4 md:px-8`,
           panel: 'min-h-12',
           title: 'font-medium',
           icon: 'flex-shrink-0 mt-1 w-6 h-6',
