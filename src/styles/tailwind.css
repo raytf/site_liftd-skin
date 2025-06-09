@@ -74,13 +74,13 @@
   padding: 0.25rem 0;
 }
 
-#header .header-toggle span {
+/* #header .header-toggle span {
   @apply bg-white;
 }
 
 #header.scroll .header-toggle span {
   @apply bg-black;
-}
+} */
 
 #header > .header_content {
   @apply text-primary;
