@@ -1,8 +1,7 @@
 ---
 import type { Image } from '~/types';
 import type { CallToAction } from '~/types';
-import ImageComponent from '~/components/common/Image.astro';
-import { Icon } from 'astro-icon/components';
+import ImageCard from './ImageCard.astro';
 
 interface Props {
   slides?: Array<{
@@ -20,86 +19,8 @@ const { slides = [] } = Astro.props;
 ---
 
 <ul class="carousel">
-  {
-    slides.map((slide) => (
-      <li class="slide rounded-2xl overflow-hidden">
-        {slide.backgroundImage && (
-          <a href={slide.action?.href} class="group relative rounded-t-2xl overflow-hidden" data-slide-id={slide.id}>
-            <ImageComponent
-              src={slide.backgroundImage.src}
-              alt={slide.backgroundImage.alt || slide.title}
-              class="group-hover:scale-110 w-full h-full object-cover transition-all duration-300"
-              width={1920}
-              height={1080}
-            />
-            <div class="absolute inset-0 flex items-end z-[1] p-4 bg-gradient-to-t from-black/70 to-transparent">
-              <div>
-                {slide.tagline && (
-                  <h4 class="text-sm inline-block py-2 px-4 bg-secondary text-white rounded-full mb-2">
-                    {slide.tagline}
-                  </h4>
-                )}
-                {slide.title && (
-                  <h3
-                    class={`text-2xl font-semibold mb-2 overflow-hidden ${slide.backgroundImage ? 'text-white' : 'text-dark'}`}
-                  >
-                    <span class="block" style={`view-transition-name: ${slide.id}-title`}>
-                      {slide.title}
-                    </span>
-                  </h3>
-                )}
-              </div>
-            </div>
-            <div
-              class:list={[
-                'absolute top-2 right-2',
-                'opacity-100 translate-y-0 transition-[opacity,transform] duration-300',
-                'md:opacity-0 md:-translate-y-12 md:group-hover:opacity-100 md:group-hover:translate-y-0',
-              ]}
-            >
-              <div class="btn btn-accent text-sm py-2 px-3 flex items-center gap-1">
-                Learn more <Icon name="cuida:open-in-new-tab-outline" class="w-4 h-4" />
-              </div>
-            </div>
-          </a>
-        )}
-        {/* <div class="relative rounded-b-2xl bg-white flex flex-col items-start px-6 py-4 text-start">
-          {slide.description && <p class="text-medium mb-4 text-dark/80" set:html={slide.description} />}
-
-          {slide.benefits && slide.benefits.length > 0 && (
-            <ul class="space-y-2 mb-6">
-              {slide.benefits.map((benefit) => (
-                <li class="flex items-center text-dark/90">
-                  <Icon name="tabler:check" class="w-5 h-5 mr-2 text-secondary" />
-                  <Fragment set:html={benefit} />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div> */}
-      </li>
-    ))
-  }
+  {slides.map((slide) => <ImageCard as="li" containerClass="slide" {...slide} />)}
 </ul>
-
-<script>
-  document.querySelectorAll('.carousel a[data-slide-id]').forEach((link) => {
-    link.addEventListener('click', () => {
-      const slideId = link.getAttribute('data-slide-id');
-      if (!slideId) return;
-
-      const image = link.querySelector('img') as HTMLImageElement;
-      const overlay = link.querySelector('div[class*="absolute inset-0"]') as HTMLDivElement;
-
-      if (image) {
-        image.style.viewTransitionName = `${slideId}-bgImage`;
-      }
-      if (overlay) {
-        overlay.style.viewTransitionName = `${slideId}-bgOverlay`;
-      }
-    });
-  });
-</script>
 
 <style>
   .carousel {
@@ -109,6 +30,15 @@ const { slides = [] } = Astro.props;
     grid-auto-columns: 100%;
     gap: 2rem;
 
+    @media (min-width: 768px) {
+      grid-auto-columns: calc(50% - 2rem);
+    }
+
+    scroll-behavior: smooth;
+    @media (prefers-reduced-motion: reduce) {
+      scroll-behavior: auto;
+    }
+
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
 
@@ -117,41 +47,6 @@ const { slides = [] } = Astro.props;
     > li {
       scroll-snap-align: center;
     }
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .carousel {
-      scroll-behavior: smooth;
-    }
-  }
-  @media (min-width: 768px) {
-    .carousel {
-      grid-auto-flow: row;
-      grid-template-columns: repeat(2, 1fr);
-      overflow-x: visible;
-      scroll-snap-type: none;
-    }
-    .carousel::scroll-marker-group {
-      display: none;
-    }
-    .carousel::scroll-button(*) {
-      display: none;
-    }
-  }
-
-  .slide {
-    position: relative;
-    border-radius: 0.5rem;
-  }
-
-  .content {
-    position: relative;
-    z-index: 1;
-    padding: 2rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   /* SCROLL MARKERS */
