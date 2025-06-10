@@ -18,7 +18,7 @@ interface Props {
 const { slides = [] } = Astro.props;
 ---
 
-<ul class="carousel">
+<ul class="carousel auto-cols-[100%] md:auto-cols-[calc(50%-2rem)]">
   {slides.map((slide) => <ImageCard as="li" containerClass="slide" {...slide} />)}
 </ul>
 
@@ -27,7 +27,6 @@ const { slides = [] } = Astro.props;
     anchor-name: --carousel;
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 100%;
     gap: 2rem;
 
     scroll-behavior: smooth;
@@ -43,10 +42,6 @@ const { slides = [] } = Astro.props;
   }
 
   @media screen and (min-width: 768px) {
-    .carousel {
-      grid-auto-columns: calc(50% - 2rem);
-    }
-
     .carousel li.slide::scroll-marker {
       height: 0.75rem;
       width: 0.75rem;
