@@ -93,7 +93,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       >
         {
           links.map(({ text, href, links }) => (
-            <li class:list={[links?.length ? 'dropdown' : '', 'px-4 flex flex-col md:items-center justify-center']}>
+            <li
+              class:list={[
+                links?.length ? 'dropdown' : '',
+                'group/link px-4 flex flex-col md:items-center justify-center',
+              ]}
+            >
               {links?.length ? (
                 <>
                   <a
@@ -103,7 +108,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                     {text}{' '}
                     <Icon name="tabler:chevron-down" class="w-3.5 h-3.5 ml-0.5 rtl:ml-0 rtl:mr-0.5 hidden md:inline" />
                   </a>
-                  <ul class="group-hover:md:block dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute md:top-full pl-4 md:pl-0 md:hidden font-medium md:bg-white/90 md:text-dark md:min-w-[200px] drop-shadow-xl">
+                  <ul
+                    class:list={[
+                      'dropdown-menu md:backdrop-blur-md dark:md:bg-dark rounded md:absolute md:top-full pl-4 md:pl-0 font-medium md:bg-white/90 md:text-dark md:min-w-[200px] drop-shadow-xl',
+                      'md:opacity-0 md:-translate-y-4 md:pointer-events-none group-hover/link:md:opacity-100 group-hover/link:md:translate-y-0 group-hover/link:md:pointer-events-auto transition-all duration-300',
+                    ]}
+                  >
                     {links.map(({ text: text2, href: href2 }) => (
                       <li>
                         <a
