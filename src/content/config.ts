@@ -69,6 +69,7 @@ const treatmentsCollection = defineCollection({
   type: 'content',
   schema: z.object({
     treatmentId: z.string(),
+    url: z.string(),
     title: z.string(),
     description: z.string(),
     heroImage: z.object({

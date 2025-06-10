@@ -10,7 +10,7 @@ const metadata = {
 };
 
 // Fetch treatment data from content collections and reverse the order
-const treatments = (await getCollection('treatments')).reverse();
+const treatments = await getCollection('treatments');
 ---
 
 <PageLayout metadata={metadata}>
@@ -33,7 +33,11 @@ const treatments = (await getCollection('treatments')).reverse();
     treatments.map((treatment, index) => (
       <section class={`py-16 ${index % 2 === 1 ? 'bg-gray-50' : ''}`}>
         <div class="container mx-auto px-4">
-          <h2 class="text-3xl font-bold text-center mb-4">{treatment.data.title}</h2>
+          <a href={treatment.data.url} class="">
+            <h2 class="text-3xl font-bold text-center mb-4">
+              <span class="custom-underline hover:highlight">{treatment.data.title}</span>
+            </h2>
+          </a>
           <h3 class="text-center mb-4">{treatment.data.description}</h3>
           <Carousel
             slides={treatment.data.beforeAfterImages.map((image) => ({
