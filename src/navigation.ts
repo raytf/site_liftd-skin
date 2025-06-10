@@ -16,7 +16,7 @@ interface HeaderData {
 const homepageNav = [
   { text: 'About', href: '/#about' },
   { text: 'Process', href: '/#process' },
-  { text: 'Concerns', href: '/#concerns' },
+  { text: 'Concerns', href: '/#concerns', links: [{ text: 'Results', href: '/results' }] },
   {
     text: 'Treatments',
     href: '/#treatments',
