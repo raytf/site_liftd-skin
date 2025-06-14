@@ -77,6 +77,9 @@ export default defineConfig({
       useCdn: false,
       apiVersion: '2025-06-14',
       studioBasePath: '/studio',
+      stega: {
+        studioUrl: '/studio',
+      },
     }),
     react(),
   ],

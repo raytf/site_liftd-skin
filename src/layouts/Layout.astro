@@ -16,11 +16,15 @@ import BasicScripts from '~/components/common/BasicScripts.astro';
 // Comment the line below to disable View Transitions
 // import { ClientRouter } from 'astro:transitions';
 
+import { VisualEditing } from '@sanity/astro/visual-editing';
+
 import type { MetaData as MetaDataType } from '~/types';
 
 export interface Props {
   metadata?: MetaDataType;
 }
+
+const visualEditingEnabled = import.meta.env.SANITY_STUDIO_VISUAL_EDITING_ENABLED == 'true';
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
@@ -43,7 +47,7 @@ const { language, textDirection } = I18N;
 
   <body class="antialiased text-default bg-page tracking-tight">
     <slot />
-
+    <VisualEditing enabled={visualEditingEnabled} />
     <BasicScripts />
   </body>
 </html>
