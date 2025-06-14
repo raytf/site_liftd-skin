@@ -3,6 +3,7 @@
 /// <reference types="astro/client" />
 /// <reference types="vite/client" />
 /// <reference types="../vendor/integration/types.d.ts" />
+/// <reference types="@sanity/astro/module" />
 
 interface Window {
   updateStep: (index: number) => void;

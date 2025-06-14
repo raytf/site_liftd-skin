@@ -17,6 +17,9 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehype
 
 import vercel from '@astrojs/vercel';
 
+import sanity from '@sanity/astro';
+import react from '@astrojs/react';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
@@ -48,13 +51,11 @@ export default defineConfig({
         ],
       },
     }),
-
     ...whenExternalScripts(() =>
       partytown({
         config: { forward: ['dataLayer.push'] },
       })
     ),
-
     compress({
       CSS: true,
       HTML: {
@@ -67,10 +68,17 @@ export default defineConfig({
       SVG: false,
       Logger: 1,
     }),
-
     astrowind({
       config: './src/config.yaml',
     }),
+    sanity({
+      projectId: 'tw6kehcx',
+      dataset: 'production',
+      useCdn: false,
+      apiVersion: '2025-06-14',
+      studioBasePath: '/studio',
+    }),
+    react(),
   ],
 
   image: {
