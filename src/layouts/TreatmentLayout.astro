@@ -1,10 +1,11 @@
 ---
 import PageLayout from './PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Image from '~/components/common/Image.astro';
 import Carousel from '~/components/ui/Carousel.astro';
 import FAQ from '~/components/widgets/FAQ.astro';
 import TreatmentAreas from '~/components/widgets/TreatmentAreas.astro';
+import { Image } from 'astro:assets';
+import { urlFor, getImageDimensions } from '~/sanity/lib/image';
 
 const {
   treatmentId,
@@ -20,6 +21,20 @@ const {
 const metadata = {
   title: title,
 };
+
+// Get image dimensions using Sanity's helper
+const dimensions = getImageDimensions(heroImage);
+if (!dimensions) {
+  throw new Error('Could not get image dimensions for hero image');
+}
+
+const { width, height } = dimensions;
+const maxWidth = 1920;
+const scale = maxWidth / width;
+const scaledHeight = Math.round(height * scale);
+
+// Optimize hero image URL with Sanity transformations while preserving aspect ratio
+const optimizedHeroImageUrl = urlFor(heroImage).width(maxWidth).height(scaledHeight).auto('format').url();
 ---
 
 <script>
@@ -42,30 +57,21 @@ const metadata = {
   <Hero class="hero-section" subtitle={description}>
     <!-- Hero Background -->
     <Fragment slot="bg">
-      {
-        heroImage && (
-          <Fragment>
-            {typeof heroImage === 'string' ? (
-              <Fragment set:html={heroImage} />
-            ) : (
-              <Fragment>
-                <div
-                  class="absolute inset-0 size-full bg-black opacity-50"
-                  style={`view-transition-name: ${treatmentId}-bgOverlay`}
-                />
-                <Image
-                  class="relative size-full z-[-1] hero-image"
-                  objectPosition="50% 25%"
-                  aspectRatio="auto"
-                  loading="eager"
-                  style={`view-transition-name: ${treatmentId}-bgImage`}
-                  {...heroImage}
-                />
-              </Fragment>
-            )}
-          </Fragment>
-        )
-      }
+      <div
+        class="absolute inset-0 size-full bg-black opacity-50"
+        style={`view-transition-name: ${treatmentId}-bgOverlay`}
+      >
+      </div>
+      <Image
+        src={optimizedHeroImageUrl}
+        alt={heroImage.alt}
+        width={maxWidth}
+        height={scaledHeight}
+        loading="eager"
+        decoding="async"
+        class="relative size-full z-[-1] hero-image object-cover"
+        style={`view-transition-name: ${treatmentId}-bgImage`}
+      />
     </Fragment>
     <!-- Hero Title -->
     <Fragment slot="title">

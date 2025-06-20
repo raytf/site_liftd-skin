@@ -18,6 +18,10 @@ export const treatmentType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'description',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'heroImage',
       type: 'image',
       options: {

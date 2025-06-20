@@ -1,0 +1,26 @@
+---
+import type { InferGetStaticParamsType } from 'astro';
+import { fetchTreatments, fetchTreatment } from '~/sanity/lib/fetch';
+
+import Image from '~/components/common/Image.astro';
+import SanityPicture from 'astro-sanity-picture';
+import TreatmentLayout from '~/layouts/TreatmentLayout.astro';
+
+export async function getStaticPaths() {
+  const treatments = await fetchTreatments();
+  return treatments.map((treatment) => ({
+    params: { slug: treatment.slug.current },
+  }));
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+const { slug } = Astro.params as Params;
+
+const treatment = await fetchTreatment(slug);
+console.log(treatment);
+---
+
+<TreatmentLayout treatmentId={treatment.slug.current} title={treatment.title} heroImage={treatment.heroImage}>
+  <h1>{treatment.title}</h1>
+  <p>{treatment.slug.current}</p>
+</TreatmentLayout>

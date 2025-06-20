@@ -1,15 +1,13 @@
 ---
 import type { SanityDocument } from '@sanity/client';
 import { loadQuery } from '../../sanity/lib/load-query';
-import { postType } from '../../sanity/schemaTypes/post';
+//import { postType } from '../../sanity/schemaTypes/post';
 
 import PageLayout from '~/layouts/PageLayout.astro';
 import PortableText from '~/components/blocks/PortableText.astro';
 
-type Post = SanityDocument & typeof postType.fields;
-
 export async function getStaticPaths() {
-  const { data: posts } = await loadQuery<Post[]>({
+  const { data: posts } = await loadQuery<SanityDocument[]>({
     query: `*[_type == "post"]`,
   });
 
@@ -24,7 +22,7 @@ export async function getStaticPaths() {
 
 const { params } = Astro;
 
-const { data: post } = await loadQuery<Post>({
+const { data: post } = await loadQuery<SanityDocument>({
   query: `*[_type == "post" && slug.current == $slug][0]`,
   params,
 });

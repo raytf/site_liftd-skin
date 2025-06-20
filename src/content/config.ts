@@ -1,5 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import type { SanityDocument } from '@sanity/client';
+import { loadQuery } from '../sanity/lib/load-query';
 
 const metadataDefinition = () =>
   z
@@ -66,44 +68,62 @@ const postCollection = defineCollection({
 });
 
 const treatmentsCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    treatmentId: z.string(),
-    url: z.string(),
-    title: z.string(),
-    description: z.string(),
-    heroImage: z.object({
-      src: z.string(),
-      alt: z.string(),
-      objectPosition: z.string().optional(),
-    }),
-    treatmentAreas: z.array(
-      z.object({
-        title: z.string(),
-        icon: z.string(),
-      })
-    ),
-    treatmentAreasImage: z.object({
-      src: z.string(),
-      alt: z.string(),
-      objectPosition: z.string().optional(),
-    }),
-    beforeAfterImages: z.array(
-      z.object({
+  loader: async () => {
+    console.log('Loading treatments from sanity');
+    const { data: treatments } = await loadQuery<SanityDocument[]>({
+      query: `*[_type == "treatment"]`,
+    });
+
+    const treatmentData = treatments.map((treatment) => ({
+      id: treatment.id,
+      ...treatment,
+    }));
+
+    console.log('Treatments loaded from sanity', treatmentData);
+
+    return treatmentData;
+  },
+  schema: z
+    .object({
+      id: z.string(),
+      // url: z.string(),
+      title: z.string(),
+      // description: z.string(),
+      heroImage: z.object({
         src: z.string(),
         alt: z.string(),
-      })
-    ),
-    faqs: z.array(
-      z.object({
-        title: z.string(),
-        description: z.string(),
-      })
-    ),
-    benefits: z.array(z.string()).optional(),
-    order: z.number().optional(),
-    isDark: z.boolean().optional(),
-  }),
+        //objectPosition: z.string().optional(),
+      }),
+      // treatmentAreas: z.array(
+      //   z.object({
+      //     title: z.string(),
+      //     icon: z.string(),
+      //   })
+      // ),
+      // treatmentAreasImage: z.object({
+      //   src: z.string(),
+      //   alt: z.string(),
+      //   objectPosition: z.string().optional(),
+      // }),
+      // beforeAfterImages: z.array(
+      //   z.object({
+      //     src: z.string(),
+      //     alt: z.string(),
+      //   })
+      // ),
+      // faqs: z.array(
+      //   z.object({
+      //     title: z.string(),
+      //     description: z.string(),
+      //   })
+      // ),
+      // benefits: z.array(z.string()).optional(),
+      // order: z.number().optional(),
+      // isDark: z.boolean().optional(),
+    })
+    .transform((data) => ({
+      ...data,
+    })),
 });
 
 export const collections = {
