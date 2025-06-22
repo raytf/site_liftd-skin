@@ -75,7 +75,7 @@ const treatmentsCollection = defineCollection({
     });
 
     const treatmentData = treatments.map((treatment) => ({
-      id: treatment.id,
+      id: treatment._id,
       ...treatment,
     }));
 
@@ -90,7 +90,7 @@ const treatmentsCollection = defineCollection({
       title: z.string(),
       // description: z.string(),
       heroImage: z.object({
-        src: z.string(),
+        //src: z.string(),
         alt: z.string(),
         //objectPosition: z.string().optional(),
       }),

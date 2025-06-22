@@ -2,8 +2,6 @@
 import type { InferGetStaticParamsType } from 'astro';
 import { fetchTreatments, fetchTreatment } from '~/sanity/lib/fetch';
 
-import Image from '~/components/common/Image.astro';
-import SanityPicture from 'astro-sanity-picture';
 import TreatmentLayout from '~/layouts/TreatmentLayout.astro';
 
 export async function getStaticPaths() {
