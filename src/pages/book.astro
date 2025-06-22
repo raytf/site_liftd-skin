@@ -1,0 +1,48 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Image from '~/components/common/Image.astro';
+import Hero from '~/components/widgets/Hero.astro';
+
+const metadata = {
+  title: 'Book Your Consultation - LIFTD Skin',
+  description: 'Schedule your free consultation with our skin experts at LIFTD Skin on the Gold Coast.',
+};
+---
+
+<Layout metadata={metadata} showCta={false}>
+  <Hero class="hero-section">
+    <Fragment slot="bg">
+      <div class="absolute inset-0 size-full bg-black opacity-50"></div>
+      <Image
+        class="relative w-full object-cover z-[-1] hero-image !max-w-none"
+        objectPosition="50% 0%"
+        aspectRatio="auto"
+        loading="eager"
+        src={'~/assets/images/girl_at_resort.jpg'}
+        alt="Woman at resort enjoying beautiful skin"
+      />
+    </Fragment>
+    <Fragment slot="title"> Book Your Consultation </Fragment>
+  </Hero>
+
+  <!-- Booking Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <!-- <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Schedule Your Consultation</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Choose a time that works for you. Our consultations are completely free and take approximately 30 minutes.
+        </p>
+      </div> -->
+
+      <div class="flex justify-center">
+        <iframe
+          src="https://bookings.gettimely.com/liftdskin/bb/book"
+          scrolling="no"
+          id="timelyWidget"
+          class="w-full max-w-2xl"
+          style="height:700px;border:none;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.1);"></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>

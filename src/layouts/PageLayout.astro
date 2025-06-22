@@ -2,7 +2,6 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
-import Calendly from '~/components/widgets/Calendly.astro';
 // import Announcement from '~/components/widgets/Announcement.astro';
 
 import { headerData, footerData } from '~/navigation';
@@ -11,9 +10,10 @@ import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
+  showCta?: boolean;
 }
 
-const { metadata } = Astro.props;
+const { metadata, showCta = true } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
@@ -25,9 +25,9 @@ const { metadata } = Astro.props;
   </slot>
   <main>
     <slot />
-    <Calendly />
+    <!-- <Calendly /> -->
   </main>
   <slot name="footer">
-    <Footer {...footerData} />
+    <Footer {...footerData} showCta={showCta} />
   </slot>
 </Layout>
