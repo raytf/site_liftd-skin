@@ -36,7 +36,7 @@ const homepageNav = [
 export const headerData: HeaderData = {
   position: 'left',
   links: homepageNav,
-  actions: [{ text: 'Book Now', onclick: 'openCalendly()', variant: 'fill', type: 'button' }],
+  actions: [{ text: 'Book Now', href: '/book', variant: 'fill' }],
 };
 
 export const footerData = {

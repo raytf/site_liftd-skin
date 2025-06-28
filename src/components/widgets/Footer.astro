@@ -37,6 +37,7 @@ export interface Props {
   theme?: string;
   openingHours?: OpeningHours[];
   contactInfo?: ContactInfo;
+  showCta?: boolean;
 }
 
 const {
@@ -46,39 +47,43 @@ const {
   theme = 'light',
   openingHours = footerData.openingHours,
   contactInfo = footerData.contactInfo,
+  showCta = true,
 } = Astro.props;
 ---
 
 <footer class:list={[{ dark: theme === 'dark' }, 'relative not-prose']}>
-  <CTA
-    id="contact"
-    title="Let's Chat"
-    subtitle="Book in for a complimentary consultation to find out what's possible for your skin."
-    tagline="No obligation, no pressure, just honest answers about what we can achieve together."
-    actions={[
-      {
-        text: 'Book Your Complimentary Consultation',
-        variant: 'accent',
-        type: 'button',
-        onclick: 'openCalendly()',
-      },
-    ]}
-    guarantee="<span class='font-bold'>90-Day Guarantee</span>: If you don't see noticeable improvement, we'll refund your investment."
-    classes={{ container: '' }}
-  >
-    <Fragment slot="bg">
-      <div class="size-full overflow-hidden">
-        <div class="absolute inset-0 size-full bg-black/50"></div>
-        <Image
-          class="!max-w-none h-full md:w-full object-cover"
-          src="~/assets/images/girl_at_resort.jpg"
-          alt="Girl at Resort"
-          aspectRatio="auto"
-          objectPosition="50% 0%"
-        />
-      </div>
-    </Fragment>
-  </CTA>
+  {
+    showCta && (
+      <CTA
+        id="contact"
+        title="Let's Chat"
+        subtitle="Book in for a complimentary consultation to find out what's possible for your skin."
+        tagline="No obligation, no pressure, just honest answers about what we can achieve together."
+        actions={[
+          {
+            text: 'Book Your Complimentary Consultation',
+            variant: 'accent',
+            href: '/book',
+          },
+        ]}
+        guarantee="<span class='font-bold'>90-Day Guarantee</span>: If you don't see noticeable improvement, we'll refund your investment."
+        classes={{ container: '' }}
+      >
+        <Fragment slot="bg">
+          <div class="size-full overflow-hidden">
+            <div class="absolute inset-0 size-full bg-black/50" />
+            <Image
+              class="!max-w-none h-full md:w-full object-cover"
+              src="~/assets/images/girl_at_resort.jpg"
+              alt="Girl at Resort"
+              aspectRatio="auto"
+              objectPosition="50% 0%"
+            />
+          </div>
+        </Fragment>
+      </CTA>
+    )
+  }
   <div
     class="relative max-w-7xl mx-auto px-4 sm:px-6 text-slate-300 intersect-once intersect-quarter intercept-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
   >
