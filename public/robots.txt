@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://liftdskin.com.au/sitemap-index.xml
+Sitemap: https://www.liftdskin.com.au/sitemap-index.xml
